@@ -42,7 +42,3 @@ The following options are available:
 3.  Grant execute permissions to the Gradle wrapper: `chmod +x ./gradlew`
 4.  Build the project: `./gradlew build`
 5.  The compiled mod `.jar` will be located in the `build/libs/` directory.
-
-## License
-
-This project is under the "All Rights Reserved" license.
