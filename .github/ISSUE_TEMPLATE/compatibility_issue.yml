@@ -1,0 +1,108 @@
+name: Mod Compatibility Issue
+description: Report compatibility issues with other mods
+title: "[Compatibility] "
+labels: ["compatibility", "needs-investigation"]
+assignees: ["KdGaming0"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Mod Compatibility Issue
+        Report issues when ScaleMe doesn't work well with other mods.
+
+  - type: input
+    id: conflicting-mod
+    attributes:
+      label: Conflicting Mod
+      description: Which mod is causing compatibility issues with ScaleMe?
+      placeholder: "e.g., Sodium, REI, Skyblocker"
+    validations:
+      required: true
+
+  - type: input
+    id: conflicting-mod-version
+    attributes:
+      label: Conflicting Mod Version
+      description: What version of the conflicting mod are you using?
+      placeholder: "e.g., Sodium 0.6.13"
+    validations:
+      required: false
+
+  - type: input
+    id: scaleme-version
+    attributes:
+      label: ScaleMe Version
+      description: What version of ScaleMe are you using?
+      placeholder: "e.g., 1.2.3"
+    validations:
+      required: false
+
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft Version
+      description: What version of Minecraft?
+      placeholder: "e.g., 1.21.5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility-issue
+    attributes:
+      label: Compatibility Issue Description
+      description: Describe what happens when both mods are installed
+      placeholder: "When I have both ScaleMe and [mod] installed..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-severity
+    attributes:
+      label: Issue Severity
+      description: How severe is the compatibility issue?
+      options:
+        - Minor - Small visual glitches
+        - Moderate - Some features don't work
+        - Major - Significant functionality broken
+        - Critical - Game crashes or unplayable
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this compatibility issue?
+      value: |
+        1. Install ScaleMe version X.X.X
+        2. Install [conflicting mod] version X.X.X
+        3. 
+        4. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Have you found any workarounds for this issue?
+      placeholder: "Disabling feature X in mod Y seems to help..."
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Please provide relevant logs or crash reports
+      render: shell
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have tested with only ScaleMe and the conflicting mod installed
+          required: true
+        - label: I have verified this issue doesn't occur with ScaleMe alone
+          required: true
+        - label: I have searched for existing compatibility reports
+          required: true
