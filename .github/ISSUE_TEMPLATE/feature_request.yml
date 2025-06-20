@@ -1,0 +1,90 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for ScaleMe
+title: "[Feature] "
+labels: ["enhancement", "feature-request"]
+assignees: ["KdGaming0"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Thank you for suggesting a new feature! Please provide as much detail as possible.
+
+  - type: input
+    id: feature-title
+    attributes:
+      label: Feature Title
+      description: A brief, descriptive title for your feature request
+      placeholder: "e.g., Add hotkey for quick scaling presets"
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Describe the feature you'd like to see added
+      placeholder: "I would like to be able to..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case/Problem
+      description: What problem would this feature solve? How would you use it?
+      placeholder: "This would help when..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category
+      description: What category does this feature fall under?
+      options:
+        - User Interface/Controls
+        - Scaling Functionality
+        - Multiplayer Features
+        - Performance/Optimization
+        - Configuration/Settings
+        - Visual Effects
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would improve experience
+        - High - Significantly needed
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: "I've tried using... but it doesn't work because..."
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context, screenshots, or examples that would help explain your request
+      placeholder: "Screenshots, mockups, or references to similar features in other mods"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched for existing feature requests before creating this one
+          required: true
+        - label: This feature request is related to ScaleMe functionality
+          required: true
