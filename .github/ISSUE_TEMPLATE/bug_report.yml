@@ -1,0 +1,101 @@
+name: Bug Report
+description: Report a bug or issue with the ScaleMe mod
+title: "[Bug] "
+labels: ["bug", "needs-triage"]
+assignees: ["KdGaming0"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thanks for reporting a bug!
+        Please fill out the following information to help me diagnose and fix the issue.
+
+  - type: input
+    id: mod-version
+    attributes:
+      label: ScaleMe Version
+      description: What version of ScaleMe are you using?
+      placeholder: "e.g., 1.2.3"
+    validations:
+      required: true
+
+  - type: input
+    id: minecraft-version
+    attributes:
+      label: Minecraft Version
+      description: What version of Minecraft are you playing?
+      placeholder: "e.g., 1.21.5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: What happened? Describe the bug clearly and concisely.
+      placeholder: "The player scaling doesn't work when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      value: |
+        1. 
+        2. 
+        3. 
+        4. 
+      placeholder: "1. Open the scaling menu\n2. Set scale to 2.0\n3. Notice that..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: "The player should scale to 2x their normal size..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scaling-type
+    attributes:
+      label: Scaling Type Affected
+      description: Which type of scaling is affected?
+      options:
+        - Self scaling
+        - Other players scaling
+        - Both self and other players
+        - Not applicable
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-mods
+    attributes:
+      label: Other Mods Installed
+      description: List any other mods you have installed that might be relevant
+      placeholder: "Sodium etc."
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/Crash Reports
+      description: If applicable, paste any relevant logs or crash reports
+      render: shell
+      placeholder: "Paste your latest.log or crash report here"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched for existing issues before creating this one
+          required: true
+        - label: I am using the latest version of ScaleMe
+          required: false
+        - label: I have provided all the requested information above
+          required: true
