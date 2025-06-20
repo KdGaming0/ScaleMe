@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "scaleme",
+  "version": "${version}",
+  "name": "ScaleMe",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/scaleme/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.github.scaleme.client.ScalemeClient"
+    ],
+    "main": [
+      "com.github.scaleme.Scaleme"
+    ]
+  },
+  "mixins": [
+    "scaleme.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
