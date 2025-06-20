@@ -1,0 +1,21 @@
+{
+  "scaleme.midnightconfig.title": "ScaleMe - Visual Scaling",
+  "scaleme.midnightconfig.category.scaling": "Own Player Scaling",
+  "scaleme.midnightconfig.category.other_players": "Other Players Scaling",
+  "scaleme.midnightconfig.ownPlayerDescription.label": "Change the visual size of your own player model",
+  "scaleme.midnightconfig.ownPlayerScale.label": "Own Player Scale",
+  "scaleme.midnightconfig.ownPlayerScale.tooltip": "Controls how large or small your own player appears visually",
+  "scaleme.midnightconfig.ownPlayerSmoothScaling.label": "Smooth Scaling for Own Player",
+  "scaleme.midnightconfig.ownPlayerSmoothScaling.tooltip": "Gradually transition between scale changes for your own player",
+  "scaleme.midnightconfig.otherPlayersDescription.label": "Change the visual size of other players' models",
+  "scaleme.midnightconfig.enableOtherPlayersScaling.label": "Enable Other Players Scaling",
+  "scaleme.midnightconfig.enableOtherPlayersScaling.tooltip": "Allow scaling of other players' models (visual only)",
+  "scaleme.midnightconfig.otherPlayersScale.label": "Other Players Scale",
+  "scaleme.midnightconfig.otherPlayersScale.tooltip": "Controls how large or small other players appear visually",
+  "scaleme.midnightconfig.otherPlayersSmoothScaling.label": "Smooth Scaling for Other Players",
+  "scaleme.midnightconfig.otherPlayersSmoothScaling.tooltip": "Gradually transition between scale changes for other players",
+  "scaleme.midnightconfig.applyToAllPlayers.label": "Apply to All Players (including own)",
+  "scaleme.midnightconfig.applyToAllPlayers.tooltip": "Use the 'Other Players Scale' setting for all players, including yourself",
+  "key.scaleme.open_config": "Open ScaleMe Config",
+  "category.scaleme.general": "ScaleMe"
+}

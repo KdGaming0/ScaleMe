@@ -3,8 +3,8 @@
   "id": "scaleme",
   "version": "${version}",
   "name": "ScaleMe",
-  "description": "",
-  "authors": [],
+  "description": "Client-side player model scaling for Minecraft",
+  "authors": ["Kd_Gaming1"],
   "contact": {},
   "license": "All-Rights-Reserved",
   "icon": "assets/scaleme/icon.png",
@@ -23,6 +23,7 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "midnightlib": ">=1.6.0"
   }
 }

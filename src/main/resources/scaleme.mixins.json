@@ -1,11 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.github.scaleme.mixin",
+  "package": "com.github.scaleme.client.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-  ],
+  "refmap": "scaleme.refmap.json",
   "client": [
+    "PlayerEntityRendererMixin",
+    "PlayerEntityRenderStateMixin"
   ],
   "injectors": {
     "defaultRequire": 1
