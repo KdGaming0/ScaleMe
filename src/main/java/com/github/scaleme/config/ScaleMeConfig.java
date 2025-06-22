@@ -5,6 +5,7 @@ import eu.midnightdust.lib.config.MidnightConfig;
 public class ScaleMeConfig extends MidnightConfig {
     public static final String SCALING = "scaling";
     public static final String OTHER_PLAYERS = "other_players";
+    public static final String PLAYER_PRESETS = "player_presets";
 
     @Comment(category = SCALING, name = "Change the visual size of your own player model")
     public static Comment ownPlayerDescription;
@@ -29,4 +30,18 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = OTHER_PLAYERS, name = "Apply to All Players (including own)")
     public static boolean applyToAllPlayers = false;
+
+    @Comment(category = PLAYER_PRESETS, name = "Create custom scaling profiles for specific players")
+    public static Comment playerPresetsDescription;
+
+    @Entry(category = PLAYER_PRESETS, name = "Enable Player Presets")
+    public static boolean enablePlayerPresets = true;
+
+    /*
+    @Entry(category = PLAYER_PRESETS, name = "Show Quick Add Button in Chat")
+    public static boolean showQuickAddButton = true;
+
+    @Entry(category = PLAYER_PRESETS, name = "Auto-detect UUIDs")
+    public static boolean autoDetectUUIDs = true;
+    */
 }

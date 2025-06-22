@@ -1,9 +1,11 @@
 package com.github.scaleme.client.util;
 
+import com.github.scaleme.client.data.PlayerPreset;
 import com.github.scaleme.config.ScaleMeConfig;
 import net.minecraft.client.MinecraftClient;
 
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ScaleManager {
     private static float currentOwnScale = 1.0f;
@@ -12,11 +14,18 @@ public class ScaleManager {
     private static float targetOtherScale = 1.0f;
     private static long lastUpdateTime = 0;
 
+    // Cache for player-specific scales
+    private static final ConcurrentHashMap<UUID, Float> currentPlayerScales = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<UUID, Float> targetPlayerScales = new ConcurrentHashMap<>();
+
     public static void init() {
         currentOwnScale = ScaleMeConfig.ownPlayerScale;
         targetOwnScale = ScaleMeConfig.ownPlayerScale;
         currentOtherScale = ScaleMeConfig.otherPlayersScale;
         targetOtherScale = ScaleMeConfig.otherPlayersScale;
+
+        // Initialize player preset manager
+        PlayerPresetManager.init();
     }
 
     public static void tick() {
@@ -51,6 +60,23 @@ public class ScaleManager {
         } else {
             currentOtherScale = targetOtherScale;
         }
+
+        // Update individual player scales with smooth scaling
+        for (UUID uuid : currentPlayerScales.keySet()) {
+            float current = currentPlayerScales.get(uuid);
+            float target = targetPlayerScales.getOrDefault(uuid, 1.0f);
+
+            if (ScaleMeConfig.otherPlayersSmoothScaling) {
+                float difference = target - current;
+                if (Math.abs(difference) > 0.001f) {
+                    currentPlayerScales.put(uuid, current + difference * 0.1f);
+                } else {
+                    currentPlayerScales.put(uuid, target);
+                }
+            } else {
+                currentPlayerScales.put(uuid, target);
+            }
+        }
     }
 
     public static float getCurrentScale(UUID playerUUID) {
@@ -62,6 +88,17 @@ public class ScaleManager {
         }
 
         boolean isOwnPlayer = playerUUID.equals(client.player.getUuid());
+
+        // Check for player-specific presets first (highest priority)
+        if (ScaleMeConfig.enablePlayerPresets && !isOwnPlayer) {
+            PlayerPreset preset = PlayerPresetManager.getPresetForPlayer(playerUUID);
+            if (preset != null) {
+                // Update target scale for this player
+                targetPlayerScales.put(playerUUID, preset.scale);
+                // Return current scale (for smooth scaling)
+                return currentPlayerScales.computeIfAbsent(playerUUID, k -> preset.scale);
+            }
+        }
 
         // If "Apply to All Players" is enabled, use other players scale for everyone
         if (ScaleMeConfig.applyToAllPlayers && ScaleMeConfig.enableOtherPlayersScaling) {
@@ -80,5 +117,12 @@ public class ScaleManager {
 
         // Default: no scaling
         return 1.0f;
+    }
+
+    public static void reloadPresets() {
+        PlayerPresetManager.loadPresets();
+        // Clear current player scales to force recalculation
+        currentPlayerScales.clear();
+        targetPlayerScales.clear();
     }
 }
