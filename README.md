@@ -4,6 +4,10 @@
 
 A simple, client-side Minecraft mod that allows you to visually change the scale of your own player model and other players' models.
 
+### 📦 Download from Modrinth
+
+[![Download on Modrinth](https://img.shields.io/badge/Modrinth-Download-brightgreen?style=for-the-badge&logo=modrinth)](https://modrinth.com/mod/scaleme)
+
 ## Features
 
 *   **Individual Scaling:** Adjust the visual size of your own player model independently from others.
