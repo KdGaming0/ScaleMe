@@ -33,6 +33,11 @@ public class ScaleManager {
         if (currentTime - lastUpdateTime < 16) return; // ~60 FPS limit
         lastUpdateTime = currentTime;
 
+        // Update Hypixel detection if safety mode is enabled
+        if (ScaleMeConfig.enableHypixelSafety) {
+            HypixelDetector.updateDetection();
+        }
+
         // Update target scales from config
         targetOwnScale = ScaleMeConfig.ownPlayerScale;
         targetOtherScale = ScaleMeConfig.otherPlayersScale;
@@ -82,6 +87,11 @@ public class ScaleManager {
     public static float getCurrentScale(UUID playerUUID) {
         tick();
 
+        // HYPIXEL SAFETY CHECK: Disable scaling in competitive games if safety mode is enabled
+        if (ScaleMeConfig.enableHypixelSafety && !HypixelDetector.isScalingAllowed()) {
+            return 1.0f; // Return normal scale when scaling is not allowed
+        }
+
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null || playerUUID == null) {
             return 1.0f;
@@ -93,35 +103,61 @@ public class ScaleManager {
         if (ScaleMeConfig.enablePlayerPresets && !isOwnPlayer) {
             PlayerPreset preset = PlayerPresetManager.getPresetForPlayer(playerUUID);
             if (preset != null) {
-                // Update target scale for this player
+                // Cache the target scale for smooth scaling
                 targetPlayerScales.put(playerUUID, preset.scale);
-                // Return current scale (for smooth scaling)
                 return currentPlayerScales.computeIfAbsent(playerUUID, k -> preset.scale);
             }
         }
 
-        // If "Apply to All Players" is enabled, use other players scale for everyone
-        if (ScaleMeConfig.applyToAllPlayers && ScaleMeConfig.enableOtherPlayersScaling) {
-            return currentOtherScale;
-        }
-
-        // If it's the own player, use own player scale
+        // Use global scales if no preset found
         if (isOwnPlayer) {
             return currentOwnScale;
+        } else {
+            // For other players, use global scale if no preset exists
+            targetPlayerScales.put(playerUUID, currentOtherScale);
+            return currentPlayerScales.computeIfAbsent(playerUUID, k -> currentOtherScale);
         }
-
-        // If it's another player and other players scaling is enabled, use other players scale
-        if (ScaleMeConfig.enableOtherPlayersScaling) {
-            return currentOtherScale;
-        }
-
-        // Default: no scaling
-        return 1.0f;
     }
 
-    public static void reloadPresets() {
-        PlayerPresetManager.loadPresets();
-        // Clear current player scales to force recalculation
+    // Add method to check if scaling is currently active
+    public static boolean isScalingActive() {
+        if (!ScaleMeConfig.enableHypixelSafety) {
+            return true; // If safety mode is disabled, scaling is always active
+        }
+        return HypixelDetector.isScalingAllowed();
+    }
+
+    // Add method to get restriction reason
+    public static String getRestrictionReason() {
+        if (ScaleMeConfig.enableHypixelSafety && HypixelDetector.isOnHypixel() && HypixelDetector.isInCompetitiveGame()) {
+            return "Disabled in competitive game: " + HypixelDetector.getCurrentGameMode();
+        }
+        return "";
+    }
+
+    // Existing methods...
+    public static void setOwnPlayerScale(float scale) {
+        targetOwnScale = Math.max(0.1f, Math.min(3.0f, scale));
+    }
+
+    public static void setOtherPlayersScale(float scale) {
+        targetOtherScale = Math.max(0.1f, Math.min(3.0f, scale));
+    }
+
+    public static float getOwnPlayerScale() {
+        return currentOwnScale;
+    }
+
+    public static float getOtherPlayersScale() {
+        return currentOtherScale;
+    }
+
+    public static void clearPlayerScale(UUID playerUUID) {
+        currentPlayerScales.remove(playerUUID);
+        targetPlayerScales.remove(playerUUID);
+    }
+
+    public static void clearAllPlayerScales() {
         currentPlayerScales.clear();
         targetPlayerScales.clear();
     }

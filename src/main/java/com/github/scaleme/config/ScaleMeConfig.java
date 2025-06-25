@@ -6,6 +6,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static final String SCALING = "scaling";
     public static final String OTHER_PLAYERS = "other_players";
     public static final String PLAYER_PRESETS = "player_presets";
+    public static final String HYPIXEL_SAFETY = "hypixel_safety";
 
     @Comment(category = SCALING, name = "Change the visual size of your own player model")
     public static Comment ownPlayerDescription;
@@ -44,4 +45,13 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = PLAYER_PRESETS, name = "Auto-detect UUIDs")
     public static boolean autoDetectUUIDs = true;
     */
+
+    @Comment(category = HYPIXEL_SAFETY, name = "Automatically disable scaling in competitive Hypixel games to prevent unfair advantages")
+    public static Comment hypixelSafetyDescription;
+
+    @Entry(category = HYPIXEL_SAFETY, name = "Enable Hypixel Safety Mode - Automatically disable scaling in competitive games Modes")
+    public static boolean enableHypixelSafety = true;
+
+    @Entry(category = HYPIXEL_SAFETY, name = "Allow Scaling in Skyblock")
+    public static boolean allowSkyblockScaling = true;
 }

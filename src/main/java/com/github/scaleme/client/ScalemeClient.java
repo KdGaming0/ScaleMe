@@ -1,6 +1,7 @@
 package com.github.scaleme.client;
 
 import com.github.scaleme.Scaleme;
+import com.github.scaleme.client.command.HypixelStatusCommand;
 import com.github.scaleme.client.command.PresetCommand;
 import com.github.scaleme.client.gui.PlayerPresetScreen;
 import com.github.scaleme.client.util.ScaleManager;
@@ -41,6 +42,7 @@ public class ScalemeClient implements ClientModInitializer {
         // Register commands
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             PresetCommand.register(dispatcher);
+            HypixelStatusCommand.register(dispatcher);
         });
 
         // Handle key presses

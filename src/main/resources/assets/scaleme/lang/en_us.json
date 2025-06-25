@@ -3,6 +3,7 @@
   "scaleme.midnightconfig.category.scaling": "Own Player Scaling",
   "scaleme.midnightconfig.category.other_players": "Other Players Scaling",
   "scaleme.midnightconfig.category.player_presets": "Player Presets",
+  "scaleme.midnightconfig.category.HYPIXEL_SAFETY": "Hypixel SAFETY Settings",
   "scaleme.midnightconfig.ownPlayerDescription.label": "Change the visual size of your own player model",
   "scaleme.midnightconfig.ownPlayerScale.label": "Own Player Scale",
   "scaleme.midnightconfig.ownPlayerScale.tooltip": "Controls how large or small your own player appears visually",
