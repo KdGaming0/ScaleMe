@@ -7,6 +7,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static final String OTHER_PLAYERS = "other_players";
     public static final String PLAYER_PRESETS = "player_presets";
     public static final String HYPIXEL_SAFETY = "hypixel_safety";
+    public static final String CROSSHAIR = "crosshair";
 
     @Comment(category = SCALING, name = "Change the visual size of your own player model")
     public static Comment ownPlayerDescription;
@@ -54,4 +55,13 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = HYPIXEL_SAFETY, name = "Allow Scaling in Skyblock")
     public static boolean allowSkyblockScaling = true;
+
+    @Comment(category = CROSSHAIR, name = "Control crosshair visibility in different camera perspectives")
+    public static Comment crosshairDescription;
+
+    @Entry(category = CROSSHAIR, name = "Show Crosshair in Third Person (Back View)")
+    public static boolean enableCrosshairInThirdPerson = false;
+
+    @Entry(category = CROSSHAIR, name = "Show Crosshair in Third Person (Front View)")
+    public static boolean enableCrosshairInThirdPersonFront = false;
 }

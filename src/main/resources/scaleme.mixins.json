@@ -6,7 +6,8 @@
   "refmap": "scaleme.refmap.json",
   "client": [
     "PlayerEntityRendererMixin",
-    "PlayerEntityRenderStateMixin"
+    "PlayerEntityRenderStateMixin",
+    "MixinInGameHud"
   ],
   "injectors": {
     "defaultRequire": 1
