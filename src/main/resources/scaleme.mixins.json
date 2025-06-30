@@ -5,9 +5,10 @@
   "compatibilityLevel": "JAVA_21",
   "refmap": "scaleme.refmap.json",
   "client": [
+    "MixinInGameHud",
+    "PerspectiveMixin",
     "PlayerEntityRendererMixin",
-    "PlayerEntityRenderStateMixin",
-    "MixinInGameHud"
+    "PlayerEntityRenderStateMixin"
   ],
   "injectors": {
     "defaultRequire": 1

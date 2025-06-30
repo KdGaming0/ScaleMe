@@ -8,6 +8,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static final String PLAYER_PRESETS = "player_presets";
     public static final String HYPIXEL_SAFETY = "hypixel_safety";
     public static final String CROSSHAIR = "crosshair";
+    public static final String CAMERA = "camera";
 
     @Comment(category = SCALING, name = "Change the visual size of your own player model")
     public static Comment ownPlayerDescription;
@@ -64,4 +65,10 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = CROSSHAIR, name = "Show Crosshair in Third Person (Front View)")
     public static boolean enableCrosshairInThirdPersonFront = false;
+
+    @Comment(category = CAMERA, name = "Control camera behavior and perspective options")
+    public static Comment cameraDescription;
+
+    @Entry(category = CAMERA, name = "Disable Selfie Cam (Front View)")
+    public static boolean disableSelfieCam = false;
 }
