@@ -1,7 +1,7 @@
-package com.github.scaleme.client.mixin;
+package com.github.kd_gaming1.scaleme.client.mixin;
 
-import com.github.scaleme.client.util.PlayerEntityRenderStateAccessor;
-import com.github.scaleme.client.util.ScaleManager;
+import com.github.kd_gaming1.scaleme.client.util.PlayerEntityRenderStateAccessor;
+import com.github.kd_gaming1.scaleme.client.util.ScaleManager;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
@@ -24,8 +24,8 @@ public class PlayerEntityRendererMixin {
     @Inject(method = "scale(Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;Lnet/minecraft/client/util/math/MatrixStack;)V",
             at = @At("HEAD"))
     private void scalePlayerModel(PlayerEntityRenderState playerEntityRenderState, MatrixStack matrixStack, CallbackInfo ci) {
-        // Get the stored UUID and apply appropriate scaling
         java.util.UUID playerUUID = ((PlayerEntityRenderStateAccessor) playerEntityRenderState).scaleme$getPlayerUUID();
+
         if (playerUUID != null) {
             float scale = ScaleManager.getCurrentScale(playerUUID);
             if (scale != 1.0f) {

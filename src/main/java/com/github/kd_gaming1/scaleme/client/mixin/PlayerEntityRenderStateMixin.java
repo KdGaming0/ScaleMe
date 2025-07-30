@@ -1,6 +1,6 @@
-package com.github.scaleme.client.mixin;
+package com.github.kd_gaming1.scaleme.client.mixin;
 
-import com.github.scaleme.client.util.PlayerEntityRenderStateAccessor;
+import com.github.kd_gaming1.scaleme.client.util.PlayerEntityRenderStateAccessor;
 import net.minecraft.client.render.entity.state.PlayerEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

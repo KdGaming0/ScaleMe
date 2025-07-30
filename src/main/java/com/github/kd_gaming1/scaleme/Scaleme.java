@@ -1,6 +1,6 @@
-package com.github.scaleme;
+package com.github.kd_gaming1.scaleme;
 
-import com.github.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 

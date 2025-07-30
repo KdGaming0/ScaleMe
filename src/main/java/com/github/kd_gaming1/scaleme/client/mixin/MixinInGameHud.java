@@ -1,6 +1,6 @@
-package com.github.scaleme.client.mixin;
+package com.github.kd_gaming1.scaleme.client.mixin;
 
-import com.github.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.option.Perspective;
 import org.spongepowered.asm.mixin.Mixin;

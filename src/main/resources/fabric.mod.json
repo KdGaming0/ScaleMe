@@ -11,10 +11,10 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "com.github.scaleme.client.ScalemeClient"
+      "com.github.kd_gaming1.scaleme.client.ScalemeClient"
     ],
     "main": [
-      "com.github.scaleme.Scaleme"
+      "com.github.kd_gaming1.scaleme.Scaleme"
     ]
   },
   "mixins": [
