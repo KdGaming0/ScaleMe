@@ -23,6 +23,9 @@ repositories {
         name = "Terraformers"
         url = "https://maven.terraformersmc.com/"
     }
+    maven {
+        url 'https://maven.wispforest.io/releases/'
+    }
 }
 
 dependencies {
@@ -36,6 +39,7 @@ dependencies {
     modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}")
 
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
+    modImplementation "io.wispforest:owo-lib:${project.owo_version}"
 
     implementation 'com.google.code.gson:gson:2.10.1'
 }
@@ -51,12 +55,14 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
+    inputs.property "owo_version", project.owo_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "owo_version" : project.owo_version
     }
 }
 

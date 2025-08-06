@@ -90,17 +90,25 @@ public class PlayerPresetManager {
 
     /** Determines the scale for a player (preset > own player config > other player config). */
     private static float determineScale(UUID playerUUID) {
-        for (PlayerPreset preset : presets) {
-            if (preset.enabled && preset.isUUID()) {
-                try {
-                    if (UUID.fromString(preset.identifier).equals(playerUUID)) {
-                        return preset.scale;
-                    }
-                } catch (IllegalArgumentException ignored) {}
+        MinecraftClient client = MinecraftClient.getInstance();
+        String playerName = null;
+
+        // Get player name for username matching
+        if (client.getNetworkHandler() != null) {
+            var entry = client.getNetworkHandler().getPlayerListEntry(playerUUID);
+            if (entry != null) {
+                playerName = entry.getProfile().getName();
             }
         }
 
-        MinecraftClient client = MinecraftClient.getInstance();
+        // Check presets with enhanced matching
+        for (PlayerPreset preset : presets) {
+            if (preset.matchesPlayer(playerUUID, playerName)) {
+                return preset.scale;
+            }
+        }
+
+        // Fallback to config scales
         if (client.player != null && playerUUID.equals(client.player.getUuid())) {
             return ScaleMeConfig.ownPlayerScale;
         }
@@ -119,11 +127,11 @@ public class PlayerPresetManager {
         refreshTargetsFromConfig();
 
         for (PlayerPreset preset : presets) {
-            if (preset.enabled && preset.isUUID()) {
-                try {
-                    UUID uuid = UUID.fromString(preset.identifier);
-                    targetScales.put(uuid, preset.scale);
-                } catch (IllegalArgumentException ignored) {}
+            if (!preset.enabled) continue;
+
+            UUID resolvedUUID = preset.resolveToUUID();
+            if (resolvedUUID != null) {
+                targetScales.put(resolvedUUID, preset.scale);
             }
         }
 

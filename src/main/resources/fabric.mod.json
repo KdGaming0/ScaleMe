@@ -24,6 +24,7 @@
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "midnightlib": ">=1.6.0"
+    "midnightlib": ">=1.6.0",
+    "owo": ">=${owo_version}"
   }
 }
