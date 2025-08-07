@@ -34,7 +34,8 @@ public class PlayerEntityRendererMixin {
 
         // --- Regular Hypixel NPC Scaling ---
         if (ScaleMeConfig.enableNpcScaling && HypixelNpcUtil.isHypixelNpc(player)) {
-            float scale = ScaleMeConfig.npcPlayerScale;
+            // Create a centralized method for NPC scaling with safety check
+            float scale = ScaleManager.getNpcScale();
             if (scale != 1.0f) {
                 matrixStack.scale(scale, scale, scale);
             }
@@ -42,7 +43,7 @@ public class PlayerEntityRendererMixin {
             return;
         }
 
-        // --- Normal Player Scaling ---
+        // --- Normal Player Scaling (already has safety check in getCurrentScale) ---
         if (playerUUID != null) {
             float scale = ScaleManager.getCurrentScale(playerUUID);
             if (scale != 1.0f) {

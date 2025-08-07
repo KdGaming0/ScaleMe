@@ -6,12 +6,11 @@
   "refmap": "scaleme.refmap.json",
   "client": [
     "LivingEntityRendererMixin",
-    "LivingEntityRenderStateAccessor",
     "MixinInGameHud",
     "PerspectiveMixin",
     "PlayerEntityRendererMixin",
     "PlayerEntityRenderStateMixin",
-    "VillagerEntityRendererMixin"
+    "VillagerEntityRenderStateMixin"
   ],
   "injectors": {
     "defaultRequire": 1
