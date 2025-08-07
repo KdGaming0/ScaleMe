@@ -28,8 +28,17 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = PLAYERS, name = "Other Players Scale", isSlider = true, min = 0.1f, max = 3.0f)
     public static float otherPlayersScale = 1.0f;
 
-    @Entry(category = PLAYERS, name = "Apply to All Players")
-    public static boolean applyToAllPlayers = false;
+    @Entry(category = SCALING, name = "Enable Hypixel NPC Scaling")
+    public static boolean enableNpcScaling = false;
+
+    @Entry(category = SCALING, name = "NPC Scale", isSlider = true, min = 0.1f, max = 3.0f)
+    public static float npcPlayerScale = 1.0f;
+
+    @Entry(category = SCALING, name = "Enable Hypixel Villager NPC Scaling")
+    public static boolean enableVillagerNpcScaling = false;
+
+    @Entry(category = SCALING, name = "Villager NPC Scale", isSlider = true, min = 0.1f, max = 3.0f)
+    public static float villagerNpcScale = 1.0f;
 
     /*
     @Entry(category = PLAYERS, name = "Show Quick Add Button")

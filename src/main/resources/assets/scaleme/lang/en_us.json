@@ -23,45 +23,12 @@
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.tooltip": "Display the crosshair when viewing from in front of your character (F5 twice)",
   "scaleme.midnightconfig.disableSelfieCam.label": "Disable Selfie Cam (Front View)",
   "scaleme.midnightconfig.disableSelfieCam.tooltip": "Prevent cycling to front-facing third person view when pressing F5",
-
-  "scaleme.gui.title": "ScaleMe Configuration",
-
-  "scaleme.gui.tab.general": "General",
-  "scaleme.gui.tab.presets": "Presets",
-  "scaleme.gui.tab.categories": "Categories",
-
-  "scaleme.gui.own_scale": "Your Scale:",
-  "scaleme.gui.own_scale.tooltip": "Controls how large you appear to yourself and others",
-  "scaleme.gui.default_scale": "Default Scale:",
-  "scaleme.gui.default_scale.tooltip": "Default scale for other players who don't have presets",
-  "scaleme.gui.general.info": "Use the sliders above to adjust scaling settings. Changes apply immediately.",
-
-  "scaleme.gui.add_preset": "Add New Preset:",
-  "scaleme.gui.player_name": "Player Name:",
-  "scaleme.gui.player_name.placeholder": "Enter player name or UUID",
-  "scaleme.gui.scale": "Scale:",
-  "scaleme.gui.category": "Category:",
-  "scaleme.gui.category.placeholder": "Optional category",
-
-  "scaleme.gui.add": "Add",
-  "scaleme.gui.remove": "Remove",
-  "scaleme.gui.toggle": "Enable/Disable",
-  "scaleme.gui.reload": "Reload",
-  "scaleme.gui.reload.tooltip": "Reload presets from disk",
-
-  "scaleme.gui.categories.info": "Preset Categories:",
-
-  "scaleme.key.open_gui": "Open ScaleMe GUI",
-  "scaleme.key.category": "ScaleMe",
-  "scaleme.key.open_config": "Open Configuration GUI",
-  "scaleme.key.toggle_scaling.tooltip": "Enable or disable scaling for all players",
-
-  "scaleme.status.added": "Added preset for %s",
-  "scaleme.status.removed": "Removed preset for %s",
-  "scaleme.status.enabled": "Enabled preset for %s",
-  "scaleme.status.disabled": "Disabled preset for %s",
-  "scaleme.status.reloaded": "Reloaded presets from disk",
-  "scaleme.status.player_not_found": "Player '%s' not found",
-  "scaleme.status.preset_exists": "Preset already exists for %s",
-  "scaleme.status.empty_name": "Player name cannot be empty"
+  "scaleme.midnightconfig.enableNpcScaling.label": "Enable Hypixel NPC Scaling",
+  "scaleme.midnightconfig.enableNpcScaling.tooltip": "Allow scaling of Hypixel NPC player models (visual only)",
+  "scaleme.midnightconfig.npcPlayerScale.label": "NPC Scale",
+  "scaleme.midnightconfig.npcPlayerScale.tooltip": "Controls how large or small Hypixel NPC players appear visually",
+  "scaleme.midnightconfig.enableVillagerNpcScaling.label": "Enable Hypixel Villager NPC Scaling",
+  "scaleme.midnightconfig.enableVillagerNpcScaling.tooltip": "Allow scaling of Hypixel Villager NPC models (visual only)",
+  "scaleme.midnightconfig.villagerNpcScale.label": "Villager NPC Scale",
+  "scaleme.midnightconfig.villagerNpcScale.tooltip": "Controls how large or small Hypixel Villager NPCs appear visually"
 }
