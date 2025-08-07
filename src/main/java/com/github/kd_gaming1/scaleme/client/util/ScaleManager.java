@@ -34,14 +34,14 @@ public class ScaleManager {
     /** Returns NPC scale with safety check including dungeons detection. */
     public static float getNpcScale() {
         // Only apply scaling when it's safe (not in competitive modes or dungeons)
-        if (HypixelDetector.isSafeGameMode() && HypixelDetector.isInDungeons()) return 1.0f;
+        if (HypixelDetector.isSafeGameMode()) return 1.0f;
         return ScaleMeConfig.npcPlayerScale;
     }
 
     /** Returns Villager NPC scale with safety check including dungeons detection. */
     public static float getVillagerNpcScale() {
         // Only apply scaling when it's safe (not in competitive modes or dungeons)
-        if (HypixelDetector.isSafeGameMode() && HypixelDetector.isInDungeons()) return 1.0f;
+        if (HypixelDetector.isSafeGameMode()) return 1.0f;
         return ScaleMeConfig.villagerNpcScale;
     }
 }

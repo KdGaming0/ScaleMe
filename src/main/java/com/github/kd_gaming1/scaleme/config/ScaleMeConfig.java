@@ -6,7 +6,6 @@ public class ScaleMeConfig extends MidnightConfig {
     public static final String SCALING = "scaling";
     public static final String PLAYERS = "players";
     public static final String VIEW = "view";
-    public static final String HYPIXEL_SAFETY = "hypixel_safety";
 
     // Own Player Scaling
     @Comment(category = SCALING, name = "Adjust the visual size of your own player model")

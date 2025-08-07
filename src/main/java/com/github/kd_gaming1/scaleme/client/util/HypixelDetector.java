@@ -8,11 +8,12 @@ import net.minecraft.text.Text;
 
 public class HypixelDetector {
 
-    public static String currentMode = null;
-    public static String currentMap = null;
-    public static String currentServerName = null;
-    public static String serverType = null;
-
+    /**
+     * Checks if the player is in a safe game mode on Hypixel.
+     * Safe modes are defined as not being in competitive modes like SkyBlock, Lobby, Limbo, Housing, or Prototype.
+     *
+     * @return true if in a safe game mode, false otherwise.
+     */
     public static boolean isSafeGameMode() {
         MinecraftClient client = MinecraftClient.getInstance();
 
@@ -38,24 +39,6 @@ public class HypixelDetector {
                 !title.startsWith("LIMBO") &&
                 !title.startsWith("HOUSING") &&
                 !title.startsWith("PROTOTYPE");
-    }
-
-    /**
-     * Checks if the player is in a Hypixel dungeon or catacombs.
-     * This method uses the current mode, map, and server name to determine if the player is in dungeons.
-     *
-     * @return true if the player is in dungeons, false otherwise.
-     */
-    public static boolean isInDungeons() {
-        if (!"SKYBLOCK".equalsIgnoreCase(serverType)) return true;
-
-        String mode = currentMode != null ? currentMode.toLowerCase() : "";
-        String map = currentMap != null ? currentMap.toLowerCase() : "";
-        String server = currentServerName != null ? currentServerName.toLowerCase() : "";
-
-        return !mode.contains("dungeon") && !mode.contains("catacombs")
-                && !map.contains("dungeon") && !map.contains("catacombs") && !map.contains("floor")
-                && !server.contains("dungeon") && !server.contains("catacombs");
     }
 
     private static String stripColors(String text) {

@@ -8,12 +8,8 @@ import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.option.KeyBinding;
 
 public class ScalemeClient implements ClientModInitializer {
-
-    private static KeyBinding openConfigKey;
-    private static KeyBinding openPresetsKey;
 
     @Override
     public void onInitializeClient() {
