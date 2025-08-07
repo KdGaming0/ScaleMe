@@ -75,7 +75,7 @@ public class PlayerPresetManager {
 
     /** Returns the current scale for a player. O(1) lookup. */
     public static float getCurrentScale(UUID playerUUID) {
-        if (!HypixelDetector.isSafeGameMode()) return 1.0f; // Disable scaling if not safe game mode
+        if (HypixelDetector.isSafeGameMode()) return 1.0f; // Disable scaling if not safe game mode
         if (playerUUID == null) return 1.0f;
 
         Float cached = currentScales.get(playerUUID);
