@@ -44,8 +44,7 @@ dependencies {
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
     modImplementation "io.wispforest:owo-lib:${project.owo_version}"
 
-    modImplementation 'net.hypixel:mod-api:1.0.1'
-    include 'net.hypixel:mod-api:1.0.1'
+    modImplementation include ('net.hypixel:mod-api:1.0.1')
 
     implementation 'com.google.code.gson:gson:2.10.1'
 }
