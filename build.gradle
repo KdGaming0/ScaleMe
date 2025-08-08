@@ -29,6 +29,9 @@ repositories {
     maven {
         url 'https://repo.hypixel.net/repository/Hypixel/'
     }
+    maven {
+        url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1"
+    }
 }
 
 dependencies {
@@ -43,6 +46,8 @@ dependencies {
 
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
     modImplementation "io.wispforest:owo-lib:${project.owo_version}"
+
+    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.1")
 
     implementation 'com.google.code.gson:gson:2.10.1'
 }
