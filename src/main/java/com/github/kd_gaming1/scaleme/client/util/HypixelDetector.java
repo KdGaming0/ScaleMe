@@ -98,20 +98,6 @@ public class HypixelDetector {
     }
 
     /**
-     * Debug helper for printing character code points.
-     * Only enable this when diagnosing scoreboard parsing issues.
-     */
-    @SuppressWarnings("unused")
-    private static void printCodePoints(String name, String s) {
-        StringBuilder out = new StringBuilder();
-        out.append(name).append(": ");
-        for (int i = 0; i < s.length(); i++) {
-            out.append(String.format("[%c U+%04X] ", s.charAt(i), (int) s.charAt(i)));
-        }
-        System.out.println(out);
-    }
-
-    /**
      * Strips Minecraft formatting codes (§ followed by any character).
      */
     private static String stripColors(String text) {
