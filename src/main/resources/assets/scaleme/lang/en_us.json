@@ -1,34 +1,40 @@
 {
   "scaleme.midnightconfig.title": "ScaleMe - Visual Scaling",
-  "scaleme.midnightconfig.category.scaling": "Own Player Scaling",
-  "scaleme.midnightconfig.category.players": "Players & Presets",
-  "scaleme.midnightconfig.category.hypixel_safety": "Hypixel SAFETY Settings",
+  "scaleme.midnightconfig.category.scaling": "Player Scaling Controls",
   "scaleme.midnightconfig.category.view": "View & Camera",
+
   "scaleme.midnightconfig.ownPlayerDescription.label": "Adjust the visual size of your own player model",
   "scaleme.midnightconfig.ownPlayerScale.label": "Own Player Scale",
   "scaleme.midnightconfig.ownPlayerScale.tooltip": "Controls how large or small your own player appears visually",
+
   "scaleme.midnightconfig.smoothScaling.label": "Smooth Scaling",
   "scaleme.midnightconfig.smoothScaling.tooltip": "Gradually transition between scale changes for your own player",
-  "scaleme.midnightconfig.playersDescription.label": "Adjust the visual size of other players and manage scaling presets",
+
+  "scaleme.midnightconfig.playersDescription.label": "Adjust the visual size of other players",
   "scaleme.midnightconfig.enableOtherPlayersScaling.label": "Enable Scaling for Other Players",
   "scaleme.midnightconfig.enableOtherPlayersScaling.tooltip": "Allow scaling of other players' models (visual only)",
   "scaleme.midnightconfig.otherPlayersScale.label": "Other Players Scale",
   "scaleme.midnightconfig.otherPlayersScale.tooltip": "Controls how large or small other players appear visually",
-  "scaleme.midnightconfig.applyToAllPlayers.label": "Apply to All Players",
-  "scaleme.midnightconfig.applyToAllPlayers.tooltip": "Use the 'Other Players Scale' setting for all players, including yourself",
+
+  "scaleme.midnightconfig.npcDescription.label": "Adjust the visual size of NPC players",
+  "scaleme.midnightconfig.enableNpcScaling.label": "Enable Hypixel NPC Scaling",
+  "scaleme.midnightconfig.enableNpcScaling.tooltip": "Allow scaling of Hypixel NPC player models (visual only)",
+  "scaleme.midnightconfig.npcPlayerScale.label": "NPC Scale",
+  "scaleme.midnightconfig.npcPlayerScale.tooltip": "Controls how large or small Hypixel NPC players appear visually",
+
+  "scaleme.midnightconfig.villagerNpcDescription.label": "Adjust the visual size of Villager NPC Scaling",
+  "scaleme.midnightconfig.enableVillagerNpcScaling.label": "Enable Hypixel Villager NPC Scaling",
+  "scaleme.midnightconfig.enableVillagerNpcScaling.tooltip": "Allow scaling of Hypixel Villager NPC models (visual only)",
+  "scaleme.midnightconfig.villagerNpcScale.label": "Villager NPC Scale",
+  "scaleme.midnightconfig.villagerNpcScale.tooltip": "Controls how large or small Hypixel Villager NPCs appear visually",
+
+  "scaleme.midnightconfig.smoothedScalingDescription.label": "Make changes between scale levels appear smooth",
+
   "scaleme.midnightconfig.viewDescription.label": "Configure crosshair and camera options",
   "scaleme.midnightconfig.enableCrosshairInThirdPerson.label": "Show Crosshair in Third Person (Back)",
   "scaleme.midnightconfig.enableCrosshairInThirdPerson.tooltip": "Display the crosshair when viewing from behind your character (F5 once)",
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.label": "Show Crosshair in Third Person (Front)",
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.tooltip": "Display the crosshair when viewing from in front of your character (F5 twice)",
   "scaleme.midnightconfig.disableSelfieCam.label": "Disable Selfie Cam (Front View)",
-  "scaleme.midnightconfig.disableSelfieCam.tooltip": "Prevent cycling to front-facing third person view when pressing F5",
-  "scaleme.midnightconfig.enableNpcScaling.label": "Enable Hypixel NPC Scaling",
-  "scaleme.midnightconfig.enableNpcScaling.tooltip": "Allow scaling of Hypixel NPC player models (visual only)",
-  "scaleme.midnightconfig.npcPlayerScale.label": "NPC Scale",
-  "scaleme.midnightconfig.npcPlayerScale.tooltip": "Controls how large or small Hypixel NPC players appear visually",
-  "scaleme.midnightconfig.enableVillagerNpcScaling.label": "Enable Hypixel Villager NPC Scaling",
-  "scaleme.midnightconfig.enableVillagerNpcScaling.tooltip": "Allow scaling of Hypixel Villager NPC models (visual only)",
-  "scaleme.midnightconfig.villagerNpcScale.label": "Villager NPC Scale",
-  "scaleme.midnightconfig.villagerNpcScale.tooltip": "Controls how large or small Hypixel Villager NPCs appear visually"
+  "scaleme.midnightconfig.disableSelfieCam.tooltip": "Prevent cycling to front-facing third person view when pressing F5"
 }
