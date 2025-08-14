@@ -44,15 +44,15 @@
   "scaleme.midnightconfig.heldItemYPosition.label": "Y-posisjon for halden gjenstand",
   "scaleme.midnightconfig.heldItemYPosition.tooltip": "Juster Y-posisjonen til gjenstanden du held. Høgare verdiar flyttar gjenstanden lenger opp.",
   "scaleme.midnightconfig.heldItemZPosition.label": "Z-posisjon for halden gjenstand",
-  "scaleme.midnightconfig.heldItemZPosition.tooltip": "Juster Z-posisjonen til gjenstanden du held. Høgare verdiar flyttar gjenstanden lenger bort frå deg.",
+  "scaleme.midnightconfig.heldItemZPosition.tooltip": "Juster Z-posisjonen til gjenstanden du held. Høgare verdiar flytter gjenstanden nærare deg.",
 
   "scaleme.midnightconfig.heldItemRotationDescription.label": "Juster rotasjonen til gjenstanden du held",
   "scaleme.midnightconfig.heldItemYawRotation.label": "Yaw-rotasjon for halden gjenstand",
   "scaleme.midnightconfig.heldItemYawRotation.tooltip": "Juster yaw-rotasjonen til gjenstanden du held. Høgare verdiar roterer gjenstanden mot høgre.",
   "scaleme.midnightconfig.heldItemPitchRotation.label": "Pitch-rotasjon for halden gjenstand",
-  "scaleme.midnightconfig.heldItemPitchRotation.tooltip": "Juster pitch-rotasjonen til gjenstanden du held. Høgare verdiar roterer gjenstanden oppover.",
+  "scaleme.midnightconfig.heldItemPitchRotation.tooltip": "Juster pitch-rotasjonen til gjenstanden du held. Høgare verdiar roterer gjenstanden mott deg.",
   "scaleme.midnightconfig.heldItemRollRotation.label": "Roll-rotasjon for halden gjenstand",
-  "scaleme.midnightconfig.heldItemRollRotation.tooltip": "Juster roll-rotasjonen til gjenstanden du held. Høgare verdiar rullar gjenstanden mot høgre.",
+  "scaleme.midnightconfig.heldItemRollRotation.tooltip": "Juster roll-rotasjonen til gjenstanden du held. Høgare verdiar rullar gjenstanden mot venstre.",
 
   "scaleme.midnightconfig.itemAnimationSpeedDescription.label": "Juster sving-/animasjonsfarten til gjenstandar",
   "scaleme.midnightconfig.enableItemSwingModifications.label": "Slå på endringar for gjenstandssvinging",

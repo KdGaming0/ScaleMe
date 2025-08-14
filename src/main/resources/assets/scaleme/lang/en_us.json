@@ -44,15 +44,15 @@
   "scaleme.midnightconfig.heldItemYPosition.label": "Held Item Y Position",
   "scaleme.midnightconfig.heldItemYPosition.tooltip": "Adjust the Y position of your held item. Higher values will move the item further up.",
   "scaleme.midnightconfig.heldItemZPosition.label": "Held Item Z Position",
-  "scaleme.midnightconfig.heldItemZPosition.tooltip": "Adjust the Z position of your held item. Higher values will move the item further away from you.",
+  "scaleme.midnightconfig.heldItemZPosition.tooltip": "Adjust the Z position of your held item. Higher values will move the item closer to you.",
 
   "scaleme.midnightconfig.heldItemRotationDescription.label": "Adjust the Rotation of held item",
   "scaleme.midnightconfig.heldItemYawRotation.label": "Held Item Yaw Rotation",
   "scaleme.midnightconfig.heldItemYawRotation.tooltip": "Adjust the yaw rotation of your held item. Higher values will rotate the item to the right.",
   "scaleme.midnightconfig.heldItemPitchRotation.label": "Held Item Pitch Rotation",
-  "scaleme.midnightconfig.heldItemPitchRotation.tooltip": "Adjust the pitch rotation of your held item. Higher values will rotate the item upwards.",
+  "scaleme.midnightconfig.heldItemPitchRotation.tooltip": "Adjust the pitch rotation of your held item. Higher values will rotate the item towards you.",
   "scaleme.midnightconfig.heldItemRollRotation.label": "Held Item Roll Rotation",
-  "scaleme.midnightconfig.heldItemRollRotation.tooltip": "Adjust the roll rotation of your held item. Higher values will roll the item to the right.",
+  "scaleme.midnightconfig.heldItemRollRotation.tooltip": "Adjust the roll rotation of your held item. Higher values will roll the item to the left.",
 
   "scaleme.midnightconfig.itemAnimationSpeedDescription.label": "Adjust swing/animation speed of items",
   "scaleme.midnightconfig.enableItemSwingModifications.label": "Enable Item Swing Modifications",
