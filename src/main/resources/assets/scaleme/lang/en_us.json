@@ -1,14 +1,12 @@
 {
   "scaleme.midnightconfig.title": "ScaleMe - Visual Scaling",
   "scaleme.midnightconfig.category.scaling": "Player Scaling Controls",
+  "scaleme.midnightconfig.category.item scaling": "Item Scaling Controls",
   "scaleme.midnightconfig.category.view": "View & Camera",
 
   "scaleme.midnightconfig.ownPlayerDescription.label": "Adjust the visual size of your own player model",
   "scaleme.midnightconfig.ownPlayerScale.label": "Own Player Scale",
   "scaleme.midnightconfig.ownPlayerScale.tooltip": "Controls how large or small your own player appears visually",
-
-  "scaleme.midnightconfig.smoothScaling.label": "Smooth Scaling",
-  "scaleme.midnightconfig.smoothScaling.tooltip": "Gradually transition between scale changes for your own player",
 
   "scaleme.midnightconfig.playersDescription.label": "Adjust the visual size of other players",
   "scaleme.midnightconfig.enableOtherPlayersScaling.label": "Enable Scaling for Other Players",
@@ -29,6 +27,42 @@
   "scaleme.midnightconfig.villagerNpcScale.tooltip": "Controls how large or small Hypixel Villager NPCs appear visually",
 
   "scaleme.midnightconfig.smoothedScalingDescription.label": "Make changes between scale levels appear smooth",
+  "scaleme.midnightconfig.smoothScaling.label": "Smooth Scaling",
+  "scaleme.midnightconfig.smoothScaling.tooltip": "Gradually transition between scale changes for your own player",
+
+  "scaleme.midnightconfig.itemScalingDescription.label": "Adjust the visual size of items and their held positions and animation",
+  "scaleme.midnightconfig.enableItemScaleAndPosition.label": "Enable Item Scale & Position",
+  "scaleme.midnightconfig.enableItemScaleAndPosition.tooltip": "Enable scaling and position adjustments for held items (does not affect animation speed).",
+  "scaleme.midnightconfig.onlyAffectWeaponsAndTools.label": "Only affect weapons and tools",
+  "scaleme.midnightconfig.onlyAffectWeaponsAndTools.tooltip": "Only scale weapons and tools, not all items. (Some weapons on Hypixel skyblock may not scale properly, as hypixel don't use a normal weapon or tool item for them.)",
+  "scaleme.midnightconfig.itemScale.label": "Item Scale",
+  "scaleme.midnightconfig.itemScale.tooltip": "Controls how large or small held items appear visually",
+
+  "scaleme.midnightconfig.heldItemPositionDescription.label": "Adjust the position of your held item",
+  "scaleme.midnightconfig.heldItemXPosition.label": "Held Item X Position",
+  "scaleme.midnightconfig.heldItemXPosition.tooltip": "Adjust the X position of your held item. Higher values will move the item further to the right.",
+  "scaleme.midnightconfig.heldItemYPosition.label": "Held Item Y Position",
+  "scaleme.midnightconfig.heldItemYPosition.tooltip": "Adjust the Y position of your held item. Higher values will move the item further up.",
+  "scaleme.midnightconfig.heldItemZPosition.label": "Held Item Z Position",
+  "scaleme.midnightconfig.heldItemZPosition.tooltip": "Adjust the Z position of your held item. Higher values will move the item further away from you.",
+
+  "scaleme.midnightconfig.heldItemRotationDescription.label": "Adjust the Rotation of held item",
+  "scaleme.midnightconfig.heldItemYawRotation.label": "Held Item Yaw Rotation",
+  "scaleme.midnightconfig.heldItemYawRotation.tooltip": "Adjust the yaw rotation of your held item. Higher values will rotate the item to the right.",
+  "scaleme.midnightconfig.heldItemPitchRotation.label": "Held Item Pitch Rotation",
+  "scaleme.midnightconfig.heldItemPitchRotation.tooltip": "Adjust the pitch rotation of your held item. Higher values will rotate the item upwards.",
+  "scaleme.midnightconfig.heldItemRollRotation.label": "Held Item Roll Rotation",
+  "scaleme.midnightconfig.heldItemRollRotation.tooltip": "Adjust the roll rotation of your held item. Higher values will roll the item to the right.",
+
+  "scaleme.midnightconfig.itemAnimationSpeedDescription.label": "Adjust swing/animation speed of items",
+  "scaleme.midnightconfig.enableItemSwingModifications.label": "Enable Item Swing Modifications",
+  "scaleme.midnightconfig.enableItemSwingModifications.tooltip": "Enable modifications to the swing/animation of held items.",
+  "scaleme.midnightconfig.ignoreMiningEffects.label": "Ignore mining effects",
+  "scaleme.midnightconfig.ignoreMiningEffects.tooltip": "If enabled, ignores the mining effects increase to animation speed.",
+  "scaleme.midnightconfig.disableSwingAnimationBobbing.label": "Disable swing animation bobbing",
+  "scaleme.midnightconfig.disableSwingAnimationBobbing.tooltip": "If enabled, disables the bobbing effect during item swing animations. Only works if the option 'Item Swing Modifications' or 'Item Scale & Position' is enabled.",
+  "scaleme.midnightconfig.itemAnimationSpeed.label": "Item Animation Speed",
+  "scaleme.midnightconfig.itemAnimationSpeed.tooltip": "Controls the animation speed of held items, 1.0 is normal speed / disabled.",
 
   "scaleme.midnightconfig.viewDescription.label": "Configure crosshair and camera options",
   "scaleme.midnightconfig.enableCrosshairInThirdPerson.label": "Show Crosshair in Third Person (Back)",

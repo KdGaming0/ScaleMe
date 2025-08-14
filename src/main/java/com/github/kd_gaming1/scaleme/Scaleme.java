@@ -1,7 +1,5 @@
 package com.github.kd_gaming1.scaleme;
 
-import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
-import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -13,6 +11,5 @@ public class Scaleme implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        MidnightConfig.init(MOD_ID, ScaleMeConfig.class);
     }
 }

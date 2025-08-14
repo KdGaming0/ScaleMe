@@ -4,9 +4,10 @@ import eu.midnightdust.lib.config.MidnightConfig;
 
 public class ScaleMeConfig extends MidnightConfig {
     public static final String SCALING = "scaling";
+    public static final String ITEMSCALING = "item scaling";
     public static final String VIEW = "view";
 
-    // Own Player Scaling
+    // Player Scaling
     @Comment(category = SCALING, name = "Adjust the visual size of your own player model")
     public static Comment ownPlayerDescription;
 
@@ -51,6 +52,62 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = PLAYERS, name = "Show Quick Add Button")
     public static boolean showQuickAddButton = true;
     */
+
+    // Item Scaling
+
+    @Comment(category = ITEMSCALING, name = "Adjust the visual size of items and there held positions and animation")
+    public static Comment itemScalingDescription;
+
+    @Entry(category = ITEMSCALING, name = "Enable Item Scale & Position")
+    public static boolean enableItemScaleAndPosition = false;
+
+    /*
+    TODO: Add option to only affect weapons and tools
+    @Entry(category = ITEMSCALING, name = "Only affect weapons and tools")
+    public static boolean onlyAffectWeaponsAndTools = false;
+     */
+
+    @Entry(category = ITEMSCALING, name = "Item Scale", isSlider = true, min = 0.05f, max = 3.0f)
+    public static float itemScale = 1.0f;
+
+    @Comment(category = ITEMSCALING, name = "Adjust the position of your held item")
+    public static Comment heldItemPositionDescription;
+
+    @Entry(category = ITEMSCALING, name = "Held Item X Position", isSlider = true, min = -2.0f, max = 2.0f)
+    public static float heldItemXPosition = 0.0f;
+
+    @Entry(category = ITEMSCALING, name = "Held Item Y Position", isSlider = true, min = -2.0f, max = 2.0f)
+    public static float heldItemYPosition = 0.0f;
+
+    @Entry(category = ITEMSCALING, name = "Held Item Z Position", isSlider = true, min = -2.0f, max = 2.0f)
+    public static float heldItemZPosition = 0.0f;
+
+    @Comment(category = ITEMSCALING, name = "Adjust the Rotation of held item")
+    public static Comment heldItemRotationDescription;
+
+    @Entry(category = ITEMSCALING, name = "Held Item Yaw Rotation", isSlider = true, min = -180.0f, max = 180.0f)
+    public static float heldItemYawRotation = 0.0f;
+
+    @Entry(category = ITEMSCALING, name = "Held Item Pitch Rotation", isSlider = true, min = -90.0f, max = 90.0f)
+    public static float heldItemPitchRotation = 0.0f;
+
+    @Entry(category = ITEMSCALING, name = "Held Item Roll Rotation", isSlider = true, min = -180.0f, max = 180.0f)
+    public static float heldItemRollRotation = 0.0f;
+
+    @Comment(category = ITEMSCALING, name = "Adjust swing/animation speed of items")
+    public static Comment itemAnimationSpeedDescription;
+
+    @Entry(category = ITEMSCALING, name = "Enable Item Swing Modifications")
+    public static boolean enableItemSwingModifications = false;
+
+    @Entry(category = ITEMSCALING, name = "Ignore mining effects")
+    public static boolean ignoreMiningEffects = true;
+
+    @Entry(category = ITEMSCALING, name = "Disable swing animation bobbing")
+    public static boolean disableSwingAnimationBobbing = true;
+
+    @Entry(category = ITEMSCALING, name = "Item Animation Speed", isSlider = true, min = 0.05f, max = 3.0f)
+    public static float itemAnimationSpeed = 1.0f;
 
     // View (Crosshair + Camera)
     @Comment(category = VIEW, name = "Configure crosshair and camera options")
