@@ -31,7 +31,6 @@ public class HypixelDetector {
 
         String title = stripColors(objective.getDisplayName().getString()).toUpperCase();
 
-        System.out.println(("update"));
         // Return true if NOT in any of these game modes
         return !title.startsWith("SKYBLOCK") &&
                 !title.startsWith("LOBBY") &&
