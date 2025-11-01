@@ -11,6 +11,7 @@
     "PerspectiveMixin",
     "PlayerEntityRendererMixin",
     "PlayerEntityRenderStateMixin",
+    "VillagerEntityRendererMixin",
     "VillagerEntityRenderStateMixin"
   ],
   "injectors": {

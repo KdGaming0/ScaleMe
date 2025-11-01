@@ -1,5 +1,6 @@
 package com.github.kd_gaming1.scaleme.client.mixin;
 
+import com.github.kd_gaming1.scaleme.client.util.ScaleConstants;
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.MinecraftClient;
@@ -12,6 +13,16 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ * Mixin to modify hand swing animations and durations for living entities.
+ * <p>
+ * Provides control over:
+ * <ul>
+ *   <li>Animation speed/duration</li>
+ *   <li>Mining effect influence</li>
+ *   <li>Haste/Mining Fatigue effects</li>
+ * </ul>
+ */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 
@@ -19,36 +30,104 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
-    @ModifyExpressionValue(method = "getHandSwingDuration",
+    /**
+     * Modifies mining effect checks (Haste/Mining Fatigue) when configured to ignore them.
+     * <p>
+     * This injection captures two boolean checks:
+     * 1. StatusEffectUtil.hasHaste()
+     * 2. hasStatusEffect() for Mining Fatigue
+     * <p>
+     * When {@code ignoreMiningEffects} is enabled, these checks are forced to false,
+     * preventing mining effects from influencing animation speed.
+     */
+    @ModifyExpressionValue(
+            method = "getHandSwingDuration",
             at = {
                     @At(value = "INVOKE", target = "Lnet/minecraft/entity/effect/StatusEffectUtil;hasHaste(Lnet/minecraft/entity/LivingEntity;)Z"),
                     @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;hasStatusEffect(Lnet/minecraft/registry/entry/RegistryEntry;)Z")
             },
             require = 2
     )
-    private boolean ignoreMiningEffects(boolean original) {
-        return (!shouldEnableSwingModifications() || !ScaleMeConfig.ignoreMiningEffects) && original;
-    }
-
-    @ModifyExpressionValue(method = "getHandSwingDuration", at = @At(value = "CONSTANT", args = "intValue=6"))
-    private int modifySwingDuration(int original) {
-        if (shouldEnableSwingModifications()) {
-            int modified = Math.round(original / ScaleMeConfig.itemAnimationSpeed);
-            return Math.max(1, Math.min(60, modified));
+    private boolean modifyMiningEffectCheck(boolean originalHasEffect) {
+        if (!scaleme$shouldModifySwing()) {
+            return originalHasEffect;
         }
-        return original;
+
+        // If we should ignore mining effects, return false regardless of actual effect status
+        return !ScaleMeConfig.ignoreMiningEffects && originalHasEffect;
     }
 
+    /**
+     * Modifies the base swing duration constant to apply custom animation speed.
+     * <p>
+     * The vanilla constant is 6 ticks. This is modified based on the configured
+     * animation speed, then clamped to a safe range.
+     */
+    @ModifyExpressionValue(
+            method = "getHandSwingDuration",
+            at = @At(value = "CONSTANT", args = "intValue=6")
+    )
+    private int modifySwingDuration(int vanillaDuration) {
+        if (!scaleme$shouldModifySwing()) {
+            return vanillaDuration;
+        }
+
+        return scaleme$calculateModifiedDuration(vanillaDuration, ScaleMeConfig.itemAnimationSpeed);
+    }
+
+    // ===== Helper Methods =====
+
+    /**
+     * Determines if swing modifications should be applied to this entity.
+     * <p>
+     * Modifications only apply to:
+     * <ul>
+     *   <li>The main client player</li>
+     *   <li>When the feature is enabled</li>
+     *   <li>When a client player exists</li>
+     * </ul>
+     *
+     * @return true if modifications should apply
+     */
     @Unique
-    private boolean shouldEnableSwingModifications() {
-        if (!ScaleMeConfig.enableItemSwingModifications) return false;
+    private boolean scaleme$shouldModifySwing() {
+        if (!ScaleMeConfig.enableItemSwingModifications) {
+            return false;
+        }
 
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.player == null) return false;
-
-        if ((Object) this instanceof AbstractClientPlayerEntity p) {
-            return p.isMainPlayer();
+        if (client.player == null) {
+            return false;
         }
-        return false;
+
+        // Only apply to the main player
+        return (Object) this instanceof AbstractClientPlayerEntity player &&
+                player.isMainPlayer();
+    }
+
+    /**
+     * Calculates the modified swing duration based on animation speed.
+     * <p>
+     * Formula: modified = original / speed
+     * Result is clamped to prevent extreme values.
+     *
+     * @param originalDuration The vanilla duration
+     * @param animationSpeed The configured speed multiplier
+     * @return The modified and clamped duration
+     */
+    @Unique
+    private int scaleme$calculateModifiedDuration(int originalDuration, float animationSpeed) {
+        // Prevent division by zero or negative speeds
+        if (animationSpeed <= 0.0f) {
+            return originalDuration;
+        }
+
+        int modified = Math.round(originalDuration / animationSpeed);
+
+        // Clamp to safe range
+        return Math.max(
+                ScaleConstants.MIN_SWING_DURATION,
+                Math.min(ScaleConstants.MAX_SWING_DURATION, modified)
+        );
     }
 }
