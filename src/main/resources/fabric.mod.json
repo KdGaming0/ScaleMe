@@ -21,13 +21,9 @@
     "scaleme.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${loader_version}",
-    "fabric": "*",
-    "minecraft": "${minecraft_version}",
-    "midnightlib": ">=1.6.0",
+    "fabricloader": ">=0.17.3",
+    "minecraft": "${minecraft}",
+    "midnightlib": "${midnightlib_version}",
     "owo": ">=${owo_version}"
-  },
-  "suggests": {
-    "hypixel-mod-api": "*"
   }
 }
