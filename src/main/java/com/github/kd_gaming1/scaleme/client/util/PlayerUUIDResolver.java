@@ -134,10 +134,15 @@ public class PlayerUUIDResolver {
         }
 
         return client.getNetworkHandler().getPlayerList().stream()
-                .filter(entry -> entry.getProfile().getName().equalsIgnoreCase(normalizedName))
-                .map(entry -> entry.getProfile().getId())
-                .findFirst()
-                .orElse(null);
+        //? if >=1.21.9 {
+             /*.filter(entry -> entry.getProfile().name().equalsIgnoreCase(normalizedName))
+             .map(entry -> entry.getProfile().id())
+        *///?} else {
+        .filter(entry -> entry.getProfile().getName().equalsIgnoreCase(normalizedName))
+           .map(entry -> entry.getProfile().getId())
+         //?}
+             .findFirst()
+             .orElse(null);
     }
 
     /**

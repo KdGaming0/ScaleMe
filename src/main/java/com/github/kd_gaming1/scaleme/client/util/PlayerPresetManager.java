@@ -449,7 +449,11 @@ public class PlayerPresetManager {
         if (client.getNetworkHandler() != null) {
             var entry = client.getNetworkHandler().getPlayerListEntry(playerUUID);
             if (entry != null) {
+                //? if >=1.21.9 {
+                /*return entry.getProfile().name();
+                *///?} else {
                 return entry.getProfile().getName();
+                 //?}
             }
         }
         return null;

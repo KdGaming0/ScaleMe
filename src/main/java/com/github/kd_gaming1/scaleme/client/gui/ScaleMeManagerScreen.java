@@ -133,13 +133,23 @@ public class ScaleMeManagerScreen extends BaseOwoScreen<FlowLayout> {
 
         for (PlayerPreset preset : PlayerPresetManager.getAllPresets()) {
             PresetListEntryComponent entry = new PresetListEntryComponent(preset);
-            entry.mouseDown().subscribe((mouseX, mouseY, button) -> {
-                if (button == 0) {
+            //? if >=1.21.9 {
+            /*entry.mouseDown().subscribe((click, doubled) -> {
+                if (click.button() == 0) {
                     selectPreset(preset, entry);
                     return true;
                 }
                 return false;
             });
+            *///?} else {
+        entry.mouseDown().subscribe((mouseX, mouseY, button) -> {
+            if (button == 0) {
+                selectPreset(preset, entry);
+                return true;
+            }
+            return false;
+        });
+         //?}
             this.entryComponents.add(entry);
             this.presetList.child(entry);
         }

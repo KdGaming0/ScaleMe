@@ -10,7 +10,11 @@ import io.wispforest.owo.ui.core.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.DefaultSkinHelper;
+//? if >=1.21.9 {
+/*import net.minecraft.entity.player.SkinTextures;
+*///?} else {
 import net.minecraft.client.util.SkinTextures;
+ //?}
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -184,7 +188,11 @@ public class PresetListEntryComponent extends FlowLayout {
 
     private TextureComponent createPlayerHead(PlayerPreset preset) {
         SkinTextures skinTextures = getSkinTextures(preset);
+        //? if >=1.21.9 {
+        /*Identifier skinTexture = skinTextures.body().id();
+        *///?} else {
         Identifier skinTexture = skinTextures.texture();
+         //?}
 
         return (TextureComponent) Components.texture(skinTexture, 8, 8, 8, 8, 64, 64)
                 .sizing(Sizing.fixed(HEAD_SIZE), Sizing.fixed(HEAD_SIZE));
@@ -235,18 +243,24 @@ public class PresetListEntryComponent extends FlowLayout {
                 MinecraftClient client = MinecraftClient.getInstance();
                 GameProfile profile = new GameProfile(playerUUID, playerName);
 
-                // Fetch complete profile
-                var completeProfile = client.getSessionService().fetchProfile(playerUUID, false).profile();
-                if (completeProfile != null) {
-                    // Fetch skin textures
-                    client.getSkinProvider().fetchSkinTextures(completeProfile).thenAccept(optionalTextures -> {
-                        optionalTextures.ifPresent(textures -> {
-                            // Update cache with real textures
-                            skinCache.put(playerUUID, textures);
-                            // Note: You might want to trigger a UI refresh here if needed
-                        });
+                //? if >=1.21.9 {
+                /*// Fetch skin textures directly using skin provider
+                client.getSkinProvider().fetchSkinTextures(profile).thenAccept(optionalTextures -> {
+                    optionalTextures.ifPresent(textures -> {
+                        skinCache.put(playerUUID, textures);
                     });
-                }
+                });
+                *///?} else {
+            // Fetch complete profile
+            var completeProfile = client.getSessionService().fetchProfile(playerUUID, false).profile();
+            if (completeProfile != null) {
+                client.getSkinProvider().fetchSkinTextures(completeProfile).thenAccept(optionalTextures -> {
+                    optionalTextures.ifPresent(textures -> {
+                        skinCache.put(playerUUID, textures);
+                    });
+                });
+            }
+            //?}
             } catch (Exception e) {
                 // Ignore errors in async skin fetching
             }

@@ -35,11 +35,20 @@ public class PlayerEntityRendererMixin {
      * Injected at TAIL of updateRenderState to ensure all vanilla data is populated first.
      */
     @Inject(
+            //? if >=1.21.9 {
+            /*method = "updateRenderState(Lnet/minecraft/entity/PlayerLikeEntity;Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;F)V",
+            at = @At("TAIL")
+            *///?} else {
             method = "updateRenderState(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/render/entity/state/PlayerEntityRenderState;F)V",
             at = @At("TAIL")
+            //?}
     )
     private void storePlayerData(
+            //? if >=1.21.9 {
+            /*net.minecraft.entity.PlayerLikeEntity player,
+            *///?} else {
             AbstractClientPlayerEntity player,
+             //?}
             PlayerEntityRenderState renderState,
             float tickDelta,
             CallbackInfo ci) {
@@ -48,10 +57,21 @@ public class PlayerEntityRendererMixin {
             return;
         }
 
+        //? if >=1.21.9 {
+        /*// Cast PlayerLikeEntity to AbstractClientPlayerEntity for 1.21.9+
+        if (!(player instanceof AbstractClientPlayerEntity clientPlayer)) {
+            return;
+        }
+        PlayerEntityRenderStateAccessor accessor = (PlayerEntityRenderStateAccessor) renderState;
+        accessor.scaleme$setPlayerUUID(clientPlayer.getUuid());
+        accessor.scaleme$setPlayerEntity(clientPlayer);
+        *///?} else {
         PlayerEntityRenderStateAccessor accessor = (PlayerEntityRenderStateAccessor) renderState;
         accessor.scaleme$setPlayerUUID(player.getUuid());
         accessor.scaleme$setPlayerEntity(player);
+        //?}
     }
+
 
     /**
      * Applies scale transformations to player models based on configuration.
@@ -97,7 +117,7 @@ public class PlayerEntityRendererMixin {
 
         // Not an NPC - apply regular player scaling
         if (scaleme$tryApplyPlayerScaling(playerUUID, matrices)) {
-            return;
+            ci.cancel();
         }
     }
 
