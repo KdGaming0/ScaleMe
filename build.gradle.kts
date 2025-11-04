@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.from
+
 plugins {
     id("fabric-loom") version "1.13-SNAPSHOT"
 }
@@ -29,7 +31,7 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
     modImplementation("maven.modrinth:midnightlib:${property("deps.midnightlib_version")}")
-    include("maven.modrinth:midnightlib${property("deps.midnightlib_version")}")
+    include("maven.modrinth:midnightlib:${property("deps.midnightlib_version")}")
 
     modImplementation("com.terraformersmc:modmenu:${property("deps.modmenu_version")}")
     modImplementation("io.wispforest:owo-lib:${property("deps.owo_version")}")
@@ -83,10 +85,9 @@ tasks {
         }
     }
 
-    // Configure the 'jar' task in Kotlin DSL
     jar {
         from("LICENSE") {
-            rename { fileName -> "${fileName}_${base.archivesName.get()}" }
+            rename { fileName -> "${fileName}_${project.property("mod.id")}" }
         }
     }
 
