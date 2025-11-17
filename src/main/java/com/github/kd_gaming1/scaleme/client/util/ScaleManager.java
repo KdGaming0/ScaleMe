@@ -28,9 +28,11 @@ public class ScaleManager {
      * Get current scale for a player.
      */
     public static float getCurrentScale(UUID playerUUID) {
+        if (playerUUID == null) {
+            return ScaleConstants.DEFAULT_SCALE;
+        }
         return PlayerPresetManager.getCurrentScale(playerUUID);
     }
-
     /** Returns NPC scale with safety check including dungeons detection. */
     public static float getNpcScale() {
         // Only apply scaling when it's safe (not in competitive modes or dungeons)

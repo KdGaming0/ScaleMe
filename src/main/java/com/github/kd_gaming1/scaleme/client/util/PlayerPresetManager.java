@@ -138,6 +138,14 @@ public class PlayerPresetManager {
             return;
         }
 
+        // Validate before saving
+        try {
+            preset.validateForSave();
+        } catch (IllegalArgumentException e) {
+            LOGGER.error("Preset validation failed: {}", e.getMessage());
+            throw new IllegalArgumentException("Cannot save invalid preset: " + e.getMessage(), e);
+        }
+
         // Remove existing preset with same identifier
         removePresetQuiet(preset.identifier);
 

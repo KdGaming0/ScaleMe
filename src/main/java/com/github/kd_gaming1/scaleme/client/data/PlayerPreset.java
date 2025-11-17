@@ -7,68 +7,68 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 import java.util.UUID;
 
-/**
- * Represents a scaling preset for a specific player.
- * <p>
- * Each preset contains:
- * <ul>
- *   <li>An identifier (UUID or username)</li>
- *   <li>An optional friendly display name</li>
- *   <li>A scale factor for the player</li>
- *   <li>An enabled/disabled state</li>
- * </ul>
- * <p>
- * Presets are immutable after creation, use {@link #copy()} to create modified versions.
- */
 public class PlayerPreset {
 
     @SerializedName("identifier")
-    public String identifier; // Package-private for manager access
+    public String identifier;
 
     @SerializedName("friendlyName")
-    public String friendlyName; // Package-private for manager access
+    public String friendlyName;
 
     @SerializedName("scale")
-    public float scale; // Package-private for manager access
+    public float scale;
 
     @SerializedName("enabled")
-    public boolean enabled; // Package-private for manager access
+    public boolean enabled;
 
     /**
      * Creates a new player preset with validation.
      * @param identifier The player identifier (UUID or username)
      * @param friendlyName Optional display name (can be null)
      * @param scale The scale factor
-     * @throws IllegalArgumentException if identifier is invalid or scale is out of range
+     * @throws IllegalArgumentException if scale is out of range
      */
     public PlayerPreset(String identifier, String friendlyName, float scale) {
-        validateIdentifier(identifier);
-        validateScale(scale);
-
-        this.identifier = identifier.trim();
+        // Allow empty identifier for draft presets
+        // Validation will occur during save operation
+        this.identifier = identifier != null ? identifier.trim() : "";
         this.friendlyName = (friendlyName != null && !friendlyName.trim().isEmpty())
                 ? friendlyName.trim() : null;
+
+        validateScale(scale);
         this.scale = ScaleConstants.clampScale(scale);
         this.enabled = true;
     }
 
-    // ===== Validation Helper Methods =====
+    /**
+     * Validates that this preset is ready to be saved.
+     * @throws IllegalArgumentException if preset is invalid
+     */
+    public void validateForSave() {
+        validateIdentifier(this.identifier);
+        validateScale(this.scale);
+    }
 
     /**
-     * Validates and sets the scale value.
-     * @param scale The new scale value
-     * @throws IllegalArgumentException if scale is invalid
+     * Checks if this preset is valid for saving.
+     * @return true if valid, false otherwise
      */
+    public boolean isValidForSave() {
+        try {
+            validateForSave();
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    // ===== Validation Helper Methods =====
+
     public void setScaleValidated(float scale) {
         validateScale(scale);
         this.scale = ScaleConstants.clampScale(scale);
     }
 
-    /**
-     * Validates and sets the identifier.
-     * @param identifier The new identifier
-     * @throws IllegalArgumentException if identifier is invalid
-     */
     public void setIdentifierValidated(String identifier) {
         validateIdentifier(identifier);
         this.identifier = identifier.trim();
@@ -76,49 +76,27 @@ public class PlayerPreset {
 
     // ===== Core Methods =====
 
-    /**
-     * Creates a deep copy of this preset.
-     * @return A new PlayerPreset with identical values
-     */
     public PlayerPreset copy() {
         PlayerPreset copy = new PlayerPreset(this.identifier, this.friendlyName, this.scale);
         copy.enabled = this.enabled;
         return copy;
     }
 
-    /**
-     * Returns the display name for this preset.
-     * Uses friendly name if available, otherwise falls back to identifier.
-     * @return The effective display name
-     */
     public String getEffectiveDisplayName() {
         return (friendlyName != null && !friendlyName.isEmpty())
                 ? friendlyName
                 : identifier;
     }
 
-    /**
-     * Checks if this preset matches a given identifier (case-insensitive).
-     * Only returns true if the preset is enabled.
-     * @param id The identifier to check
-     * @return true if enabled and identifier matches
-     */
     public boolean matches(String id) {
         return enabled && identifier.equalsIgnoreCase(id);
     }
 
-    /**
-     * Checks if this preset matches a player by UUID or username.
-     * @param playerUUID The player's UUID
-     * @param playerName The player's name (can be null)
-     * @return true if enabled and matches either UUID or username
-     */
     public boolean matchesPlayer(UUID playerUUID, String playerName) {
         if (!enabled || playerUUID == null) {
             return false;
         }
 
-        // Check UUID match if identifier is a UUID
         if (isUUID()) {
             try {
                 return UUID.fromString(identifier).equals(playerUUID);
@@ -127,32 +105,19 @@ public class PlayerPreset {
             }
         }
 
-        // Check username match (case insensitive)
         return playerName != null && identifier.equalsIgnoreCase(playerName);
     }
 
-    /**
-     * Attempts to resolve this preset's identifier to a UUID.
-     * @return The resolved UUID, or null if resolution fails
-     */
     public UUID resolveToUUID() {
         return PlayerUUIDResolver.resolvePlayerUUID(this.identifier);
     }
 
     // ===== Validation Methods =====
 
-    /**
-     * Checks if the identifier is in UUID format.
-     * @return true if identifier matches UUID pattern
-     */
     public boolean isUUID() {
         return identifier != null && identifier.matches(ScaleConstants.UUID_REGEX);
     }
 
-    /**
-     * Checks if the identifier is in username format.
-     * @return true if identifier matches username pattern
-     */
     public boolean isUsername() {
         return identifier != null && identifier.matches(ScaleConstants.USERNAME_REGEX);
     }
@@ -168,11 +133,6 @@ public class PlayerPreset {
         }
     }
 
-    /**
-     * Validates that a scale value is within acceptable range.
-     * @param scale The scale value to validate
-     * @throws IllegalArgumentException if scale is invalid
-     */
     private void validateScale(float scale) {
         if (!ScaleConstants.isValidScale(scale)) {
             throw new IllegalArgumentException(

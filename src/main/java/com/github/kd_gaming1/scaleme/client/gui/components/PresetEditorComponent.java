@@ -3,6 +3,7 @@ package com.github.kd_gaming1.scaleme.client.gui.components;
 import com.github.kd_gaming1.scaleme.client.data.PlayerPreset;
 import com.github.kd_gaming1.scaleme.client.util.PlayerPresetManager;
 import com.github.kd_gaming1.scaleme.client.util.PlayerUUIDResolver;
+import com.github.kd_gaming1.scaleme.client.util.ScaleConstants;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.component.Components;
 import io.wispforest.owo.ui.component.LabelComponent;
@@ -465,21 +466,38 @@ public class PresetEditorComponent extends FlowLayout {
         }
 
         String trimmed = identifier.trim();
+
+        // Check for valid UUID format
         boolean isUUIDFormat = isValidUUID(trimmed);
-        boolean isUsernameFormat = trimmed.matches("^[a-zA-Z0-9_]{3,16}$");
+
+        // Check for valid username format (3-16 chars, alphanumeric + underscore)
+        boolean isUsernameFormat = trimmed.matches(ScaleConstants.USERNAME_REGEX);
 
         if (this.isNewPreset) {
             this.isIdentifierValid = isUsernameFormat;
-            this.statusLabel.text(Text.literal(isUsernameFormat
-                            ? "Username format - will resolve when saved"
-                            : "Only usernames (3-16 chars) are allowed when creating a new preset.")
-                    .formatted(isUsernameFormat ? Formatting.YELLOW : Formatting.RED));
+
+            String message;
+            Formatting color;
+
+            if (isUsernameFormat) {
+                message = "Username format valid - will resolve when saved";
+                color = Formatting.YELLOW;
+            } else if (trimmed.length() < 3) {
+                message = "Username too short (minimum 3 characters)";
+                color = Formatting.RED;
+            } else if (trimmed.length() > 16) {
+                message = "Username too long (maximum 16 characters)";
+                color = Formatting.RED;
+            } else {
+                message = "Invalid characters - use only letters, numbers, and underscores";
+                color = Formatting.RED;
+            }
+
+            this.statusLabel.text(Text.literal(message).formatted(color));
             validateField(this.identifierField, this.isIdentifierValid, 0xFFFFFFFF, 0xFFEB1D36);
         } else {
             this.isIdentifierValid = isUUIDFormat || isUsernameFormat;
-            this.statusLabel.text(Text.literal(isUUIDFormat
-                            ? "Valid UUID format"
-                            : "Username format")
+            this.statusLabel.text(Text.literal(isUUIDFormat ? "Valid UUID format" : "Username format")
                     .formatted(Formatting.GREEN));
         }
     }
@@ -512,7 +530,15 @@ public class PresetEditorComponent extends FlowLayout {
 
     private void onIdentifierChanged(String newValue) {
         if (!this.isNewPreset) return;
-        validateIdentifierFormat(newValue);
+
+        // Sanitize input: remove spaces and invalid characters
+        String sanitized = newValue.replaceAll("[^a-zA-Z0-9_]", "");
+        if (!sanitized.equals(newValue)) {
+            this.identifierField.text(sanitized);
+            return; // Will trigger this method again with sanitized value
+        }
+
+        validateIdentifierFormat(sanitized);
         this.hasUnsavedChanges = true;
         updateButtonStates();
     }
@@ -564,15 +590,34 @@ public class PresetEditorComponent extends FlowLayout {
     }
 
     private void saveCurrentPreset() {
-        if (this.currentPreset == null || !this.isIdentifierValid) return;
+        if (this.currentPreset == null) return;
+
+        // Validate the preset before saving
+        try {
+            this.currentPreset.validateForSave();
+        } catch (IllegalArgumentException e) {
+            showErrorMessage("Cannot save: " + e.getMessage());
+            return;
+        }
+
+        if (!this.isIdentifierValid) {
+            showErrorMessage("Please provide a valid player identifier");
+            return;
+        }
 
         if (this.isNewPreset) {
             String inputIdentifier = this.identifierField.getText().trim();
 
+            // Additional validation for username format
+            if (!inputIdentifier.matches(ScaleConstants.USERNAME_REGEX)) {
+                showErrorMessage("Invalid username format. Use 3-16 alphanumeric characters or underscores.");
+                return;
+            }
+
             // Resolve UUID from username
             UUID resolvedUUID = PlayerUUIDResolver.resolvePlayerUUID(inputIdentifier);
             if (resolvedUUID == null) {
-                showErrorMessage("Failed to resolve player: " + inputIdentifier + ". Please check the username.");
+                showErrorMessage("Failed to resolve player: " + inputIdentifier + ". Player must be online or check the username.");
                 return;
             }
 
@@ -582,6 +627,12 @@ public class PresetEditorComponent extends FlowLayout {
                 this.currentPreset.friendlyName = inputIdentifier;
                 this.friendlyNameField.text(inputIdentifier);
             }
+        }
+
+        // Final validation before saving
+        if (!this.currentPreset.isValidForSave()) {
+            showErrorMessage("Preset contains invalid data and cannot be saved");
+            return;
         }
 
         // Save the preset
@@ -601,7 +652,7 @@ public class PresetEditorComponent extends FlowLayout {
         updateButtonStates();
         updateTitle();
         updateStatusLabel();
-        showEditorState(); // Refresh to hide help container and update info
+        showEditorState();
 
         if (this.onPresetUpdated != null) {
             this.onPresetUpdated.accept(this.currentPreset);
