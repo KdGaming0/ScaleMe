@@ -1,0 +1,1 @@
+Fixed a crash when the mod was used on Luner Client
