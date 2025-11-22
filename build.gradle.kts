@@ -1,7 +1,8 @@
 import org.gradle.kotlin.dsl.from
 
 plugins {
-    id("fabric-loom") version "1.13-SNAPSHOT"
+    id("fabric-loom")
+    id("me.modmuss50.mod-publish-plugin")
 }
 
 version = "${property("mod.version")}+${stonecutter.current.version}"
@@ -103,7 +104,6 @@ tasks {
     }
 }
 
-/*
 publishMods {
     file = tasks.remapJar.map { it.archiveFile.get() }
     additionalFiles.from(tasks.remapSourcesJar.map { it.archiveFile.get() })
@@ -121,7 +121,8 @@ publishMods {
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         minecraftVersions.add(stonecutter.current.version)
         requires {
-            slug = "fabric-api"
+            slug = "P7dR8mSH" // Fabric API
+            slug = "ccKDOlHs" // OwO Lib
         }
     }
 
@@ -130,31 +131,8 @@ publishMods {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
         minecraftVersions.add(stonecutter.current.version)
         requires {
-            slug = "fabric-api"
+            slug = "306612" // Fabric API
+            slug = "532610" // OwO Lib
         }
     }
 }
-*/
-/*
-publishing {
-    repositories {
-        maven("...") {
-            name = "..."
-            credentials(PasswordCredentials::class.java)
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
-        }
-    }
-
-    publications {
-        create<MavenPublication>("mavenJava") {
-            groupId = "${property("mod.group")}.${property("mod.id")}"
-            artifactId = property("mod.version") as String
-            version = stonecutter.current.version
-
-            from(components["java"])
-        }
-    }
-}
-*/
