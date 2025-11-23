@@ -122,7 +122,12 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         requires {
             slug = "P7dR8mSH" // Fabric API
+        }
+        requires {
             slug = "ccKDOlHs" // OwO Lib
+        }
+        optional {
+            slug = "mOgUt4GM" // ModMenu
         }
     }
 
@@ -131,8 +136,13 @@ publishMods {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
         minecraftVersions.add(stonecutter.current.version)
         requires {
-            slug = "306612" // Fabric API
-            slug = "532610" // OwO Lib
+            slug = "fabric-api"
+        }
+        requires {
+            slug = "owo-lib"
+        }
+        optional {
+            slug = "modmenu"
         }
     }
 }
