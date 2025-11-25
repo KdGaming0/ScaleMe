@@ -1,1 +1,1 @@
-Fixed a crash when the mod was used on Luner Client
+- fix: make midnightlib dependency inclusive so it loads when another mod registers a new version.
