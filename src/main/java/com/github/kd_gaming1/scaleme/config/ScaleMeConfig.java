@@ -11,8 +11,12 @@ public class ScaleMeConfig extends MidnightConfig {
     @Comment(category = SCALING, name = "Adjust the visual size of your own player model")
     public static Comment ownPlayerDescription;
 
+    @Entry(category = SCALING, name = "Enable Own Player Scaling")
+    public static boolean enableOwnPlayerScaling = false;
+
     @Entry(category = SCALING, name = "Own Player Scale", isSlider = true, min = 0.1f, max = 3.0f)
     public static float ownPlayerScale = 1.0f;
+
 
     @Comment(category = SCALING, name = "Adjust the visual size of other players")
     public static Comment playersDescription;

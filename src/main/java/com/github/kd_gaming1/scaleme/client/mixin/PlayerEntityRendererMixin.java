@@ -103,6 +103,16 @@ public class PlayerEntityRendererMixin {
         AbstractClientPlayerEntity player = accessor.scaleme$getPlayerEntity();
         UUID playerUUID = accessor.scaleme$getPlayerUUID();
 
+        // Early exit: Skip own player scaling if disabled
+        if (player != null && playerUUID != null) {
+            net.minecraft.client.MinecraftClient client = net.minecraft.client.MinecraftClient.getInstance();
+            if (client.player != null && playerUUID.equals(client.player.getUuid())) {
+                if (!ScaleMeConfig.enableOwnPlayerScaling) {
+                    return; // Exit without cancelling - let vanilla scaling happen
+                }
+            }
+        }
+
         // Check if this is an NPC FIRST
         if (player != null && HypixelNpcUtil.isHypixelNpc(player)) {
             // This is an NPC - only apply NPC scaling, never player scaling

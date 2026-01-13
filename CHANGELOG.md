@@ -1,1 +1,2 @@
-- fix: make midnightlib dependency inclusive so it loads when another mod registers a new version.
+- fix: Added option to fully disable scaling on own player, not just visible disable it. This fixes some issues with other mods doing their own scaling.
+- fix: Fixed crash when opening the config menu with /scaleme config
