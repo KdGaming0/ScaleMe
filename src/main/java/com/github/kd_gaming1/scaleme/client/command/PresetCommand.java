@@ -46,6 +46,7 @@ public class PresetCommand {
     public static void register() {
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
             dispatcher.register(literal("scaleme")
+                    .executes(PresetCommand::executeOpenConfig)
                     // Preset management commands
                     .then(literal("add")
                             .then(argument("player", StringArgumentType.string())

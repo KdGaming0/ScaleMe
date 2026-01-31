@@ -113,6 +113,10 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = ITEMSCALING, name = "Item Animation Speed", isSlider = true, min = 0.05f, max = 3.0f)
     public static float itemAnimationSpeed = 1.0f;
 
+    @Entry(category = ITEMSCALING, name = "Disable Item Animation Completely")
+    public static boolean disableItemAnimation = false;
+
+
     // View (Crosshair + Camera)
     @Comment(category = VIEW, name = "Configure crosshair and camera options")
     public static Comment viewDescription;

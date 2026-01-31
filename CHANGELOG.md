@@ -1,2 +1,2 @@
-- fix: Added option to fully disable scaling on own player, not just visible disable it. This fixes some issues with other mods doing their own scaling.
-- fix: Fixed crash when opening the config menu with /scaleme config
+- feat: made /scaleme open config in addition to /scaleme config
+- feat: added an option to disable item animation speed fully

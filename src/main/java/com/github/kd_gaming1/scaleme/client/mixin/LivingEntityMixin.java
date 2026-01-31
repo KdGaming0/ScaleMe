@@ -72,6 +72,11 @@ public abstract class LivingEntityMixin extends Entity {
             return vanillaDuration;
         }
 
+        // If animation is disabled completely, return a very large number
+        if (ScaleMeConfig.disableItemAnimation) {
+            return Integer.MAX_VALUE;
+        }
+
         return scaleme$calculateModifiedDuration(vanillaDuration, ScaleMeConfig.itemAnimationSpeed);
     }
 

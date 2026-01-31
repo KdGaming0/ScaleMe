@@ -63,6 +63,8 @@
   "scaleme.midnightconfig.disableSwingAnimationBobbing.tooltip": "If enabled, disables the bobbing effect during item swing animations. Only works if the option 'Item Swing Modifications' or 'Item Scale & Position' is enabled.",
   "scaleme.midnightconfig.itemAnimationSpeed.label": "Item Animation Speed",
   "scaleme.midnightconfig.itemAnimationSpeed.tooltip": "Controls the animation speed of held items, 1.0 is normal speed / disabled.",
+  "scaleme.midnightconfig.disableItemAnimation.label": "Disable Item Animation Completely",
+  "scaleme.midnightconfig.disableItemAnimation.tooltip": "If enabled, completely freezes the item swing animation.",
 
   "scaleme.midnightconfig.viewDescription.label": "Configure crosshair and camera options",
   "scaleme.midnightconfig.enableCrosshairInThirdPerson.label": "Show Crosshair in Third Person (Back)",

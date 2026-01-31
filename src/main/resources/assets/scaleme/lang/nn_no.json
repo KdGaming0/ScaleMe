@@ -63,6 +63,8 @@
   "scaleme.midnightconfig.disableSwingAnimationBobbing.tooltip": "Viss aktivert, hindrar dette vugginga under gjenstandssving-animasjonar. Fungerer berre viss alternativet 'Modifikasjonar for gjenstandssving' eller 'Skalering og posisjon for gjenstand' er aktivert.",
   "scaleme.midnightconfig.itemAnimationSpeed.label": "Animasjonsfart for gjenstand",
   "scaleme.midnightconfig.itemAnimationSpeed.tooltip": "Styrer animasjonsfarten til gjenstandar som blir haldne",
+  "scaleme.midnightconfig.disableItemAnimation.label": "Deaktiver gjenstandsanimasjon fullstendig",
+  "scaleme.midnightconfig.disableItemAnimation.tooltip": "Viss aktivert, frys gjenstandssving-animasjonen fullstendig.",
 
   "scaleme.midnightconfig.viewDescription.label": "Still inn trådkross- og kameraalternativ",
   "scaleme.midnightconfig.enableCrosshairInThirdPerson.label": "Vis trådkross i tredjeperson (bakfrå)",
