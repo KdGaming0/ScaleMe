@@ -21,6 +21,7 @@ repositories {
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
     maven("https://maven.terraformersmc.com/")
     maven("https://maven.wispforest.io/releases/")
+    maven("https://jitpack.io")
     maven("https://repo.hypixel.net/repository/Hypixel/")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
 }
@@ -40,6 +41,7 @@ dependencies {
     modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.1")
 
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("org.apache.httpcomponents:httpclient:4.5.13")
 }
 
 // Add this mixin configuration block
@@ -101,6 +103,13 @@ tasks {
         )
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
+    }
+}
+
+stonecutter {
+    replacements.string(current.parsed >= "1.21.11") {
+        replace("Components", "UIComponents")
+        replace("Containers", "UIContainers")
     }
 }
 

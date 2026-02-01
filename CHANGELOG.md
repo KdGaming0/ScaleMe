@@ -1,2 +1,1 @@
-- feat: made /scaleme open config in addition to /scaleme config
-- feat: added an option to disable item animation speed fully
+- chore: updated to 1.21.11

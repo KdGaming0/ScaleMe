@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 /**
  * Mixin to modify hand swing animations and durations for living entities.
@@ -59,10 +60,25 @@ public abstract class LivingEntityMixin extends Entity {
 
     /**
      * Modifies the base swing duration constant to apply custom animation speed.
-     * <p>
-     * The vanilla constant is 6 ticks. This is modified based on the configured
-     * animation speed, then clamped to a safe range.
      */
+    //? if >=1.21.11 {
+    /*@ModifyVariable(
+            method = "getHandSwingDuration",
+            at = @At("STORE"),
+            ordinal = 0
+    )
+    private int modifySwingDurationStoredBase(int vanillaDuration) {
+        if (!scaleme$shouldModifySwing()) {
+            return vanillaDuration;
+        }
+
+        if (ScaleMeConfig.disableItemAnimation) {
+            return Integer.MAX_VALUE;
+        }
+
+        return scaleme$calculateModifiedDuration(vanillaDuration, ScaleMeConfig.itemAnimationSpeed);
+    }
+    *///?} else {
     @ModifyExpressionValue(
             method = "getHandSwingDuration",
             at = @At(value = "CONSTANT", args = "intValue=6")
@@ -72,13 +88,13 @@ public abstract class LivingEntityMixin extends Entity {
             return vanillaDuration;
         }
 
-        // If animation is disabled completely, return a very large number
         if (ScaleMeConfig.disableItemAnimation) {
             return Integer.MAX_VALUE;
         }
 
         return scaleme$calculateModifiedDuration(vanillaDuration, ScaleMeConfig.itemAnimationSpeed);
     }
+    //?}
 
     // ===== Helper Methods =====
 

@@ -12,7 +12,9 @@ import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 /**
  * Mixin to handle custom scaling and positioning of held items in first person.
@@ -67,6 +69,22 @@ public class HeldItemRendererMixin {
      * When bobbing is disabled, returns 1.0f (full cooldown) instead of the actual
      * progress, which prevents the visual bobbing effect.
      */
+    //? if >=1.21.11 {
+    /*@ModifyExpressionValue(
+            method = "updateHeldItems",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/network/ClientPlayerEntity;getHandEquippingProgress(F)F"
+            )
+    )
+
+    private float modifySwingBobbing(float originalCooldown) {
+        if (shouldDisableSwingBobbing()) {
+            return ScaleConstants.SWING_BOBBING_DISABLED_VALUE;
+        }
+        return originalCooldown;
+    }
+    *///?} else {
     @ModifyExpressionValue(
             method = "updateHeldItems",
             at = @At(
@@ -74,12 +92,14 @@ public class HeldItemRendererMixin {
                     target = "Lnet/minecraft/client/network/ClientPlayerEntity;getAttackCooldownProgress(F)F"
             )
     )
+
     private float modifySwingBobbing(float originalCooldown) {
         if (shouldDisableSwingBobbing()) {
             return ScaleConstants.SWING_BOBBING_DISABLED_VALUE;
         }
         return originalCooldown;
     }
+    //?}
 
     // ===== Helper Methods =====
 
