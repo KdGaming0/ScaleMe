@@ -1,23 +1,15 @@
 {
   "required": true,
-  "minVersion": "0.8",
-  "package": "com.github.kd_gaming1.scaleme.client.mixin",
+  "package": "com.github.kd_gaming1.scaleme.mixin",
   "compatibilityLevel": "JAVA_21",
-  "refmap": "scaleme.refmap.json",
-  "client": [
-    "HeldItemRendererMixin",
-    "LivingEntityRendererMixin",
-    "MixinInGameHud",
-    "PerspectiveMixin",
-    "PlayerEntityRendererMixin",
-    "PlayerEntityRenderStateMixin",
-    "VillagerEntityRendererMixin",
-    "VillagerEntityRenderStateMixin"
+  "mixins": [
   ],
   "injectors": {
     "defaultRequire": 1
   },
-  "mixins": [
+  "client": [
+    "ItemInHandRendererMixin",
+    "LayerRenderStateMixin",
     "LivingEntityMixin"
   ]
 }
