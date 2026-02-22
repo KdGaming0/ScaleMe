@@ -2,16 +2,21 @@
   "scaleme.midnightconfig.title": "ScaleMe",
 
   "scaleme.midnightconfig.category.hand_item": "Held Item",
+  "scaleme.midnightconfig.category.animation": "Item Animation",
   "scaleme.midnightconfig.category.view": "Camera & Crosshair",
-  "scaleme.midnightconfig.category.scaling": "Scaling",
 
   "scaleme.midnightconfig.handDesc": "Adjust how your held item looks in your hand",
   "scaleme.midnightconfig.spacer1": "",
   "scaleme.midnightconfig.spacer2": "",
+  "scaleme.midnightconfig.spacer3": "",
   "scaleme.midnightconfig.spacer4": "",
+  "scaleme.midnightconfig.spacer5": "",
 
   "scaleme.midnightconfig.enableHandItemTransform": "Enable Custom Item Transform",
   "scaleme.midnightconfig.enableHandItemTransform.tooltip": "Turns on the custom held item positioning. Disable this to restore the default look and avoid conflicts with other mods.",
+
+  "scaleme.midnightconfig.enableSeparateHandTransforms": "Enable Separate Off-Hand Transform \n(Off-Hand sliders at the bottom of the page)",
+  "scaleme.midnightconfig.enableSeparateHandTransforms.tooltip": "Turns on separate positioning for your off-hand item. When disabled, the off-hand uses the same transform as the main hand. Enable this to customise the settings below.",
 
   "scaleme.midnightconfig.itemScale": "Item Size",
   "scaleme.midnightconfig.itemScale.tooltip": "How big or small the item in your hand appears.\nSmaller values make it tiny, larger values make it huge.",
@@ -33,6 +38,29 @@
 
   "scaleme.midnightconfig.itemRotationZ": "Spin Item Clockwise / Counterclockwise",
   "scaleme.midnightconfig.itemRotationZ.tooltip": "Spins the item in your hand clockwise or counterclockwise.",
+
+  "scaleme.midnightconfig.offhandDesc": "Off-Hand Item — requires 'Enable Separate Off-Hand Transform' to be ON",
+
+  "scaleme.midnightconfig.itemScaleOffhand": "Off-Hand Item Size",
+  "scaleme.midnightconfig.itemScaleOffhand.tooltip": "How big or small the off-hand item appears.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+
+  "scaleme.midnightconfig.itemTranslationXOffhand": "Move Off-Hand Item Left / Right",
+  "scaleme.midnightconfig.itemTranslationXOffhand.tooltip": "Shifts the off-hand item to the left or right.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+
+  "scaleme.midnightconfig.itemTranslationYOffhand": "Move Off-Hand Item Up / Down",
+  "scaleme.midnightconfig.itemTranslationYOffhand.tooltip": "Shifts the off-hand item up or down.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+
+  "scaleme.midnightconfig.itemTranslationZOffhand": "Move Off-Hand Item Closer / Further",
+  "scaleme.midnightconfig.itemTranslationZOffhand.tooltip": "Shifts the off-hand item closer to or further from your screen.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+
+  "scaleme.midnightconfig.itemRotationXOffhand": "Tilt Off-Hand Item Up / Down",
+  "scaleme.midnightconfig.itemRotationXOffhand.tooltip": "Tilts the off-hand item up or down.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+
+  "scaleme.midnightconfig.itemRotationYOffhand": "Rotate Off-Hand Item Left / Right",
+  "scaleme.midnightconfig.itemRotationYOffhand.tooltip": "Rotates the off-hand item to the left or right.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+
+  "scaleme.midnightconfig.itemRotationZOffhand": "Spin Off-Hand Item Clockwise / Counterclockwise",
+  "scaleme.midnightconfig.itemRotationZOffhand.tooltip": "Spins the off-hand item clockwise or counterclockwise.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
 
   "scaleme.midnightconfig.animDesc": "Adjust how your held item animates",
 
