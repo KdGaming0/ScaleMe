@@ -1,5 +1,6 @@
 package com.github.kd_gaming1.scaleme;
 
+import com.github.kd_gaming1.scaleme.command.Commands;
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import com.github.kd_gaming1.scaleme.util.HypixelLocationState;
 import eu.midnightdust.lib.config.MidnightConfig;
@@ -18,6 +19,7 @@ import net.minecraft.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.stream.events.Comment;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ScaleMe implements ClientModInitializer {
@@ -43,5 +45,7 @@ public class ScaleMe implements ClientModInitializer {
             HypixelLocationState.reset();
         });
 
+        // Register commands
+        Commands.register();
     }
 }
