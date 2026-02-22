@@ -114,4 +114,7 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = VIEW)
     public static boolean disableSelfieCam = false;
+
+    @Entry(category = VIEW)
+    public static boolean showOwnNametagInThirdPerson = false;
 }

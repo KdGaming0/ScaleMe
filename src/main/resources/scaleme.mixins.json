@@ -8,8 +8,11 @@
     "defaultRequire": 1
   },
   "client": [
+    "AvatarRendererMixin",
+    "CameraTypeMixin",
     "ItemInHandRendererMixin",
     "LayerRenderStateMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "MixinGui"
   ]
 }
