@@ -88,5 +88,8 @@
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.tooltip": "Shows the crosshair when the camera is facing your character from the front.",
 
   "scaleme.midnightconfig.disableSelfieCam": "Disable Front Camera View",
-  "scaleme.midnightconfig.disableSelfieCam.tooltip": "Removes the option to flip the camera to face your character."
+  "scaleme.midnightconfig.disableSelfieCam.tooltip": "Removes the option to flip the camera to face your character.",
+
+  "scaleme.midnightconfig.showOwnNametagInThirdPerson": "Show Own Nametag in Third Person",
+  "scaleme.midnightconfig.showOwnNametagInThirdPerson.tooltip": "Shows your own nametag when you are in third person."
 }
