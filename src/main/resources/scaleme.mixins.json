@@ -13,6 +13,7 @@
     "ItemInHandRendererMixin",
     "LayerRenderStateMixin",
     "LivingEntityMixin",
+    "LivingEntityRendererMixin",
     "MixinGui"
   ]
 }

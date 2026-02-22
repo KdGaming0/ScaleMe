@@ -6,6 +6,7 @@ import eu.midnightdust.lib.config.MidnightConfig;
 public class ScaleMeConfig extends MidnightConfig {
     public static final String HAND = "hand_item";
     public static final String ANIM = "animation";
+    public static final String SCALE = "scale";
     public static final String VIEW = "view";
 
     // ── Hand Item Transform ─────────────────────────────────────────────────
@@ -100,6 +101,26 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = ANIM)
     public static boolean disableSwingAnimation = false;
+
+    // ── Scale ───────────────────────────────────────────────────────────────
+
+    @Comment(category = SCALE)
+    public static Comment scaleDesc;
+
+    @Entry(category = SCALE)
+    public static boolean scaleNameTags = false;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float playerScale = 1f;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float otherPlayersScale = 1f;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float villagerNpcScale = 1f;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float hypixelNpcScale = 1f;
 
     // ── View ────────────────────────────────────────────────────────────────
 

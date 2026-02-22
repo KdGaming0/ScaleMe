@@ -3,6 +3,7 @@
 
   "scaleme.midnightconfig.category.hand_item": "Held Item",
   "scaleme.midnightconfig.category.animation": "Item Animation",
+  "scaleme.midnightconfig.category.scale": "Entity Scale",
   "scaleme.midnightconfig.category.view": "Camera & Crosshair",
 
   "scaleme.midnightconfig.handDesc": "Adjust how your held item looks in your hand",
@@ -78,6 +79,23 @@
 
   "scaleme.midnightconfig.disableSwingAnimation": "Disable Swing Animation",
   "scaleme.midnightconfig.disableSwingAnimation.tooltip": "Completely removes the arm swing animation. Your arm stays still when you click.",
+
+  "scaleme.midnightconfig.scaleDesc": "Adjust the size of players and entities in the world",
+
+  "scaleme.midnightconfig.scaleNameTags": "Let name tags follow the player's scale",
+  "scaleme.midnightconfig.scaleNameTags.tooltip": "Makes name tags follow the player's scale instead of being fixed at 1.0x.\nThis only affects players and entities that have their own name tag.",
+
+  "scaleme.midnightconfig.playerScale": "Your Player Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.playerScale.tooltip": "Changes how big or small your own character appears to others.\nDoes not affect your own first-person view.",
+
+  "scaleme.midnightconfig.otherPlayersScale": "Other Players Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.otherPlayersScale.tooltip": "Changes how big or small other players appear to you.",
+
+  "scaleme.midnightconfig.villagerNpcScale": "Villager NPC Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.villagerNpcScale.tooltip": "Changes how big or small villagers NPC in Hypixel appear.",
+
+  "scaleme.midnightconfig.hypixelNpcScale": "Hypixel NPC Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.hypixelNpcScale.tooltip": "Changes how big or small Hypixel NPCs appear.\nOnly has an effect when playing on Hypixel.",
 
   "scaleme.midnightconfig.viewDescription": "Control your crosshair and camera behaviour",
 
