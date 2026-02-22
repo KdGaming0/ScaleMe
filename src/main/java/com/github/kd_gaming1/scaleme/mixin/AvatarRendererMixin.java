@@ -40,16 +40,14 @@ public class AvatarRendererMixin {
         cir.setReturnValue(true);
     }
 
-    @Inject(method = "scale*", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "scale*", at = @At("TAIL"))
     private void onScale(AvatarRenderState state, PoseStack poseStack, CallbackInfo ci) {
         if (ScaleResolver.noScalingConfigured()) return;
 
         float scale = PerTickCache.getScale(state.id);
         if (scale == 1f) return;
 
-        float s = 0.9375F * scale;
-        poseStack.scale(s, s, s);
-        ci.cancel();
+        poseStack.scale(scale, scale, scale);
     }
 
     @Inject(method = "extractRenderState*", at = @At("TAIL"))
