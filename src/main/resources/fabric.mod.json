@@ -14,7 +14,7 @@
       "com.github.kd_gaming1.scaleme.client.ScalemeClient"
     ],
     "main": [
-      "com.github.kd_gaming1.scaleme.Scaleme"
+      "com.github.kd_gaming1.scaleme.ScaleMe"
     ]
   },
   "mixins": [

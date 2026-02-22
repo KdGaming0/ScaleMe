@@ -1,6 +1,5 @@
-import org.gradle.kotlin.dsl.from
-
 plugins {
+    `maven-publish`
     id("fabric-loom")
     id("me.modmuss50.mod-publish-plugin")
 }
@@ -9,42 +8,42 @@ version = "${property("mod.version")}+${stonecutter.current.version}"
 base.archivesName = property("mod.id") as String
 
 repositories {
-    /**
-     * Restricts dependency search of the given [groups] to the [maven URL][url],
-     * improving the setup speed.
-     */
+    mavenCentral()
     fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
         forRepository { maven(url) { name = alias } }
         filter { groups.forEach(::includeGroup) }
     }
-    strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
-    maven("https://maven.terraformersmc.com/")
-    maven("https://maven.wispforest.io/releases/")
-    maven("https://jitpack.io")
-    maven("https://repo.hypixel.net/repository/Hypixel/")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = uri("https://maven.azureaaron.net/releases")
+            }
+        }
+
+        filter {
+            includeGroup("net.azureaaron")
+        }
+    }
 }
 
 dependencies {
     minecraft("com.mojang:minecraft:${stonecutter.current.version}")
-    mappings("net.fabricmc:yarn:${property("deps.yarn_mappings")}:v2")
+    mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
     modImplementation("maven.modrinth:midnightlib:${property("deps.midnightlib_version")}")
     include("maven.modrinth:midnightlib:${property("deps.midnightlib_version")}")
 
-    modImplementation("com.terraformersmc:modmenu:${property("deps.modmenu_version")}")
-    modImplementation("io.wispforest:owo-lib:${property("deps.owo_version")}")
+    modImplementation("net.azureaaron:hm-api:${property("deps.hm_api_version")}")
+    include("net.azureaaron:hm-api:${property("deps.hm_api_version")}")
 
-    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.1")
-
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
+    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.2.2")
+    modRuntimeOnly("maven.modrinth:modmenu:${property("deps.modmenu_version")}")
 }
 
-// Add this mixin configuration block
 loom {
     decompilerOptions.named("vineflower") {
         options.put("mark-corresponding-synthetics", "1") // Adds names to lambdas - useful for mixins
@@ -71,21 +70,21 @@ tasks {
         inputs.property("name", project.property("mod.name"))
         inputs.property("version", project.property("mod.version"))
         inputs.property("minecraft", project.property("mod.mc_dep"))
-        inputs.property("owo_version", project.property("deps.owo_version"))
-        inputs.property("midnightlib_version", project.property("deps.midnightlib_version"))
+        inputs.property("fabricloader", project.property("deps.fabric_loader"))
+        inputs.property("fabric_api", project.property("deps.fabric_api"))
+        inputs.property("hm_api", project.property("deps.hm_api_version"))
 
         val props = mapOf(
             "id" to project.property("mod.id"),
             "name" to project.property("mod.name"),
             "version" to project.property("mod.version"),
             "minecraft" to project.property("mod.mc_dep"),
-            "owo_version" to project.property("deps.owo_version"),
-            "midnightlib_version" to project.property("deps.midnightlib_version")
+            "fabricloader" to project.property("deps.fabric_loader"),
+            "fabric_api" to project.property("deps.fabric_api"),
+            "hm_api" to project.property("deps.hm_api_version"),
         )
 
-        filesMatching("fabric.mod.json") {
-            expand(props)
-        }
+        filesMatching("fabric.mod.json") { expand(props) }
     }
 
     jar {
@@ -97,19 +96,9 @@ tasks {
     // Builds the version into a shared folder in `build/libs/${mod version}/`
     register<Copy>("buildAndCollect") {
         group = "build"
-        from(
-            remapJar.map { it.archiveFile },
-            remapSourcesJar.map { it.archiveFile }
-        )
+        from(remapJar.map { it.archiveFile }, remapSourcesJar.map { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
-    }
-}
-
-stonecutter {
-    replacements.string(current.parsed >= "1.21.11") {
-        replace("Components", "UIComponents")
-        replace("Containers", "UIContainers")
     }
 }
 
@@ -132,9 +121,6 @@ publishMods {
         requires {
             slug = "P7dR8mSH" // Fabric API
         }
-        requires {
-            slug = "ccKDOlHs" // OwO Lib
-        }
         optional {
             slug = "mOgUt4GM" // ModMenu
         }
@@ -146,9 +132,6 @@ publishMods {
         minecraftVersions.add(stonecutter.current.version)
         requires {
             slug = "fabric-api"
-        }
-        requires {
-            slug = "owo-lib"
         }
         optional {
             slug = "modmenu"
