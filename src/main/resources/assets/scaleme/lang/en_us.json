@@ -59,6 +59,8 @@
   "scaleme.midnightconfig.enableSeparateHandTransforms": "Enable Separate Off-Hand Transform  [requires Master ON]",
   "scaleme.midnightconfig.enableSeparateHandTransforms.tooltip": "Allows the off-hand to use different arm anchor and item transform values from the main hand.\nWhen OFF, all off-hand sliders below are ignored and the main hand values apply to both hands.",
 
+  "scaleme.midnightconfig.armOffhandDesc": "\n(Required: Override Arm Base Position ON)",
+
   "scaleme.midnightconfig.armBaseXOffhand": "Off-Hand Arm Anchor X (vanilla: 0.56)",
   "scaleme.midnightconfig.armBaseXOffhand.tooltip": "Same as main hand Arm Anchor X but for the off-hand.\nOnly active when 'Enable Separate Off-Hand Transform' is ON and 'Override Arm Base Position' is ON.",
 
@@ -174,7 +176,6 @@
   "scaleme.midnightconfig.spacer2": "",
   "scaleme.midnightconfig.spacer3": "",
   "scaleme.midnightconfig.spacer4": "",
-  "scaleme.midnightconfig.spacer5": "",
   "scaleme.midnightconfig.spacer6": "",
   "scaleme.midnightconfig.spacer6a": "",
   "scaleme.midnightconfig.spacer7": ""

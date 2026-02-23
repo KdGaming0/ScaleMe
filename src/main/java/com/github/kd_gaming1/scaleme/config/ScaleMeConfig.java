@@ -86,8 +86,8 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = HAND)
     public static boolean enableSeparateHandTransforms = false;
 
-    @Comment(category = HAND, centered = true)
-    public static Comment spacer5;
+    @Comment(category = HAND)
+    public static Comment armOffhandDesc;
 
     @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
     public static float armBaseXOffhand = 0.56f;
