@@ -19,7 +19,6 @@ import net.minecraft.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.events.Comment;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ScaleMe implements ClientModInitializer {
@@ -35,9 +34,7 @@ public class ScaleMe implements ClientModInitializer {
         HypixelLocationState.register();
 
         HypixelPacketEvents.HELLO.register((packet) -> {
-            HypixelNetworking.registerToEvents(Util.make(new Object2IntOpenHashMap<>(), map -> {
-                map.put(LocationUpdateS2CPacket.ID, 1);
-            }));
+            HypixelNetworking.registerToEvents(Util.make(new Object2IntOpenHashMap<>(), map -> map.put(LocationUpdateS2CPacket.ID, 1)));
             hypixelPacketReceived.set(true);
         });
         ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
