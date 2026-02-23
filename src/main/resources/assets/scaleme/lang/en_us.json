@@ -80,6 +80,36 @@
   "scaleme.midnightconfig.disableSwingAnimation": "Disable Swing Animation",
   "scaleme.midnightconfig.disableSwingAnimation.tooltip": "Completely removes the arm swing animation. Your arm stays still when you click.",
 
+  "scaleme.midnightconfig.enableSwingOverride": "Enable Custom Swing Shape",
+  "scaleme.midnightconfig.enableSwingOverride.tooltip": "Turns on the custom swing arc and drift sliders below. Disable this to keep the default Minecraft swing shape.",
+
+  "scaleme.midnightconfig.swingArmXScale": "Swing Drift X (vanilla: -0.4)",
+  "scaleme.midnightconfig.swingArmXScale.tooltip": "Controls how much the item moves left/right during a swing.\nSet to 0 to stop the item lunging toward the center of the screen.",
+
+  "scaleme.midnightconfig.swingArmYScale": "Swing Drift Y (vanilla: 0.2)",
+  "scaleme.midnightconfig.swingArmYScale.tooltip": "Controls how much the item bobs up and down during a swing.\nSet to 0 to remove the vertical movement entirely.",
+
+  "scaleme.midnightconfig.swingArmZScale": "Swing Drift Z (vanilla: -0.2)",
+  "scaleme.midnightconfig.swingArmZScale.tooltip": "Controls how much the item pushes forward during a swing.\nSet to 0 to stop the item launching toward the screen.",
+
+  "scaleme.midnightconfig.swingArmXMultiplyBySide": "Mirror Drift X for Left Hand",
+  "scaleme.midnightconfig.swingArmXMultiplyBySide.tooltip": "When enabled, the X drift is flipped for your off-hand so it mirrors the main hand.\nThis matches vanilla behaviour. Disable for a symmetric drift on both hands.",
+
+  "scaleme.midnightconfig.swingPreRotationY": "Swing Pre-Rotation Y (vanilla: 45)",
+  "scaleme.midnightconfig.swingPreRotationY.tooltip": "The starting Y angle the item is rotated to before the swing arc begins.\n45° matches vanilla. Lower values keep the item more face-on during the swing.",
+
+  "scaleme.midnightconfig.swingArcYAmount": "Swing Arc Y Rotation (vanilla: -20)",
+  "scaleme.midnightconfig.swingArcYAmount.tooltip": "How many degrees the item rotates around Y during the swing.\nNegative values rotate it to the left, positive to the right.",
+
+  "scaleme.midnightconfig.swingArcZAmount": "Swing Arc Z Rotation (vanilla: -20)",
+  "scaleme.midnightconfig.swingArcZAmount.tooltip": "How many degrees the item tilts sideways during the swing.\nNegative values tilt it one way, positive the other.",
+
+  "scaleme.midnightconfig.swingArcXAmount": "Swing Arc X Rotation (vanilla: -80)",
+  "scaleme.midnightconfig.swingArcXAmount.tooltip": "How many degrees the item swings downward during an attack.\nThis is the main downward chop. Set closer to 0 to reduce the downward arc.",
+
+  "scaleme.midnightconfig.swingCounterRotation": "Swing Counter-Rotation (vanilla: ON)",
+  "scaleme.midnightconfig.swingCounterRotation.tooltip": "When enabled, the pre-rotation is undone at the end of the arc, which swings the item toward the center of the screen.\nDisable this to keep the item at its held position during the swing, similar to 1.8.9.",
+
   "scaleme.midnightconfig.scaleDesc": "Adjust the size of players and entities in the world",
 
   "scaleme.midnightconfig.scaleNameTags": "Let name tags follow the player's scale",

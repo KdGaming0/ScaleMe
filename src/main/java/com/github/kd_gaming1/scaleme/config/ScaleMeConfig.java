@@ -26,13 +26,13 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = HAND, name = "Scale", isSlider = true, min = 0.1f, max = 4f, precision = 1000)
     public static float itemScale = 1f;
 
-    @Entry(category = HAND, isSlider = true, min = -1.5f, max = 1.5f, precision = 1000)
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationX = 0f;
 
-    @Entry(category = HAND, isSlider = true, min = -1.5f, max = 1.5f, precision = 1000)
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationY = 0f;
 
-    @Entry(category = HAND, isSlider = true, min = -1.5f, max = 1.5f, precision = 1000)
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationZ = 0f;
 
     @Comment(category = HAND, centered = true)
@@ -61,17 +61,14 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = HAND, isSlider = true, min = 0.1f, max = 4f, precision = 1000)
     public static float itemScaleOffhand = 1f;
 
-    @Entry(category = HAND, isSlider = true, min = -1.5f, max = 1.5f, precision = 1000)
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationXOffhand = 0f;
 
-    @Entry(category = HAND, isSlider = true, min = -1.5f, max = 1.5f, precision = 1000)
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationYOffhand = 0f;
 
-    @Entry(category = HAND, isSlider = true, min = -1.5f, max = 1.5f, precision = 1000)
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationZOffhand = 0f;
-
-    @Comment(category = HAND, centered = true)
-    public static Comment spacer5;
 
     @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
     public static float itemRotationXOffhand = 0f;
@@ -101,6 +98,39 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = ANIM)
     public static boolean disableSwingAnimation = false;
+
+    @Comment(category = ANIM, centered = true)
+    public static Comment spacer5;
+
+    @Entry(category = ANIM)
+    public static boolean enableSwingOverride = false;
+
+    @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
+    public static float swingArmXScale = -0.4f;   // vanilla: -0.4
+
+    @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
+    public static float swingArmYScale = 0.2f;    // vanilla: 0.2
+
+    @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
+    public static float swingArmZScale = -0.2f;   // vanilla: -0.2
+
+    @Entry(category = ANIM)
+    public static boolean swingArmXMultiplyBySide = true;
+
+    @Entry(category = ANIM, isSlider = true, min = 0f, max = 90f, precision = 10)
+    public static float swingPreRotationY = 45f;  // vanilla: 45
+
+    @Entry(category = ANIM, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float swingArcYAmount = -20f;   // vanilla: -20
+
+    @Entry(category = ANIM, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float swingArcZAmount = -20f;   // vanilla: -20
+
+    @Entry(category = ANIM, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float swingArcXAmount = -80f;   // vanilla: -80
+
+    @Entry(category = ANIM)
+    public static boolean swingCounterRotation = true;
 
     // ── Scale ───────────────────────────────────────────────────────────────
 
