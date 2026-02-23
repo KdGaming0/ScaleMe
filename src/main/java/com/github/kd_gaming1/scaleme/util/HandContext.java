@@ -6,6 +6,7 @@ import net.minecraft.world.InteractionHand;
 /** Holds the resolved transform for whichever hand is currently rendering. Only valid while renderDepth > 0. */
 public final class HandContext {
 
+    public static boolean activeTransform = false;
     public static InteractionHand currentHand = null;
     public static int renderDepth = 0;
 
@@ -39,11 +40,8 @@ public final class HandContext {
             rotationZ    = ScaleMeConfig.itemRotationZ;
             scale        = ScaleMeConfig.itemScale;
         }
-    }
 
-    public static boolean hasActiveTransform() {
-        return translationX != 0f || translationY != 0f || translationZ != 0f
-                || rotationX    != 0f || rotationY    != 0f || rotationZ    != 0f
-                || scale        != 1f;
+        activeTransform = translationX != 0f || translationY != 0f || translationZ != 0f
+                || rotationX != 0f || rotationY != 0f || rotationZ != 0f || scale != 1f;
     }
 }

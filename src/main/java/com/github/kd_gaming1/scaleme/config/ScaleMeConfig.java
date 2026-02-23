@@ -17,13 +17,41 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = HAND)
     public static boolean enableHandItemTransform = false;
 
-    @Entry(category = HAND)
-    public static boolean enableSeparateHandTransforms = false;
+    // ── Arm Base Position ───────────────────────────────────────────────────
 
     @Comment(category = HAND, centered = true)
     public static Comment spacer1;
 
-    @Entry(category = HAND, name = "Scale", isSlider = true, min = 0.1f, max = 4f, precision = 1000)
+    @Comment(category = HAND)
+    public static Comment armPosDesc;
+
+    @Entry(category = HAND)
+    public static boolean enableArmPositionOverride = false;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseX = 0.56f;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseY = -0.52f;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseZ = -0.72f;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 0f, precision = 1000)
+    public static float armHeightScale = -0.6f;
+
+    // ── Item Transform (Main Hand) ──────────────────────────────────────────
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer2;
+
+    @Comment(category = HAND)
+    public static Comment itemTransformDesc;
+
+    @Entry(category = HAND)
+    public static boolean enableItemTransformOverride = false;
+
+    @Entry(category = HAND, name = "Scale", isSlider = true, min = 0.1f, max = 3f, precision = 1000)
     public static float itemScale = 1f;
 
     @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
@@ -36,7 +64,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static float itemTranslationZ = 0f;
 
     @Comment(category = HAND, centered = true)
-    public static Comment spacer2;
+    public static Comment spacer3;
 
     @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
     public static float itemRotationX = 0f;
@@ -47,18 +75,36 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
     public static float itemRotationZ = 0f;
 
-    // ── Offhand Item Transform ──────────────────────────────────────────────
-
-    @Comment(category = HAND, centered = true)
-    public static Comment spacer3;
-
-    @Comment(category = HAND)
-    public static Comment offhandDesc;
+    // ── Off-Hand Transform ──────────────────────────────────────────────────
 
     @Comment(category = HAND, centered = true)
     public static Comment spacer4;
 
-    @Entry(category = HAND, isSlider = true, min = 0.1f, max = 4f, precision = 1000)
+    @Comment(category = HAND)
+    public static Comment offhandDesc;
+
+    @Entry(category = HAND)
+    public static boolean enableSeparateHandTransforms = false;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer5;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseXOffhand = 0.56f;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseYOffhand = -0.52f;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseZOffhand = -0.72f;
+
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 0f, precision = 1000)
+    public static float armHeightScaleOffhand = -0.6f;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer6;
+
+    @Entry(category = HAND, isSlider = true, min = 0.1f, max = 3f, precision = 1000)
     public static float itemScaleOffhand = 1f;
 
     @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
@@ -69,6 +115,9 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
     public static float itemTranslationZOffhand = 0f;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer7;
 
     @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
     public static float itemRotationXOffhand = 0f;
@@ -100,7 +149,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static boolean disableSwingAnimation = false;
 
     @Comment(category = ANIM, centered = true)
-    public static Comment spacer5;
+    public static Comment spacer8;
 
     @Entry(category = ANIM)
     public static boolean enableSwingOverride = false;

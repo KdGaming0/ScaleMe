@@ -6,30 +6,44 @@
   "scaleme.midnightconfig.category.scale": "Entity Scale",
   "scaleme.midnightconfig.category.view": "Camera & Crosshair",
 
-  "scaleme.midnightconfig.handDesc": "Adjust how your held item looks in your hand",
-  "scaleme.midnightconfig.spacer1": "",
-  "scaleme.midnightconfig.spacer2": "",
-  "scaleme.midnightconfig.spacer3": "",
-  "scaleme.midnightconfig.spacer4": "",
-  "scaleme.midnightconfig.spacer5": "",
+  "scaleme.midnightconfig.handDesc": "Master switch for all held item customisation. Both arm position and item transform are controlled by this toggle.",
 
-  "scaleme.midnightconfig.enableHandItemTransform": "Enable Custom Item Transform",
-  "scaleme.midnightconfig.enableHandItemTransform.tooltip": "Turns on the custom held item positioning. Disable this to restore the default look and avoid conflicts with other mods.",
+  "scaleme.midnightconfig.enableHandItemTransform": "Enable Custom Item Transform  [MASTER]",
+  "scaleme.midnightconfig.enableHandItemTransform.tooltip": "Turns on all held item customisation below. Disable this to restore the default Minecraft look entirely.\n\nControls:\n• Arm Base Position (where your hand sits on screen)\n• Item Transform (size, offset, rotation on top of that)\n• Off-Hand variants of both",
 
-  "scaleme.midnightconfig.enableSeparateHandTransforms": "Enable Separate Off-Hand Transform \n(Off-Hand sliders at the bottom of the page)",
-  "scaleme.midnightconfig.enableSeparateHandTransforms.tooltip": "Turns on separate positioning for your off-hand item. When disabled, the off-hand uses the same transform as the main hand. Enable this to customise the settings below.",
+  "scaleme.midnightconfig.armPosDesc": "Arm Base Position — replaces the vanilla anchor point where your hand sits on screen",
+
+  "scaleme.midnightconfig.enableArmPositionOverride": "Override Arm Base Position  [requires Master ON]",
+  "scaleme.midnightconfig.enableArmPositionOverride.tooltip": "Replaces the fixed point Minecraft uses to place your hand on screen.\n\nVanilla values: X 0.56 · Y -0.52 · Z -0.72 · Height Scale -0.6\n\nThe Item Transform sliders below are applied on top of this — change this first if the item feels wrong in general, then use Item Transform to fine-tune.",
+
+  "scaleme.midnightconfig.armBaseX": "Arm Anchor X (vanilla: 0.56)",
+  "scaleme.midnightconfig.armBaseX.tooltip": "How far right your hand sits on screen. Vanilla is 0.56.\nThe Item Transform 'Move Left/Right' slider shifts the item relative to this point.",
+
+  "scaleme.midnightconfig.armBaseY": "Arm Anchor Y (vanilla: -0.52)",
+  "scaleme.midnightconfig.armBaseY.tooltip": "How far down your hand sits on screen. Vanilla is -0.52.\nThe Item Transform 'Move Up/Down' slider shifts the item relative to this point.",
+
+  "scaleme.midnightconfig.armBaseZ": "Arm Anchor Z (vanilla: -0.72)",
+  "scaleme.midnightconfig.armBaseZ.tooltip": "How far in front of you your hand sits. Vanilla is -0.72.\nThe Item Transform 'Move Closer/Further' slider shifts the item relative to this point.",
+
+  "scaleme.midnightconfig.armHeightScale": "Arm Height Bob Scale (vanilla: -0.6)",
+  "scaleme.midnightconfig.armHeightScale.tooltip": "How much your hand moves down as it raises up during the equip/lower animation.\nVanilla is -0.6. Set to 0 to pin the item at a fixed Y regardless of hand height.",
+
+  "scaleme.midnightconfig.enableItemTransformOverride": "Override Item Transform  [requires Master ON]",
+  "scaleme.midnightconfig.enableItemTransformOverride.tooltip": "Enables the size, position, and rotation sliders below.\nThe item will render at its default position unless this is ON.\n\nNote: Arm Base Position and Item Transform are independent — you can use either or both.",
+
+  "scaleme.midnightconfig.itemTransformDesc": "Item Transform — offset applied on top of the arm anchor",
 
   "scaleme.midnightconfig.itemScale": "Item Size",
   "scaleme.midnightconfig.itemScale.tooltip": "How big or small the item in your hand appears.\nSmaller values make it tiny, larger values make it huge.",
 
   "scaleme.midnightconfig.itemTranslationX": "Move Item Left / Right",
-  "scaleme.midnightconfig.itemTranslationX.tooltip": "Shifts the item in your hand to the left or right.\nNegative values move it left, positive values move it right.",
+  "scaleme.midnightconfig.itemTranslationX.tooltip": "Shifts the item in your hand to the left or right relative to the arm anchor.\nNegative values move it left, positive values move it right.",
 
   "scaleme.midnightconfig.itemTranslationY": "Move Item Up / Down",
-  "scaleme.midnightconfig.itemTranslationY.tooltip": "Shifts the item in your hand up or down.\nNegative values move it down, positive values move it up.",
+  "scaleme.midnightconfig.itemTranslationY.tooltip": "Shifts the item in your hand up or down relative to the arm anchor.\nNegative values move it down, positive values move it up.",
 
   "scaleme.midnightconfig.itemTranslationZ": "Move Item Closer / Further",
-  "scaleme.midnightconfig.itemTranslationZ.tooltip": "Shifts the item in your hand closer to or further from your screen.\nNegative values push it away, positive values bring it closer.",
+  "scaleme.midnightconfig.itemTranslationZ.tooltip": "Shifts the item in your hand closer to or further from your screen relative to the arm anchor.\nNegative values push it away, positive values bring it closer.",
 
   "scaleme.midnightconfig.itemRotationX": "Tilt Item Up / Down",
   "scaleme.midnightconfig.itemRotationX.tooltip": "Tilts the item in your hand up or down.",
@@ -40,104 +54,128 @@
   "scaleme.midnightconfig.itemRotationZ": "Spin Item Clockwise / Counterclockwise",
   "scaleme.midnightconfig.itemRotationZ.tooltip": "Spins the item in your hand clockwise or counterclockwise.",
 
-  "scaleme.midnightconfig.offhandDesc": "Off-Hand Item — requires 'Enable Separate Off-Hand Transform' to be ON",
+  "scaleme.midnightconfig.offhandDesc": "Off-Hand — requires 'Enable Separate Off-Hand Transform' to be ON\nHas its own arm anchor and item transform. When disabled, off-hand uses the main hand values for everything.",
+
+  "scaleme.midnightconfig.enableSeparateHandTransforms": "Enable Separate Off-Hand Transform  [requires Master ON]",
+  "scaleme.midnightconfig.enableSeparateHandTransforms.tooltip": "Allows the off-hand to use different arm anchor and item transform values from the main hand.\nWhen OFF, all off-hand sliders below are ignored and the main hand values apply to both hands.",
+
+  "scaleme.midnightconfig.armBaseXOffhand": "Off-Hand Arm Anchor X (vanilla: 0.56)",
+  "scaleme.midnightconfig.armBaseXOffhand.tooltip": "Same as main hand Arm Anchor X but for the off-hand.\nOnly active when 'Enable Separate Off-Hand Transform' is ON and 'Override Arm Base Position' is ON.",
+
+  "scaleme.midnightconfig.armBaseYOffhand": "Off-Hand Arm Anchor Y (vanilla: -0.52)",
+  "scaleme.midnightconfig.armBaseYOffhand.tooltip": "Same as main hand Arm Anchor Y but for the off-hand.\nOnly active when 'Enable Separate Off-Hand Transform' is ON and 'Override Arm Base Position' is ON.",
+
+  "scaleme.midnightconfig.armBaseZOffhand": "Off-Hand Arm Anchor Z (vanilla: -0.72)",
+  "scaleme.midnightconfig.armBaseZOffhand.tooltip": "Same as main hand Arm Anchor Z but for the off-hand.\nOnly active when 'Enable Separate Off-Hand Transform' is ON and 'Override Arm Base Position' is ON.",
+
+  "scaleme.midnightconfig.armHeightScaleOffhand": "Off-Hand Height Bob Scale (vanilla: -0.6)",
+  "scaleme.midnightconfig.armHeightScaleOffhand.tooltip": "Same as main hand Height Bob Scale but for the off-hand.\nOnly active when 'Enable Separate Off-Hand Transform' is ON and 'Override Arm Base Position' is ON.",
 
   "scaleme.midnightconfig.itemScaleOffhand": "Off-Hand Item Size",
-  "scaleme.midnightconfig.itemScaleOffhand.tooltip": "How big or small the off-hand item appears.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemScaleOffhand.tooltip": "How big or small the off-hand item appears.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.itemTranslationXOffhand": "Move Off-Hand Item Left / Right",
-  "scaleme.midnightconfig.itemTranslationXOffhand.tooltip": "Shifts the off-hand item to the left or right.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemTranslationXOffhand.tooltip": "Shifts the off-hand item to the left or right relative to its arm anchor.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.itemTranslationYOffhand": "Move Off-Hand Item Up / Down",
-  "scaleme.midnightconfig.itemTranslationYOffhand.tooltip": "Shifts the off-hand item up or down.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemTranslationYOffhand.tooltip": "Shifts the off-hand item up or down relative to its arm anchor.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.itemTranslationZOffhand": "Move Off-Hand Item Closer / Further",
-  "scaleme.midnightconfig.itemTranslationZOffhand.tooltip": "Shifts the off-hand item closer to or further from your screen.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemTranslationZOffhand.tooltip": "Shifts the off-hand item closer to or further from your screen relative to its arm anchor.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.itemRotationXOffhand": "Tilt Off-Hand Item Up / Down",
-  "scaleme.midnightconfig.itemRotationXOffhand.tooltip": "Tilts the off-hand item up or down.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemRotationXOffhand.tooltip": "Tilts the off-hand item up or down.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.itemRotationYOffhand": "Rotate Off-Hand Item Left / Right",
-  "scaleme.midnightconfig.itemRotationYOffhand.tooltip": "Rotates the off-hand item to the left or right.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemRotationYOffhand.tooltip": "Rotates the off-hand item to the left or right.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.itemRotationZOffhand": "Spin Off-Hand Item Clockwise / Counterclockwise",
-  "scaleme.midnightconfig.itemRotationZOffhand.tooltip": "Spins the off-hand item clockwise or counterclockwise.\nOnly active when 'Enable Separate Off-Hand Transform' is enabled.",
+  "scaleme.midnightconfig.itemRotationZOffhand.tooltip": "Spins the off-hand item clockwise or counterclockwise.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
-  "scaleme.midnightconfig.animDesc": "Adjust how your held item animates",
+  "scaleme.midnightconfig.animDesc": "Master switch for all animation customisation. Swing speed, shape, and bobbing are all controlled by this toggle.",
 
-  "scaleme.midnightconfig.enableAnimOverrides": "Enable Animation Changes",
-  "scaleme.midnightconfig.enableAnimOverrides.tooltip": "Turns on the custom animation settings below. Disable this to keep the default Minecraft swing animations.",
+  "scaleme.midnightconfig.enableAnimOverrides": "Enable Animation Changes  [MASTER]",
+  "scaleme.midnightconfig.enableAnimOverrides.tooltip": "Turns on all custom animation settings below. Disable this to keep the default Minecraft swing animations entirely.\n\nControls:\n• Swing bobbing suppression\n• Swing speed and speed effect ignoring\n• Disable swing animation entirely\n• Custom Swing Shape (arc and drift sliders)",
 
-  "scaleme.midnightconfig.disableSwingBobbing": "Stop Item Bobbing While Swinging",
-  "scaleme.midnightconfig.disableSwingBobbing.tooltip": "Prevents the item from bouncing up and down when you swing it.",
+  "scaleme.midnightconfig.disableSwingBobbing": "Stop Item Bobbing While Swinging (This overrides Arm Height Bob Scale)",
+  "scaleme.midnightconfig.disableSwingBobbing.tooltip": "Prevents the item from bouncing up and down when you swing it.\nVanilla bobs the item based on your attack strength cooldown. This locks it steady.",
 
   "scaleme.midnightconfig.ignoreSwingSpeedEffects": "Ignore Speed Effects on Swing",
-  "scaleme.midnightconfig.ignoreSwingSpeedEffects.tooltip": "Potion effects like Haste or Mining Fatigue will no longer change how fast your arm swings.",
+  "scaleme.midnightconfig.ignoreSwingSpeedEffects.tooltip": "Potion effects like Haste or Mining Fatigue will no longer change how fast your arm swings.\nThe swing will always use the base duration set by the Swing Speed slider.",
 
-  "scaleme.midnightconfig.swingAnimationSpeed": "Swing Speed (1 = Disable/Default)",
-  "scaleme.midnightconfig.swingAnimationSpeed.tooltip": "How fast your arm swings when you attack or use an item.\nLower values slow it down, higher values speed it up.",
+  "scaleme.midnightconfig.swingAnimationSpeed": "Swing Speed (1.0 = Default)",
+  "scaleme.midnightconfig.swingAnimationSpeed.tooltip": "How fast your arm swings when you attack or use an item.\nLower values slow it down, higher values speed it up.\n\nIf 'Ignore Speed Effects' is ON, this runs on the base 6-tick duration.\nIf OFF, it multiplies whatever duration Haste/Fatigue would give you.",
 
   "scaleme.midnightconfig.disableSwingAnimation": "Disable Swing Animation",
-  "scaleme.midnightconfig.disableSwingAnimation.tooltip": "Completely removes the arm swing animation. Your arm stays still when you click.",
+  "scaleme.midnightconfig.disableSwingAnimation.tooltip": "Completely removes the arm swing animation. Your arm stays still when you click.\nOverrides all swing shape settings below.",
 
   "scaleme.midnightconfig.enableSwingOverride": "Enable Custom Swing Shape",
-  "scaleme.midnightconfig.enableSwingOverride.tooltip": "Turns on the custom swing arc and drift sliders below. Disable this to keep the default Minecraft swing shape.",
+  "scaleme.midnightconfig.enableSwingOverride.tooltip": "Turns on the custom swing arc and drift sliders below, replacing the vanilla swing shape entirely.\nDisable this to keep the default Minecraft swing arc while still using speed or bobbing changes above.",
 
-  "scaleme.midnightconfig.swingArmXScale": "Swing Drift X (vanilla: -0.4)",
-  "scaleme.midnightconfig.swingArmXScale.tooltip": "Controls how much the item moves left/right during a swing.\nSet to 0 to stop the item lunging toward the center of the screen.",
+  "scaleme.midnightconfig.swingArmXScale": "Swing Drift X (vanilla: -0.4) ",
+  "scaleme.midnightconfig.swingArmXScale.tooltip": "How much the item moves left/right during a swing.\nVanilla is -0.4, which lunges the item toward the center of the screen. Set to 0 to remove this.",
 
   "scaleme.midnightconfig.swingArmYScale": "Swing Drift Y (vanilla: 0.2)",
-  "scaleme.midnightconfig.swingArmYScale.tooltip": "Controls how much the item bobs up and down during a swing.\nSet to 0 to remove the vertical movement entirely.",
+  "scaleme.midnightconfig.swingArmYScale.tooltip": "How much the item bobs up and down during a swing.\nVanilla is 0.2. Set to 0 to remove the vertical movement entirely.",
 
   "scaleme.midnightconfig.swingArmZScale": "Swing Drift Z (vanilla: -0.2)",
-  "scaleme.midnightconfig.swingArmZScale.tooltip": "Controls how much the item pushes forward during a swing.\nSet to 0 to stop the item launching toward the screen.",
+  "scaleme.midnightconfig.swingArmZScale.tooltip": "How much the item pushes toward the screen during a swing.\nVanilla is -0.2. Set to 0 to stop the item launching forward.",
 
   "scaleme.midnightconfig.swingArmXMultiplyBySide": "Mirror Drift X for Left Hand",
-  "scaleme.midnightconfig.swingArmXMultiplyBySide.tooltip": "When enabled, the X drift is flipped for your off-hand so it mirrors the main hand.\nThis matches vanilla behaviour. Disable for a symmetric drift on both hands.",
+  "scaleme.midnightconfig.swingArmXMultiplyBySide.tooltip": "When ON, the X drift is flipped for the off-hand so it mirrors the main hand.\nThis matches vanilla behaviour. Turn OFF for identical drift direction on both hands.",
 
   "scaleme.midnightconfig.swingPreRotationY": "Swing Pre-Rotation Y (vanilla: 45)",
-  "scaleme.midnightconfig.swingPreRotationY.tooltip": "The starting Y angle the item is rotated to before the swing arc begins.\n45° matches vanilla. Lower values keep the item more face-on during the swing.",
+  "scaleme.midnightconfig.swingPreRotationY.tooltip": "The Y angle the item is rotated to before the swing arc begins.\nVanilla is 45°. Lower values keep the item more face-on at the start of the swing.",
 
   "scaleme.midnightconfig.swingArcYAmount": "Swing Arc Y Rotation (vanilla: -20)",
-  "scaleme.midnightconfig.swingArcYAmount.tooltip": "How many degrees the item rotates around Y during the swing.\nNegative values rotate it to the left, positive to the right.",
+  "scaleme.midnightconfig.swingArcYAmount.tooltip": "How many degrees the item rotates around Y during the swing arc.\nVanilla is -20°. Negative rotates left, positive rotates right.",
 
   "scaleme.midnightconfig.swingArcZAmount": "Swing Arc Z Rotation (vanilla: -20)",
-  "scaleme.midnightconfig.swingArcZAmount.tooltip": "How many degrees the item tilts sideways during the swing.\nNegative values tilt it one way, positive the other.",
+  "scaleme.midnightconfig.swingArcZAmount.tooltip": "How many degrees the item tilts sideways during the swing arc.\nVanilla is -20°.",
 
   "scaleme.midnightconfig.swingArcXAmount": "Swing Arc X Rotation (vanilla: -80)",
-  "scaleme.midnightconfig.swingArcXAmount.tooltip": "How many degrees the item swings downward during an attack.\nThis is the main downward chop. Set closer to 0 to reduce the downward arc.",
+  "scaleme.midnightconfig.swingArcXAmount.tooltip": "How many degrees the item swings downward during an attack.\nThis is the main downward chop. Vanilla is -80°. Set closer to 0 to reduce the downward arc.",
 
   "scaleme.midnightconfig.swingCounterRotation": "Swing Counter-Rotation (vanilla: ON)",
-  "scaleme.midnightconfig.swingCounterRotation.tooltip": "When enabled, the pre-rotation is undone at the end of the arc, which swings the item toward the center of the screen.\nDisable this to keep the item at its held position during the swing, similar to 1.8.9.",
+  "scaleme.midnightconfig.swingCounterRotation.tooltip": "When ON, the pre-rotation is undone after the arc, swinging the item back toward the center of the screen. This is vanilla behaviour.\nTurn OFF to keep the item at its pre-rotated angle throughout the swing, similar to 1.8.",
 
   "scaleme.midnightconfig.scaleDesc": "Adjust the size of players and entities in the world",
 
-  "scaleme.midnightconfig.scaleNameTags": "Let name tags follow the player's scale",
-  "scaleme.midnightconfig.scaleNameTags.tooltip": "Makes name tags follow the player's scale instead of being fixed at 1.0x.\nThis only affects players and entities that have their own name tag.",
+  "scaleme.midnightconfig.scaleNameTags": "Scale Name Tags with Entity",
+  "scaleme.midnightconfig.scaleNameTags.tooltip": "Makes name tags scale with the entity instead of staying fixed at 1.0x size.\nAffects all entities that have a visible name tag.",
 
-  "scaleme.midnightconfig.playerScale": "Your Player Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.playerScale": "Your Player Scale (1.0 = OFF)",
   "scaleme.midnightconfig.playerScale.tooltip": "Changes how big or small your own character appears to others.\nDoes not affect your own first-person view.",
 
-  "scaleme.midnightconfig.otherPlayersScale": "Other Players Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.otherPlayersScale": "Other Players Scale (1.0 = OFF)",
   "scaleme.midnightconfig.otherPlayersScale.tooltip": "Changes how big or small other players appear to you.",
 
-  "scaleme.midnightconfig.villagerNpcScale": "Villager NPC Scale (1.0 = Disabled)",
-  "scaleme.midnightconfig.villagerNpcScale.tooltip": "Changes how big or small villagers NPC in Hypixel appear.",
+  "scaleme.midnightconfig.villagerNpcScale": "Villager NPC Scale (1.0 = OFF)",
+  "scaleme.midnightconfig.villagerNpcScale.tooltip": "Changes how big or small villager NPCs appear.",
 
-  "scaleme.midnightconfig.hypixelNpcScale": "Hypixel NPC Scale (1.0 = Disabled)",
+  "scaleme.midnightconfig.hypixelNpcScale": "Hypixel NPC Scale (1.0 = OFF)",
   "scaleme.midnightconfig.hypixelNpcScale.tooltip": "Changes how big or small Hypixel NPCs appear.\nOnly has an effect when playing on Hypixel.",
 
   "scaleme.midnightconfig.viewDescription": "Control your crosshair and camera behaviour",
 
-  "scaleme.midnightconfig.enableCrosshairInThirdPerson": "Show Crosshair Behind You",
+  "scaleme.midnightconfig.enableCrosshairInThirdPerson": "Show Crosshair in Third Person (Behind)",
   "scaleme.midnightconfig.enableCrosshairInThirdPerson.tooltip": "Shows the crosshair when the camera is behind your character.",
 
-  "scaleme.midnightconfig.enableCrosshairInThirdPersonFront": "Show Crosshair in Front View",
+  "scaleme.midnightconfig.enableCrosshairInThirdPersonFront": "Show Crosshair in Third Person (Front)",
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.tooltip": "Shows the crosshair when the camera is facing your character from the front.",
 
   "scaleme.midnightconfig.disableSelfieCam": "Disable Front Camera View",
   "scaleme.midnightconfig.disableSelfieCam.tooltip": "Removes the option to flip the camera to face your character.",
 
   "scaleme.midnightconfig.showOwnNametagInThirdPerson": "Show Own Nametag in Third Person",
-  "scaleme.midnightconfig.showOwnNametagInThirdPerson.tooltip": "Shows your own nametag when you are in third person."
+  "scaleme.midnightconfig.showOwnNametagInThirdPerson.tooltip": "Shows your own nametag when you are in third person.",
+
+  "scaleme.midnightconfig.spacer1": "",
+  "scaleme.midnightconfig.spacer2": "",
+  "scaleme.midnightconfig.spacer3": "",
+  "scaleme.midnightconfig.spacer4": "",
+  "scaleme.midnightconfig.spacer5": "",
+  "scaleme.midnightconfig.spacer6": "",
+  "scaleme.midnightconfig.spacer6a": "",
+  "scaleme.midnightconfig.spacer7": ""
 }

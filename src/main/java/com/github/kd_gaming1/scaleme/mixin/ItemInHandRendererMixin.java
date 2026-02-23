@@ -145,4 +145,24 @@ public class ItemInHandRendererMixin {
             poseStack.mulPose(Axis.YP.rotationDegrees(armSideSign * -ScaleMeConfig.swingPreRotationY));
         }
     }
+
+    /** Replaces the vanilla arm anchor position and height-bob scale with configurable values.
+     *  Vanilla: translate(invert * 0.56, -0.52 + inverseArmHeight * -0.6, -0.72) */
+    @Inject(method = "applyItemArmTransform", at = @At("HEAD"), cancellable = true)
+    private void scaleme$overrideArmBasePosition(PoseStack poseStack, HumanoidArm arm, float inverseArmHeight, CallbackInfo ci) {
+        if (!ScaleMeConfig.enableHandItemTransform || !ScaleMeConfig.enableArmPositionOverride) return;
+        ci.cancel();
+
+        int invert = (arm == HumanoidArm.RIGHT) ? 1 : -1;
+
+        boolean useOffhand = (HandContext.currentHand == InteractionHand.OFF_HAND)
+                && ScaleMeConfig.enableSeparateHandTransforms;
+
+        float baseX = useOffhand ? ScaleMeConfig.armBaseXOffhand : ScaleMeConfig.armBaseX;
+        float baseY = useOffhand ? ScaleMeConfig.armBaseYOffhand : ScaleMeConfig.armBaseY;
+        float baseZ = useOffhand ? ScaleMeConfig.armBaseZOffhand : ScaleMeConfig.armBaseZ;
+        float heightScale = useOffhand ? ScaleMeConfig.armHeightScaleOffhand : ScaleMeConfig.armHeightScale;
+
+        poseStack.translate(invert * baseX, baseY + inverseArmHeight * heightScale, baseZ);
+    }
 }

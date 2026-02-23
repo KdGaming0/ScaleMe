@@ -47,13 +47,12 @@ public class LivingEntityMixin {
     /** Suppresses the attack animation for the local player when configured. */
     @Inject(method = "getAttackAnim", at = @At("RETURN"), cancellable = true)
     private void suppressAttackAnim(float partialTick, CallbackInfoReturnable<Float> cir) {
-        if (!ScaleMeConfig.enableAnimOverrides) return;
-        if (!ScaleMeConfig.disableSwingAnimation) return;
+        if (!ScaleMeConfig.enableAnimOverrides || !ScaleMeConfig.disableSwingAnimation) return;
 
         LivingEntity self = (LivingEntity) (Object) this;
+        if (!self.level().isClientSide()) return;
+
         var mc = Minecraft.getInstance();
-        if (self.level().isClientSide() && self == mc.player) {
-            cir.setReturnValue(0f);
-        }
+        if (self == mc.player) cir.setReturnValue(0f);
     }
 }

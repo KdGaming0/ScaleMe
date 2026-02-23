@@ -28,8 +28,8 @@ public class LayerRenderStateMixin {
     private void onSubmitHead(PoseStack poseStack, SubmitNodeCollector collector,
                               int lightCoords, int overlayCoords, int outlineColor, CallbackInfo ci) {
 
-        if (!ScaleMeConfig.enableHandItemTransform || HandContext.renderDepth == 0) return;
-        if (!HandContext.hasActiveTransform()) return;
+        if (!ScaleMeConfig.enableHandItemTransform || !ScaleMeConfig.enableItemTransformOverride || HandContext.renderDepth == 0) return;
+        if (!HandContext.activeTransform) return;
 
         poseStack.pushPose();
         pushedPoseThisSubmit = true;
