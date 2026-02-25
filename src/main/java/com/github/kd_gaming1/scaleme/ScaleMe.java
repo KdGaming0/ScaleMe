@@ -17,6 +17,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
  *///?} else {
 import net.minecraft.Util;
 //?}
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.tags.ItemTags;
 import org.lwjgl.glfw.GLFW;
@@ -44,6 +45,7 @@ public class ScaleMe implements ClientModInitializer {
 
         KeyMapping blockKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                 "key.scaleme.sword_block",
+                InputConstants.Type.MOUSE,
                 GLFW.GLFW_MOUSE_BUTTON_RIGHT,
                 KeyMapping.Category.GAMEPLAY
         ));

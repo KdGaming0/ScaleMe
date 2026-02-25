@@ -174,32 +174,28 @@ public class ItemInHandRendererMixin {
     /** Applies a blocking pose when holding a sword and right-clicking. */
     @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
     private void scaleme$applySwordBlockPose(
-            AbstractClientPlayer player,
-            float tickDelta, float pitch,
-            InteractionHand hand,
-            float swingProgress,
-            ItemStack heldItem,
-            float equipProgress,
-            PoseStack poseStack,
-            SubmitNodeCollector collector,
-            int packedLight,
+            AbstractClientPlayer player, float tickDelta, float pitch,
+            InteractionHand hand, float swingProgress, ItemStack heldItem,
+            float equipProgress, PoseStack poseStack,
+            SubmitNodeCollector collector, int packedLight,
             CallbackInfo ci) {
 
-        if (!BlockingState.isBlocking || hand != InteractionHand.MAIN_HAND || !heldItem.is(ItemTags.SWORDS)) return;
+        if (!BlockingState.isBlocking
+                || hand != InteractionHand.MAIN_HAND
+                || !heldItem.is(ItemTags.SWORDS)) return;
+
         ci.cancel();
 
         poseStack.pushPose();
-
         HumanoidArm arm = player.getMainArm();
-        int armSideSign = (arm == HumanoidArm.RIGHT) ? 1 : -1;
+        int side = arm == HumanoidArm.RIGHT ? 1 : -1;
 
         applyItemArmTransform(poseStack, arm, equipProgress);
-        poseStack.translate((float) armSideSign * -0.14142136F, 0.08F, 0.14142136F);
+        poseStack.translate(side * -0.14142136F, 0.08F, 0.14142136F);
         poseStack.mulPose(Axis.XP.rotationDegrees(-102.25F));
-        poseStack.mulPose(Axis.YP.rotationDegrees((float) armSideSign * 13.365F));
-        poseStack.mulPose(Axis.ZP.rotationDegrees((float) armSideSign * 78.05F));
+        poseStack.mulPose(Axis.YP.rotationDegrees(side * 13.365F));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(side * 78.05F));
 
-        // Self-cast required: Mixin class can't directly extend ItemInHandRenderer
         ((ItemInHandRenderer) (Object) this).renderItem(
                 player,
                 heldItem,
@@ -210,7 +206,13 @@ public class ItemInHandRendererMixin {
                 collector,
                 packedLight
         );
-
         poseStack.popPose();
+
+        // --- release HandContext --- //
+        HandContext.renderDepth--;
+        if (HandContext.renderDepth <= 0) {
+            HandContext.renderDepth = 0;
+            HandContext.currentHand = null;
+        }
     }
 }

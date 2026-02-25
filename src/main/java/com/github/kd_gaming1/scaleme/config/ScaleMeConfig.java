@@ -102,7 +102,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static float armHeightScaleOffhand = -0.6f;
 
     @Comment(category = HAND, centered = true)
-    public static Comment spacer6;
+    public static Comment spacer5;
 
     @Entry(category = HAND, isSlider = true, min = 0.1f, max = 3f, precision = 1000)
     public static float itemScaleOffhand = 1f;
@@ -117,7 +117,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static float itemTranslationZOffhand = 0f;
 
     @Comment(category = HAND, centered = true)
-    public static Comment spacer7;
+    public static Comment spacer6;
 
     @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
     public static float itemRotationXOffhand = 0f;
@@ -134,10 +134,13 @@ public class ScaleMeConfig extends MidnightConfig {
     public static Comment animDesc;
 
     @Entry(category = ANIM)
-    public static boolean enableAnimOverrides = false;
+    public static boolean enableSwordBlock = false;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer7;
 
     @Entry(category = ANIM)
-    public static boolean enableSwordBlock = false;
+    public static boolean enableAnimOverrides = false;
 
     @Entry(category = ANIM)
     public static boolean disableSwingBobbing = false;

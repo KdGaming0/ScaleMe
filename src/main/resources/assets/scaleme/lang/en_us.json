@@ -96,7 +96,7 @@
 
   "scaleme.midnightconfig.animDesc": "Master switch for all animation customisation. Swing speed, shape, and bobbing are all controlled by this toggle.",
 
-  "scaleme.midnightconfig.enableSwordBlock": "Enable Sword Block  [does not requires Animation Master]",
+  "scaleme.midnightconfig.enableSwordBlock": "Enable Sword Block",
   "scaleme.midnightconfig.enableSwordBlock.tooltip": "Lets you hold right-click with a sword to enter a blocking pose, similar to pre-1.9.\nThe keybind defaults to right mouse button — rebind it in Controls if needed.",
 
   "scaleme.midnightconfig.enableAnimOverrides": "Enable Animation Changes  [MASTER]",

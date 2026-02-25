@@ -16,10 +16,10 @@ public final class ScaleResolver {
         boolean scalingAllowed = !onHypixel || HypixelLocationState.isOnSkyblock();
 
         if (entityId == mc.player.getId()) {
-            return scalingAllowed ? ScaleMeConfig.playerScale : 1f;
+            return ScaleMeConfig.playerScale;
         }
 
-        if (onHypixel && ScaleMeConfig.hypixelNpcScale != 1f) {
+        if (onHypixel) {
             var entity = mc.level.getEntity(entityId);
             if (entity instanceof AbstractClientPlayer player && HypixelNpcUtil.isHypixelNpc(player)) {
                 return HypixelLocationState.isInDungeon() ? 1f : ScaleMeConfig.hypixelNpcScale;
