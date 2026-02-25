@@ -11,19 +11,15 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "com.github.kd_gaming1.scaleme.client.ScalemeClient"
-    ],
-    "main": [
-      "com.github.kd_gaming1.scaleme.Scaleme"
+      "com.github.kd_gaming1.scaleme.ScaleMe"
     ]
   },
   "mixins": [
     "scaleme.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.17.3",
+    "fabricloader": ">=${fabricloader}",
     "minecraft": "${minecraft}",
-    "midnightlib": ">=${midnightlib_version}",
-    "owo": ">=${owo_version}"
+    "midnightlib": ">=${midnightlib}"
   }
 }

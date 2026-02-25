@@ -2,131 +2,225 @@ package com.github.kd_gaming1.scaleme.config;
 
 import eu.midnightdust.lib.config.MidnightConfig;
 
+@SuppressWarnings("unused")
 public class ScaleMeConfig extends MidnightConfig {
-    public static final String SCALING = "scaling";
-    public static final String ITEMSCALING = "item scaling";
+    public static final String HAND = "hand_item";
+    public static final String ANIM = "animation";
+    public static final String SCALE = "scale";
     public static final String VIEW = "view";
 
-    // Player Scaling
-    @Comment(category = SCALING, name = "Adjust the visual size of your own player model")
-    public static Comment ownPlayerDescription;
+    // ── Hand Item Transform ─────────────────────────────────────────────────
 
-    @Entry(category = SCALING, name = "Enable Own Player Scaling")
-    public static boolean enableOwnPlayerScaling = false;
+    @Comment(category = HAND)
+    public static Comment handDesc;
 
-    @Entry(category = SCALING, name = "Own Player Scale", isSlider = true, min = 0.1f, max = 3.0f)
-    public static float ownPlayerScale = 1.0f;
+    @Entry(category = HAND)
+    public static boolean enableHandItemTransform = false;
 
+    // ── Arm Base Position ───────────────────────────────────────────────────
 
-    @Comment(category = SCALING, name = "Adjust the visual size of other players")
-    public static Comment playersDescription;
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer1;
 
-    @Entry(category = SCALING, name = "Enable Scaling for Other Players")
-    public static boolean enableOtherPlayersScaling = false;
+    @Comment(category = HAND)
+    public static Comment armPosDesc;
 
-    @Entry(category = SCALING, name = "Other Players Scale", isSlider = true, min = 0.1f, max = 3.0f)
-    public static float otherPlayersScale = 1.0f;
+    @Entry(category = HAND)
+    public static boolean enableArmPositionOverride = false;
 
-    @Comment(category = SCALING, name = "Adjust the visual size of NPC players")
-    public static Comment npcDescription;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseX = 0.56f;
 
-    @Entry(category = SCALING, name = "Enable Hypixel NPC Scaling")
-    public static boolean enableNpcScaling = false;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseY = -0.52f;
 
-    @Entry(category = SCALING, name = "NPC Scale", isSlider = true, min = 0.1f, max = 3.0f)
-    public static float npcPlayerScale = 1.0f;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseZ = -0.72f;
 
-    @Comment(category = SCALING, name = "Adjust the visual size of Villager NPC Scaling")
-    public static Comment villagerNpcDescription;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 0f, precision = 1000)
+    public static float armHeightScale = -0.6f;
 
-    @Entry(category = SCALING, name = "Enable Hypixel Villager NPC Scaling")
-    public static boolean enableVillagerNpcScaling = false;
+    // ── Item Transform (Main Hand) ──────────────────────────────────────────
 
-    @Entry(category = SCALING, name = "Villager NPC Scale", isSlider = true, min = 0.1f, max = 3.0f)
-    public static float villagerNpcScale = 1.0f;
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer2;
 
-    @Comment(category = SCALING, name = "Make changes between scale levels appear smooth")
-    public static Comment smoothedScalingDescription;
+    @Comment(category = HAND)
+    public static Comment itemTransformDesc;
 
-    @Entry(category = SCALING, name = "Smooth Scaling")
-    public static boolean smoothScaling = true;
+    @Entry(category = HAND)
+    public static boolean enableItemTransformOverride = false;
 
-    /*
-    TODO: Add Quick Add Button to chat behind players
-    @Entry(category = PLAYERS, name = "Show Quick Add Button")
-    public static boolean showQuickAddButton = true;
-    */
+    @Entry(category = HAND, name = "Scale", isSlider = true, min = 0.1f, max = 3f, precision = 1000)
+    public static float itemScale = 1f;
 
-    // Item Scaling
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
+    public static float itemTranslationX = 0f;
 
-    @Comment(category = ITEMSCALING, name = "Adjust the visual size of items and there held positions and animation")
-    public static Comment itemScalingDescription;
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
+    public static float itemTranslationY = 0f;
 
-    @Entry(category = ITEMSCALING, name = "Enable Item Scale & Position")
-    public static boolean enableItemScaleAndPosition = false;
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
+    public static float itemTranslationZ = 0f;
 
-    /*
-    TODO: Add option to only affect weapons and tools
-    @Entry(category = ITEMSCALING, name = "Only affect weapons and tools")
-    public static boolean onlyAffectWeaponsAndTools = false;
-     */
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer3;
 
-    @Entry(category = ITEMSCALING, name = "Item Scale", isSlider = true, min = 0.05f, max = 3.0f)
-    public static float itemScale = 1.0f;
+    @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float itemRotationX = 0f;
 
-    @Comment(category = ITEMSCALING, name = "Adjust the position of your held item")
-    public static Comment heldItemPositionDescription;
+    @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float itemRotationY = 0f;
 
-    @Entry(category = ITEMSCALING, name = "Held Item X Position", isSlider = true, min = -2.0f, max = 2.0f)
-    public static float heldItemXPosition = 0.0f;
+    @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float itemRotationZ = 0f;
 
-    @Entry(category = ITEMSCALING, name = "Held Item Y Position", isSlider = true, min = -2.0f, max = 2.0f)
-    public static float heldItemYPosition = 0.0f;
+    // ── Off-Hand Transform ──────────────────────────────────────────────────
 
-    @Entry(category = ITEMSCALING, name = "Held Item Z Position", isSlider = true, min = -2.0f, max = 2.0f)
-    public static float heldItemZPosition = 0.0f;
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer4;
 
-    @Comment(category = ITEMSCALING, name = "Adjust the Rotation of held item")
-    public static Comment heldItemRotationDescription;
+    @Comment(category = HAND)
+    public static Comment offhandDesc;
 
-    @Entry(category = ITEMSCALING, name = "Held Item Yaw Rotation", isSlider = true, min = -180.0f, max = 180.0f)
-    public static float heldItemYawRotation = 0.0f;
+    @Entry(category = HAND)
+    public static boolean enableSeparateHandTransforms = false;
 
-    @Entry(category = ITEMSCALING, name = "Held Item Pitch Rotation", isSlider = true, min = -90.0f, max = 90.0f)
-    public static float heldItemPitchRotation = 0.0f;
+    @Comment(category = HAND)
+    public static Comment armOffhandDesc;
 
-    @Entry(category = ITEMSCALING, name = "Held Item Roll Rotation", isSlider = true, min = -180.0f, max = 180.0f)
-    public static float heldItemRollRotation = 0.0f;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseXOffhand = 0.56f;
 
-    @Comment(category = ITEMSCALING, name = "Adjust swing/animation speed of items")
-    public static Comment itemAnimationSpeedDescription;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseYOffhand = -0.52f;
 
-    @Entry(category = ITEMSCALING, name = "Enable Item Swing Modifications")
-    public static boolean enableItemSwingModifications = false;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
+    public static float armBaseZOffhand = -0.72f;
 
-    @Entry(category = ITEMSCALING, name = "Ignore mining effects")
-    public static boolean ignoreMiningEffects = true;
+    @Entry(category = HAND, isSlider = true, min = -2f, max = 0f, precision = 1000)
+    public static float armHeightScaleOffhand = -0.6f;
 
-    @Entry(category = ITEMSCALING, name = "Disable swing animation bobbing")
-    public static boolean disableSwingAnimationBobbing = true;
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer5;
 
-    @Entry(category = ITEMSCALING, name = "Item Animation Speed", isSlider = true, min = 0.05f, max = 3.0f)
-    public static float itemAnimationSpeed = 1.0f;
+    @Entry(category = HAND, isSlider = true, min = 0.1f, max = 3f, precision = 1000)
+    public static float itemScaleOffhand = 1f;
 
-    @Entry(category = ITEMSCALING, name = "Disable Item Animation Completely")
-    public static boolean disableItemAnimation = false;
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
+    public static float itemTranslationXOffhand = 0f;
 
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
+    public static float itemTranslationYOffhand = 0f;
 
-    // View (Crosshair + Camera)
-    @Comment(category = VIEW, name = "Configure crosshair and camera options")
+    @Entry(category = HAND, isSlider = true, min = -1f, max = 1f, precision = 1000)
+    public static float itemTranslationZOffhand = 0f;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer6;
+
+    @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float itemRotationXOffhand = 0f;
+
+    @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float itemRotationYOffhand = 0f;
+
+    @Entry(category = HAND, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float itemRotationZOffhand = 0f;
+
+    // ── Animation ───────────────────────────────────────────────────────────
+
+    @Comment(category = ANIM)
+    public static Comment animDesc;
+
+    @Entry(category = ANIM)
+    public static boolean enableSwordBlock = false;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment spacer7;
+
+    @Entry(category = ANIM)
+    public static boolean enableAnimOverrides = false;
+
+    @Entry(category = ANIM)
+    public static boolean disableSwingBobbing = false;
+
+    @Entry(category = ANIM)
+    public static boolean ignoreSwingSpeedEffects = false;
+
+    @Entry(category = ANIM, isSlider = true, min = 0.1f, max = 2f)
+    public static float swingAnimationSpeed = 1f;
+
+    @Entry(category = ANIM)
+    public static boolean disableSwingAnimation = false;
+
+    @Comment(category = ANIM, centered = true)
+    public static Comment spacer8;
+
+    @Entry(category = ANIM)
+    public static boolean enableSwingOverride = false;
+
+    @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
+    public static float swingArmXScale = -0.4f;   // vanilla: -0.4
+
+    @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
+    public static float swingArmYScale = 0.2f;    // vanilla: 0.2
+
+    @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
+    public static float swingArmZScale = -0.2f;   // vanilla: -0.2
+
+    @Entry(category = ANIM)
+    public static boolean swingArmXMultiplyBySide = true;
+
+    @Entry(category = ANIM, isSlider = true, min = 0f, max = 90f, precision = 10)
+    public static float swingPreRotationY = 45f;  // vanilla: 45
+
+    @Entry(category = ANIM, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float swingArcYAmount = -20f;   // vanilla: -20
+
+    @Entry(category = ANIM, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float swingArcZAmount = -20f;   // vanilla: -20
+
+    @Entry(category = ANIM, isSlider = true, min = -180f, max = 180f, precision = 10)
+    public static float swingArcXAmount = -80f;   // vanilla: -80
+
+    @Entry(category = ANIM)
+    public static boolean swingCounterRotation = true;
+
+    // ── Scale ───────────────────────────────────────────────────────────────
+
+    @Comment(category = SCALE)
+    public static Comment scaleDesc;
+
+    @Entry(category = SCALE)
+    public static boolean scaleNameTags = false;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float playerScale = 1f;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float otherPlayersScale = 1f;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float villagerNpcScale = 1f;
+
+    @Entry(category = SCALE, isSlider = true, min = 0.1f, max = 4f)
+    public static float hypixelNpcScale = 1f;
+
+    // ── View ────────────────────────────────────────────────────────────────
+
+    @Comment(category = VIEW)
     public static Comment viewDescription;
 
-    @Entry(category = VIEW, name = "Show Crosshair in Third Person (Back)")
+    @Entry(category = VIEW)
     public static boolean enableCrosshairInThirdPerson = false;
 
-    @Entry(category = VIEW, name = "Show Crosshair in Third Person (Front)")
+    @Entry(category = VIEW)
     public static boolean enableCrosshairInThirdPersonFront = false;
 
-    @Entry(category = VIEW, name = "Disable Selfie Cam (Front View)")
+    @Entry(category = VIEW)
     public static boolean disableSelfieCam = false;
+
+    @Entry(category = VIEW)
+    public static boolean showOwnNametagInThirdPerson = false;
 }
