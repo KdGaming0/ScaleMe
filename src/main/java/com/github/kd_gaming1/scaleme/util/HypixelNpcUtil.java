@@ -1,6 +1,5 @@
 package com.github.kd_gaming1.scaleme.util;
 
-import com.github.kd_gaming1.scaleme.ScaleMe;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Team.Visibility;
@@ -21,7 +20,7 @@ public class HypixelNpcUtil {
      * Always returns false if not connected to Hypixel.
      */
     public static boolean isHypixelNpc(AbstractClientPlayer player) {
-        if (!ScaleMe.hypixelPacketReceived.get()) return false;
+        if (!HypixelLocationState.isOnHypixel()) return false;
         if (player == null) return false;
 
         PlayerTeam team = player.getTeam();

@@ -5,12 +5,15 @@ import net.azureaaron.hmapi.network.packet.v1.s2c.LocationUpdateS2CPacket;
 
 public final class HypixelLocationState {
 
+    private static boolean onHypixel = false;
     private static boolean onSkyblock = false;
     private static boolean inDungeon  = false;
 
     private HypixelLocationState() {}
 
     public static void register() {
+        HypixelPacketEvents.HELLO.register(packet -> onHypixel = true);
+
         HypixelPacketEvents.LOCATION_UPDATE.register(packet -> {
             if (!(packet instanceof LocationUpdateS2CPacket location)) return;
 
@@ -25,10 +28,14 @@ public final class HypixelLocationState {
         });
     }
 
+    public static  boolean isOnHypixel() { return  onHypixel; }
+
     public static boolean isOnSkyblock() { return onSkyblock; }
+
     public static boolean isInDungeon()  { return inDungeon;  }
 
     public static void reset() {
+        onHypixel  = false;
         onSkyblock = false;
         inDungeon  = false;
     }

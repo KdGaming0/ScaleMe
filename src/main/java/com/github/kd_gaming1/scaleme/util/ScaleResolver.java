@@ -1,6 +1,5 @@
 package com.github.kd_gaming1.scaleme.util;
 
-import com.github.kd_gaming1.scaleme.ScaleMe;
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -13,7 +12,7 @@ public final class ScaleResolver {
     public static float resolveScale(Minecraft mc, int entityId) {
         if (mc.player == null || mc.level == null) return 1f;
 
-        boolean onHypixel = ScaleMe.hypixelPacketReceived.get();
+        boolean onHypixel = HypixelLocationState.isOnHypixel();
         boolean scalingAllowed = !onHypixel || HypixelLocationState.isOnSkyblock();
 
         if (entityId == mc.player.getId()) {
