@@ -1,6 +1,7 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.BlockingState;
 import com.github.kd_gaming1.scaleme.util.HandContext;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -10,13 +11,16 @@ import com.mojang.math.Axis;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.Mth;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -25,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ItemInHandRenderer.class)
 public class ItemInHandRendererMixin {
 
+    @Unique
     private static final float PI = (float) Math.PI;
 
     @Shadow private void applyItemArmTransform(PoseStack poseStack, HumanoidArm arm, float inverseArmHeight) {}
@@ -164,5 +169,48 @@ public class ItemInHandRendererMixin {
         float heightScale = useOffhand ? ScaleMeConfig.armHeightScaleOffhand : ScaleMeConfig.armHeightScale;
 
         poseStack.translate(invert * baseX, baseY + inverseArmHeight * heightScale, baseZ);
+    }
+
+    /** Applies a blocking pose when holding a sword and right-clicking. */
+    @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
+    private void scaleme$applySwordBlockPose(
+            AbstractClientPlayer player,
+            float tickDelta, float pitch,
+            InteractionHand hand,
+            float swingProgress,
+            ItemStack heldItem,
+            float equipProgress,
+            PoseStack poseStack,
+            SubmitNodeCollector collector,
+            int packedLight,
+            CallbackInfo ci) {
+
+        if (!BlockingState.isBlocking || hand != InteractionHand.MAIN_HAND || !heldItem.is(ItemTags.SWORDS)) return;
+        ci.cancel();
+
+        poseStack.pushPose();
+
+        HumanoidArm arm = player.getMainArm();
+        int armSideSign = (arm == HumanoidArm.RIGHT) ? 1 : -1;
+
+        applyItemArmTransform(poseStack, arm, equipProgress);
+        poseStack.translate((float) armSideSign * -0.14142136F, 0.08F, 0.14142136F);
+        poseStack.mulPose(Axis.XP.rotationDegrees(-102.25F));
+        poseStack.mulPose(Axis.YP.rotationDegrees((float) armSideSign * 13.365F));
+        poseStack.mulPose(Axis.ZP.rotationDegrees((float) armSideSign * 78.05F));
+
+        // Self-cast required: Mixin class can't directly extend ItemInHandRenderer
+        ((ItemInHandRenderer) (Object) this).renderItem(
+                player,
+                heldItem,
+                arm == HumanoidArm.RIGHT
+                        ? ItemDisplayContext.FIRST_PERSON_RIGHT_HAND
+                        : ItemDisplayContext.FIRST_PERSON_LEFT_HAND,
+                poseStack,
+                collector,
+                packedLight
+        );
+
+        poseStack.popPose();
     }
 }

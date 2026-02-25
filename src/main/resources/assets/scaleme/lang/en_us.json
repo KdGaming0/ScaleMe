@@ -96,6 +96,9 @@
 
   "scaleme.midnightconfig.animDesc": "Master switch for all animation customisation. Swing speed, shape, and bobbing are all controlled by this toggle.",
 
+  "scaleme.midnightconfig.enableSwordBlock": "Enable Sword Block  [does not requires Animation Master]",
+  "scaleme.midnightconfig.enableSwordBlock.tooltip": "Lets you hold right-click with a sword to enter a blocking pose, similar to pre-1.9.\nThe keybind defaults to right mouse button — rebind it in Controls if needed.",
+
   "scaleme.midnightconfig.enableAnimOverrides": "Enable Animation Changes  [MASTER]",
   "scaleme.midnightconfig.enableAnimOverrides.tooltip": "Turns on all custom animation settings below. Disable this to keep the default Minecraft swing animations entirely.\n\nControls:\n• Swing bobbing suppression\n• Swing speed and speed effect ignoring\n• Disable swing animation entirely\n• Custom Swing Shape (arc and drift sliders)",
 

@@ -137,6 +137,9 @@ public class ScaleMeConfig extends MidnightConfig {
     public static boolean enableAnimOverrides = false;
 
     @Entry(category = ANIM)
+    public static boolean enableSwordBlock = false;
+
+    @Entry(category = ANIM)
     public static boolean disableSwingBobbing = false;
 
     @Entry(category = ANIM)
