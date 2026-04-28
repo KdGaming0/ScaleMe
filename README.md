@@ -23,10 +23,12 @@ A simple, client-side mod that gives you full control over the size and position
 
 ### Item Scaling & Positioning
 - **Item Scaling** – Change the size of the item you hold.
+- **Scale Dropped Items** – Adjust the size of items dropped in the world.
 - **Position Controls** – Adjust yaw, pitch, roll, and X, Y, Z position in your hand.
 - **Swing Speed Control** – Change how fast your swing animation plays.
 
 ### View Options
+- **Hide Players** – Hide other players from rendering in the world. Useful for crowded lobbies or clean screenshots. Can be restricted to Skyblock only.
 - **Third-Person Crosshair (Back View)** – Optional crosshair while in third-person view from behind.
 - **Third-Person Crosshair (Front View)** – Optional crosshair while in front-facing third-person view.
 - **Disable Selfie Cam** – Remove the front-facing camera entirely if you prefer.

@@ -8,6 +8,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static final String ANIM = "animation";
     public static final String SCALE = "scale";
     public static final String VIEW = "view";
+    public static final String ITEM = "item";
 
     // ── Hand Item Transform ─────────────────────────────────────────────────
 
@@ -223,4 +224,21 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = VIEW)
     public static boolean showOwnNametagInThirdPerson = false;
+
+    @Entry(category = VIEW)
+    public static boolean hidePlayers = false;
+
+    @Entry(category = VIEW)
+    public static boolean hidePlayersOnlyOnSkyblock = false;
+
+    // ── Item Entity (Ground) ────────────────────────────────────────────────
+
+    @Comment(category = ITEM)
+    public static Comment itemDesc;
+
+    @Entry(category = ITEM)
+    public static boolean enableGroundItemScale = false;
+
+    @Entry(category = ITEM, isSlider = true, min = 0.1f, max = 4f, precision = 1000)
+    public static float groundItemScale = 1f;
 }

@@ -1,4 +1,4 @@
-New Features:
+### New Features:
 
-feat: Add client-side sword block when holding right-click with a sword
-fix: Hypixel NPC scaling when chasing the other player scale slider.
+- feat: Add option to hide other players in the world (with optional Skyblock-only restriction)
+- feat: Add option to change the size of dropped items

@@ -5,6 +5,7 @@
   "scaleme.midnightconfig.category.animation": "Item Animation",
   "scaleme.midnightconfig.category.scale": "Entity Scale",
   "scaleme.midnightconfig.category.view": "Camera & Crosshair",
+  "scaleme.midnightconfig.category.item": "Dropped Items",
 
   "scaleme.midnightconfig.handDesc": "Master switch for all held item customisation. Both arm position and item transform are controlled by this toggle.",
 
@@ -174,6 +175,20 @@
 
   "scaleme.midnightconfig.showOwnNametagInThirdPerson": "Show Own Nametag in Third Person",
   "scaleme.midnightconfig.showOwnNametagInThirdPerson.tooltip": "Shows your own nametag when you are in third person.",
+
+  "scaleme.midnightconfig.hidePlayers": "Hide Players",
+  "scaleme.midnightconfig.hidePlayers.tooltip": "Prevents other players from rendering in the world. Does not affect yourself.",
+
+  "scaleme.midnightconfig.hidePlayersOnlyOnSkyblock": "Hide Players Only on Skyblock",
+  "scaleme.midnightconfig.hidePlayersOnlyOnSkyblock.tooltip": "When enabled, the Hide Players option only takes effect while on Hypixel Skyblock.",
+
+  "scaleme.midnightconfig.itemDesc": "Change the size of items lying on the ground",
+
+  "scaleme.midnightconfig.enableGroundItemScale": "Enable Ground Item Scale",
+  "scaleme.midnightconfig.enableGroundItemScale.tooltip": "Turns on the slider below so you can make dropped items bigger or smaller.",
+
+  "scaleme.midnightconfig.groundItemScale": "Ground Item Size",
+  "scaleme.midnightconfig.groundItemScale.tooltip": "How big or small dropped items appear in the world. 1.0 is vanilla size.",
 
   "scaleme.midnightconfig.spacer1": "",
   "scaleme.midnightconfig.spacer2": "",

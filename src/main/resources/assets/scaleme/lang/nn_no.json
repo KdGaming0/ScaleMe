@@ -3,6 +3,7 @@
   "scaleme.midnightconfig.category.scaling": "Kontrollar for spelarskalering",
   "scaleme.midnightconfig.category.item scaling": "Kontrollar for gjenstandsskalering",
   "scaleme.midnightconfig.category.view": "Vising og kamera",
+  "scaleme.midnightconfig.category.item": "Gjenstandar på bakken",
 
   "scaleme.midnightconfig.ownPlayerDescription.label": "Juster den visuelle storleiken på din eigen spelarmodell",
   "scaleme.midnightconfig.ownPlayerScale.label": "Eigen spelar-skala",
@@ -72,5 +73,19 @@
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.label": "Vis trådkross i tredjeperson (framifrå)",
   "scaleme.midnightconfig.enableCrosshairInThirdPersonFront.tooltip": "Vis trådkrossen når du ser karakteren din framifrå (F5 to gonger)",
   "scaleme.midnightconfig.disableSelfieCam.label": "Deaktiver selfiekamera (framifrå-vising)",
-  "scaleme.midnightconfig.disableSelfieCam.tooltip": "Hindre byting til tredjepersonsvising framifrå når du trykkjer F5"
+  "scaleme.midnightconfig.disableSelfieCam.tooltip": "Hindre byting til tredjepersonsvising framifrå når du trykkjer F5",
+
+  "scaleme.midnightconfig.hidePlayers": "Skjul spelarar",
+  "scaleme.midnightconfig.hidePlayers.tooltip": "Hindrar andre spelarar frå å bli rendered i verda. Påverkar ikkje deg sjølv.",
+
+  "scaleme.midnightconfig.hidePlayersOnlyOnSkyblock": "Skjul spelarar berre på Skyblock",
+  "scaleme.midnightconfig.hidePlayersOnlyOnSkyblock.tooltip": "Når aktivert, tek alternativet 'Skjul spelarar' berre effekt medan du er på Hypixel Skyblock.",
+
+  "scaleme.midnightconfig.itemDesc": "Endre storleiken på gjenstandar som ligg på bakken",
+
+  "scaleme.midnightconfig.enableGroundItemScale": "Aktiver skalering for gjenstandar på bakken",
+  "scaleme.midnightconfig.enableGroundItemScale.tooltip": "Slår på glidebrytaren nedanfor slik at du kan gjere gjenstandar på bakken større eller mindre.",
+
+  "scaleme.midnightconfig.groundItemScale": "Storleik på gjenstandar på bakken",
+  "scaleme.midnightconfig.groundItemScale.tooltip": "Kor store eller små gjenstandar på bakken ser ut i verda. 1.0 er vanleg storleik."
 }

@@ -10,6 +10,8 @@
   "client": [
     "AvatarRendererMixin",
     "CameraTypeMixin",
+    "EntityRenderDispatcherMixin",
+    "ItemEntityRendererMixin",
     "ItemInHandRendererMixin",
     "LayerRenderStateMixin",
     "LivingEntityMixin",
