@@ -2,7 +2,7 @@
 mod.id = "scaleme"
 mod.name = "Scale Me"
 mod.group = "com.github.kd_gaming1"
-mod.version = "3.2.0"
+mod.version = "3.2.1"
 
 deps.fabric_loader = "0.19.2"
 loomx.loom_version = "1.16-SNAPSHOT"
