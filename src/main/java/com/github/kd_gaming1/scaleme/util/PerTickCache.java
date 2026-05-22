@@ -17,6 +17,8 @@ public final class PerTickCache {
 
     /** Returns the cached scale for entityId, computing it once per tick. */
     public static float getScale(int entityId) {
+        if (!FeatureFlags.isEnabled(FeatureFlags.SCALE_ANY)) return 1f;
+
         Minecraft mc = Minecraft.getInstance();
         if (mc.level == null) return 1f;
 

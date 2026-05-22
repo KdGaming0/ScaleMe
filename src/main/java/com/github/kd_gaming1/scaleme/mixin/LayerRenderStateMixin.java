@@ -1,6 +1,6 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
-import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.github.kd_gaming1.scaleme.util.HandContext;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -28,7 +28,8 @@ public class LayerRenderStateMixin {
     private void onSubmitHead(PoseStack poseStack, SubmitNodeCollector collector,
                               int lightCoords, int overlayCoords, int outlineColor, CallbackInfo ci) {
 
-        if (!ScaleMeConfig.enableHandItemTransform || !ScaleMeConfig.enableItemTransformOverride || HandContext.renderDepth == 0) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.HAND_TRANSFORM | FeatureFlags.ITEM_TRANSFORM)
+                || HandContext.renderDepth == 0) return;
         if (!HandContext.activeTransform) return;
 
         poseStack.pushPose();

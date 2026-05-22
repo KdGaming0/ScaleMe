@@ -2,13 +2,18 @@ package com.github.kd_gaming1.scaleme.mixin;
 
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import com.github.kd_gaming1.scaleme.util.BlockingState;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.github.kd_gaming1.scaleme.util.HandContext;
+import com.github.kd_gaming1.scaleme.util.SwordBlockPose;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 
 import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.tags.ItemTags;
@@ -37,8 +42,13 @@ public class ItemInHandRendererMixin {
 
     // ── Swing Bobbing ───────────────────────────────────────────────────────
 
-    /** Forces attack-strength scale to 1.0 so the item never dips on attack. */
-    @ModifyExpressionValue(
+    /**
+     * Forces attack-strength scale to 1.0 so the item never dips on attack.
+     * Uses {@link WrapOperation} for clean parameter access.
+     * The target method was renamed between 1.21.10 and 1.21.11,
+     * so the {@code @At} target is the only Stonecutter-branched line.
+     */
+    @WrapOperation(
             method = "tick()V",
             at = @At(
                     value = "INVOKE",
@@ -49,8 +59,10 @@ public class ItemInHandRendererMixin {
                     //?}
             )
     )
-    private float scaleme$suppressSwingBobbing(float originalScale) {
-        if (!ScaleMeConfig.enableAnimOverrides || !ScaleMeConfig.disableSwingBobbing) return originalScale;
+    private float scaleme$suppressSwingBobbing(LocalPlayer player, float partialTick, Operation<Float> original) {
+        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.DISABLE_SWING_BOB)) {
+            return original.call(player, partialTick);
+        }
         return 1.0f;
     }
 
@@ -71,7 +83,7 @@ public class ItemInHandRendererMixin {
 
         HandContext.renderDepth++;
 
-        if (ScaleMeConfig.enableHandItemTransform) {
+        if (FeatureFlags.isEnabled(FeatureFlags.HAND_TRANSFORM)) {
             HandContext.update(hand);
         } else {
             HandContext.currentHand = hand;
@@ -100,8 +112,14 @@ public class ItemInHandRendererMixin {
 
     // ── Swing Drift Override ────────────────────────────────────────────────
 
-    /** Replaces vanilla's fixed swing-drift translation with per-axis configurable amounts.
-     *  Vanilla defaults: X = -0.4, Y = 0.2, Z = -0.2 */
+    /**
+     * Replaces vanilla's fixed swing-drift translation with per-axis configurable amounts.
+     * The method signature differs between 1.21.10 (has {@code inverseArmHeight}) and
+     * 1.21.11 (removed it). Only the signature line is version-branched to keep the
+     * Stonecutter conditional as small as possible.
+     *
+     * <p>Vanilla defaults: X = -0.4, Y = 0.2, Z = -0.2
+     */
     //? if >=1.21.11 {
     /*@Inject(method = "swingArm", at = @At("HEAD"), cancellable = true)
     private void scaleme$overrideSwingDrift(float attackProgress, PoseStack poseStack, int handSide, HumanoidArm arm, CallbackInfo ci) {
@@ -110,7 +128,7 @@ public class ItemInHandRendererMixin {
     private void scaleme$overrideSwingDrift(float attackProgress, float inverseArmHeight, PoseStack poseStack, int handSide, HumanoidArm arm, CallbackInfo ci) {
         //?}
 
-        if (!ScaleMeConfig.enableAnimOverrides || !ScaleMeConfig.enableSwingOverride) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.SWING_OVERRIDE)) return;
         ci.cancel();
 
         float sqrtAttack = Mth.sqrt(attackProgress);
@@ -133,7 +151,7 @@ public class ItemInHandRendererMixin {
      *  Vanilla defaults: preRotation Y = 45°, arc Y = -20°, Z = -20°, X chop = -80° */
     @Inject(method = "applyItemArmAttackTransform", at = @At("HEAD"), cancellable = true)
     private void scaleme$overrideSwingArc(PoseStack poseStack, HumanoidArm arm, float attackProgress, CallbackInfo ci) {
-        if (!ScaleMeConfig.enableAnimOverrides || !ScaleMeConfig.enableSwingOverride) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.SWING_OVERRIDE)) return;
         ci.cancel();
 
         int armSideSign = (arm == HumanoidArm.RIGHT) ? 1 : -1;
@@ -155,13 +173,13 @@ public class ItemInHandRendererMixin {
      *  Vanilla: translate(invert * 0.56, -0.52 + inverseArmHeight * -0.6, -0.72) */
     @Inject(method = "applyItemArmTransform", at = @At("HEAD"), cancellable = true)
     private void scaleme$overrideArmBasePosition(PoseStack poseStack, HumanoidArm arm, float inverseArmHeight, CallbackInfo ci) {
-        if (!ScaleMeConfig.enableHandItemTransform || !ScaleMeConfig.enableArmPositionOverride) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.HAND_TRANSFORM | FeatureFlags.ARM_POSITION)) return;
         ci.cancel();
 
         int invert = (arm == HumanoidArm.RIGHT) ? 1 : -1;
 
         boolean useOffhand = (HandContext.currentHand == InteractionHand.OFF_HAND)
-                && ScaleMeConfig.enableSeparateHandTransforms;
+                && FeatureFlags.isEnabled(FeatureFlags.SEPARATE_OFFHAND);
 
         float baseX = useOffhand ? ScaleMeConfig.armBaseXOffhand : ScaleMeConfig.armBaseX;
         float baseY = useOffhand ? ScaleMeConfig.armBaseYOffhand : ScaleMeConfig.armBaseY;
@@ -191,10 +209,10 @@ public class ItemInHandRendererMixin {
         int side = arm == HumanoidArm.RIGHT ? 1 : -1;
 
         applyItemArmTransform(poseStack, arm, equipProgress);
-        poseStack.translate(side * -0.14142136F, 0.08F, 0.14142136F);
-        poseStack.mulPose(Axis.XP.rotationDegrees(-102.25F));
-        poseStack.mulPose(Axis.YP.rotationDegrees(side * 13.365F));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(side * 78.05F));
+        poseStack.translate(side * SwordBlockPose.TRANSLATE_X, SwordBlockPose.TRANSLATE_Y, SwordBlockPose.TRANSLATE_Z);
+        poseStack.mulPose(Axis.XP.rotationDegrees(SwordBlockPose.ROTATE_X));
+        poseStack.mulPose(Axis.YP.rotationDegrees(side * SwordBlockPose.ROTATE_Y));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(side * SwordBlockPose.ROTATE_Z));
 
         ((ItemInHandRenderer) (Object) this).renderItem(
                 player,

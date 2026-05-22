@@ -1,6 +1,7 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,9 +26,9 @@ public class LivingEntityMixin {
      */
     @Inject(method = "getCurrentSwingDuration", at = @At("RETURN"), cancellable = true)
     private void modifySwingDuration(CallbackInfoReturnable<Integer> cir) {
-        if (!ScaleMeConfig.enableAnimOverrides) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES)) return;
 
-        boolean ignore = ScaleMeConfig.ignoreSwingSpeedEffects;
+        boolean ignore = FeatureFlags.isEnabled(FeatureFlags.IGNORE_SWING_SPEED);
         float speed = ScaleMeConfig.swingAnimationSpeed;
 
         if (!ignore && speed == 1f) return;
@@ -47,7 +48,7 @@ public class LivingEntityMixin {
     /** Suppresses the attack animation for the local player when configured. */
     @Inject(method = "getAttackAnim", at = @At("RETURN"), cancellable = true)
     private void suppressAttackAnim(float partialTick, CallbackInfoReturnable<Float> cir) {
-        if (!ScaleMeConfig.enableAnimOverrides || !ScaleMeConfig.disableSwingAnimation) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.DISABLE_SWING_ANIM)) return;
 
         LivingEntity self = (LivingEntity) (Object) this;
         if (!self.level().isClientSide()) return;

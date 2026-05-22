@@ -9,6 +9,8 @@
 
   "scaleme.midnightconfig.handDesc": "Master switch for all held item customisation. Both arm position and item transform are controlled by this toggle.",
 
+  "scaleme.midnightconfig.handQuickStart": "↑ Enable the master switch above, then use the sliders below",
+
   "scaleme.midnightconfig.enableHandItemTransform": "Enable Custom Item Transform  [MASTER]",
   "scaleme.midnightconfig.enableHandItemTransform.tooltip": "Turns on all held item customisation below. Disable this to restore the default Minecraft look entirely.\n\nControls:\n• Arm Base Position (where your hand sits on screen)\n• Item Transform (size, offset, rotation on top of that)\n• Off-Hand variants of both",
 
@@ -96,6 +98,8 @@
   "scaleme.midnightconfig.itemRotationZOffhand.tooltip": "Spins the off-hand item clockwise or counterclockwise.\nOnly active when 'Enable Separate Off-Hand Transform' is ON.",
 
   "scaleme.midnightconfig.animDesc": "Master switch for all animation customisation. Swing speed, shape, and bobbing are all controlled by this toggle.",
+
+  "scaleme.midnightconfig.animQuickStart": "↑ Enable the master switch above, then use the sliders below",
 
   "scaleme.midnightconfig.enableSwordBlock": "Enable Sword Block",
   "scaleme.midnightconfig.enableSwordBlock.tooltip": "Lets you hold right-click with a sword to enter a blocking pose, similar to pre-1.9.\nThe keybind defaults to right mouse button — rebind it in Controls if needed.",

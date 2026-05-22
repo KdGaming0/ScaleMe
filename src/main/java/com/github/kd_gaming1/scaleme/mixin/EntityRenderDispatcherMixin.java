@@ -1,11 +1,10 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
-import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.github.kd_gaming1.scaleme.util.HypixelLocationState;
-import com.github.kd_gaming1.scaleme.util.HypixelNpcUtil;
+import com.github.kd_gaming1.scaleme.util.NpcCache;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.AbstractClientPlayer;
+
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
@@ -35,21 +34,16 @@ public class EntityRenderDispatcherMixin {
             SubmitNodeCollector submitNodeCollector,
             CallbackInfo ci
     ) {
-        if (!ScaleMeConfig.hidePlayers) return;
-        if (ScaleMeConfig.hidePlayersOnlyOnSkyblock && !HypixelLocationState.isOnSkyblock()) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.HIDE_PLAYERS)) return;
+        if (FeatureFlags.isEnabled(FeatureFlags.HIDE_PLAYERS_SB_ONLY) && !HypixelLocationState.isOnSkyblock()) return;
         if (!(renderState instanceof AvatarRenderState avatarState)) return;
         if (avatarState.entityType != EntityType.PLAYER) return;
 
-        Minecraft mc = Minecraft.getInstance();
+        var mc = net.minecraft.client.Minecraft.getInstance();
         if (mc.player != null && avatarState.id == mc.player.getId()) return;
 
         // Don't hide Hypixel NPCs — only real players
-        if (mc.level != null) {
-            var entity = mc.level.getEntity(avatarState.id);
-            if (entity instanceof AbstractClientPlayer player && HypixelNpcUtil.isHypixelNpc(player)) {
-                return;
-            }
-        }
+        if (NpcCache.isHypixelNpc(avatarState.id)) return;
 
         ci.cancel();
     }

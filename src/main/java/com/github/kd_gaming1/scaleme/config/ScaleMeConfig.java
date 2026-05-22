@@ -10,10 +10,24 @@ public class ScaleMeConfig extends MidnightConfig {
     public static final String VIEW = "view";
     public static final String ITEM = "item";
 
+    /*
+     * Quick-start for new users:
+     * 1. "Held Item"  → enableHandItemTransform is the master switch.
+     *    → Then toggle arm position and/or item transform overrides.
+     *    → enableSeparateHandTransforms unlocks off-hand sliders.
+     * 2. "Item Animation" → enableAnimOverrides is the master switch.
+     *    → Then toggle bobbing, speed, or custom swing shape.
+     * 3. "Entity Scale" → All sliders work independently; 1.0 = vanilla.
+     * 4. "Camera & Crosshair" / "Dropped Items" → Toggle + slider pairs.
+     */
+
     // ── Hand Item Transform ─────────────────────────────────────────────────
 
     @Comment(category = HAND)
     public static Comment handDesc;
+
+    @Comment(category = HAND, centered = true)
+    public static Comment handQuickStart;
 
     @Entry(category = HAND)
     public static boolean enableHandItemTransform = false;
@@ -28,6 +42,7 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = HAND)
     public static boolean enableArmPositionOverride = false;
+    // Requires: enableHandItemTransform == true
 
     @Entry(category = HAND, isSlider = true, min = -2f, max = 2f, precision = 1000)
     public static float armBaseX = 0.56f;
@@ -51,6 +66,7 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = HAND)
     public static boolean enableItemTransformOverride = false;
+    // Requires: enableHandItemTransform == true
 
     @Entry(category = HAND, name = "Scale", isSlider = true, min = 0.1f, max = 3f, precision = 1000)
     public static float itemScale = 1f;
@@ -86,6 +102,7 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = HAND)
     public static boolean enableSeparateHandTransforms = false;
+    // Requires: enableHandItemTransform == true
 
     @Comment(category = HAND)
     public static Comment armOffhandDesc;
@@ -134,10 +151,13 @@ public class ScaleMeConfig extends MidnightConfig {
     @Comment(category = ANIM)
     public static Comment animDesc;
 
+    @Comment(category = ANIM, centered = true)
+    public static Comment animQuickStart;
+
     @Entry(category = ANIM)
     public static boolean enableSwordBlock = false;
 
-    @Comment(category = HAND, centered = true)
+    @Comment(category = ANIM, centered = true)
     public static Comment spacer7;
 
     @Entry(category = ANIM)
@@ -145,21 +165,25 @@ public class ScaleMeConfig extends MidnightConfig {
 
     @Entry(category = ANIM)
     public static boolean disableSwingBobbing = false;
+    // Requires: enableAnimOverrides == true
 
     @Entry(category = ANIM)
     public static boolean ignoreSwingSpeedEffects = false;
+    // Requires: enableAnimOverrides == true
 
     @Entry(category = ANIM, isSlider = true, min = 0.1f, max = 2f)
     public static float swingAnimationSpeed = 1f;
 
     @Entry(category = ANIM)
     public static boolean disableSwingAnimation = false;
+    // Requires: enableAnimOverrides == true
 
     @Comment(category = ANIM, centered = true)
     public static Comment spacer8;
 
     @Entry(category = ANIM)
     public static boolean enableSwingOverride = false;
+    // Requires: enableAnimOverrides == true
 
     @Entry(category = ANIM, isSlider = true, min = -2f, max = 2f)
     public static float swingArmXScale = -0.4f;   // vanilla: -0.4
@@ -189,6 +213,7 @@ public class ScaleMeConfig extends MidnightConfig {
     public static boolean swingCounterRotation = true;
 
     // ── Scale ───────────────────────────────────────────────────────────────
+    // All scale sliders are independent; 1.0 = vanilla (no effect).
 
     @Comment(category = SCALE)
     public static Comment scaleDesc;

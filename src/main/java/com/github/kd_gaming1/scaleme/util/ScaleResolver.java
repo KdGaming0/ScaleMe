@@ -31,9 +31,6 @@ public final class ScaleResolver {
 
     /** True when at least one scale config differs from 1.0f. */
     public static boolean noScalingConfigured() {
-        return ScaleMeConfig.playerScale == 1f
-                && ScaleMeConfig.otherPlayersScale == 1f
-                && ScaleMeConfig.hypixelNpcScale == 1f
-                && ScaleMeConfig.villagerNpcScale == 1f;
+        return !FeatureFlags.isEnabled(FeatureFlags.SCALE_ANY);
     }
 }

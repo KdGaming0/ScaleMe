@@ -3,6 +3,7 @@ package com.github.kd_gaming1.scaleme;
 import com.github.kd_gaming1.scaleme.command.Commands;
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import com.github.kd_gaming1.scaleme.util.BlockingState;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.github.kd_gaming1.scaleme.util.HypixelLocationState;
 import eu.midnightdust.lib.config.MidnightConfig;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -51,8 +52,10 @@ public class ScaleMe implements ClientModInitializer {
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            FeatureFlags.update();
+
             if (client.player == null) return;
-            BlockingState.isBlocking = ScaleMeConfig.enableSwordBlock
+            BlockingState.isBlocking = FeatureFlags.isEnabled(FeatureFlags.SWORD_BLOCK)
                     && blockKey.isDown()
                     && client.player.getMainHandItem().is(ItemTags.SWORDS);
         });

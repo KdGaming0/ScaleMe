@@ -1,4 +1,4 @@
-### New Features:
+# Sacle Me 3.2.0
 
-- feat: Add option to hide other players in the world (with optional Skyblock-only restriction)
-- feat: Add option to change the size of dropped items
+- feat: Add export and import functionality for your configs to easily share your custom scales with friends or across different devices
+- improve: Refactor scaling code for better performance and maintainability

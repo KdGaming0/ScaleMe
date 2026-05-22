@@ -1,6 +1,7 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
 import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.ItemEntityRenderer;
@@ -28,7 +29,7 @@ public class ItemEntityRendererMixin {
             CameraRenderState camera,
             CallbackInfo ci
     ) {
-        if (!ScaleMeConfig.enableGroundItemScale) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.GROUND_ITEM_SCALE)) return;
         if (ScaleMeConfig.groundItemScale == 1.0f) return;
 
         poseStack.scale(ScaleMeConfig.groundItemScale, ScaleMeConfig.groundItemScale, ScaleMeConfig.groundItemScale);

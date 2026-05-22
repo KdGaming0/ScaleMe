@@ -36,6 +36,9 @@ A simple, client-side mod that gives you full control over the size and position
 ### Configuration
 - **In-Game Config Screen** – Change all settings in real time.  
   The config menu is transparent so you can see how your changes affect you or other players’ scale while adjusting them. Especially useful for item scale and position configuration. *(Powered by [MidnightLib](https://modrinth.com/mod/midnightlib))*
+- **Config Sharing** – Export and import your configs to easily share your custom scales with friends or across different devices.
+  - /scaleme export – Exports your current config.
+  - /scaleme import <json> – Imports a config from the export.
 
 ---
 

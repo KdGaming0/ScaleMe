@@ -1,6 +1,6 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
-import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import net.minecraft.client.CameraType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +18,7 @@ public class CameraTypeMixin {
 
     @Inject(method = "cycle", at = @At("HEAD"), cancellable = true)
     private void scaleme$skipFrontViewIfDisabled(CallbackInfoReturnable<CameraType> cir) {
-        if (!ScaleMeConfig.disableSelfieCam) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.DISABLE_SELFIE)) return;
 
         CameraType current = (CameraType) (Object) this;
 

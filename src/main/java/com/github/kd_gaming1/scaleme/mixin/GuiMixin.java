@@ -1,6 +1,6 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
-import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Gui.class)
-public class MixinGui {
+public class GuiMixin {
 
     @ModifyExpressionValue(
             method = "renderCrosshair(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/DeltaTracker;)V",
@@ -22,8 +22,8 @@ public class MixinGui {
         CameraType cameraType = mc.options.getCameraType();
 
         if (cameraType == CameraType.THIRD_PERSON_FRONT) {
-            return ScaleMeConfig.enableCrosshairInThirdPersonFront;
+            return FeatureFlags.isEnabled(FeatureFlags.CROSSHAIR_3RD_FRONT);
         }
-        return ScaleMeConfig.enableCrosshairInThirdPerson;
+        return FeatureFlags.isEnabled(FeatureFlags.CROSSHAIR_3RD);
     }
 }

@@ -16,6 +16,6 @@
     "LayerRenderStateMixin",
     "LivingEntityMixin",
     "LivingEntityRendererMixin",
-    "MixinGui"
+    "GuiMixin"
   ]
 }

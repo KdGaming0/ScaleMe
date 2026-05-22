@@ -1,8 +1,7 @@
 package com.github.kd_gaming1.scaleme.mixin;
 
-import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
+import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.github.kd_gaming1.scaleme.util.PerTickCache;
-import com.github.kd_gaming1.scaleme.util.ScaleResolver;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
@@ -25,7 +24,7 @@ public class AvatarRendererMixin {
             cancellable = true
     )
     private void scaleme$showOwnNametagInThirdPerson(Avatar entity, double distanceToCameraSq, CallbackInfoReturnable<Boolean> cir) {
-        if (!ScaleMeConfig.showOwnNametagInThirdPerson) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SHOW_OWN_NAMETAG)) return;
 
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null) return;
@@ -42,7 +41,7 @@ public class AvatarRendererMixin {
 
     @Inject(method = "scale*", at = @At("TAIL"))
     private void onScale(AvatarRenderState state, PoseStack poseStack, CallbackInfo ci) {
-        if (ScaleResolver.noScalingConfigured()) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SCALE_ANY)) return;
 
         float scale = PerTickCache.getScale(state.id);
         if (scale == 1f) return;
@@ -52,8 +51,8 @@ public class AvatarRendererMixin {
 
     @Inject(method = "extractRenderState*", at = @At("TAIL"))
     private void scaleme$adjustNameTagAttachment(Avatar entity, AvatarRenderState state, float partialTicks, CallbackInfo ci) {
-        if (ScaleResolver.noScalingConfigured()) return;
-        if (!ScaleMeConfig.scaleNameTags) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SCALE_ANY)) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SCALE_NAME_TAGS)) return;
         if (state.nameTagAttachment == null) return;
 
         float scale = PerTickCache.getScale(state.id);
