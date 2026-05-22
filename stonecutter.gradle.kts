@@ -3,6 +3,11 @@ plugins {
     id("me.modmuss50.mod-publish-plugin") version "1.0.+" apply false
 }
 
+stonecutter tasks {
+    order("publishModrinth")
+    order("publishCurseforge")
+}
+
 stonecutter active "26.1"
 
 // See https://stonecutter.kikugie.dev/wiki/config/params
