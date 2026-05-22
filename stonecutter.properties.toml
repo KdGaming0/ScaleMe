@@ -1,0 +1,35 @@
+# See https://stonecutter.kikugie.dev/wiki/config/properties#centralized-properties
+mod.id = "scaleme"
+mod.name = "Scale Me"
+mod.group = "com.github.kd_gaming1"
+mod.version = "3.2.0"
+
+deps.fabric_loader = "0.19.2"
+loomx.loom_version = "1.16-SNAPSHOT"
+
+["1.21.10"]
+mod.mc_compat = ">=1.21.9 <=1.21.10"
+mod.mc_releases = ["1.21.9", "1.21.10"]
+
+deps.fabric_api = "0.138.4+1.21.10"
+deps.midnightlib_version = "1.9.2+1.21.10-fabric"
+deps.hm_api_version = "1.0.1+1.21.2"
+deps.modmenu_version = "16.0.0-rc.1"
+
+["1.21.11"]
+mod.mc_compat = "1.21.11"
+mod.mc_releases = ["1.21.11"]
+
+deps.fabric_api = "0.141.3+1.21.11"
+deps.midnightlib_version = "1.9.2+1.21.11-fabric"
+deps.hm_api_version = "1.0.1+1.21.2"
+deps.modmenu_version = "17.0.0-beta.2"
+
+["26.1"]
+mod.mc_compat = "~26.1"
+mod.mc_releases = ["26.1", "26.1.1", "26.1.2"]
+
+deps.fabric_api = "0.144.1+26.1"
+deps.midnightlib_version = "1.9.3+26.1-fabric"
+deps.hm_api_version = "1.0.3+26.1"
+deps.modmenu_version = "18.0.0-alpha.8"

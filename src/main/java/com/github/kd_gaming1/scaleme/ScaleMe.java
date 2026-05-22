@@ -11,13 +11,17 @@ import net.azureaaron.hmapi.network.HypixelNetworking;
 import net.azureaaron.hmapi.network.packet.v1.s2c.LocationUpdateS2CPacket;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+//? if >=26.1 {
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+//?} else {
+/*import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+ *///?}
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 //? if >=1.21.11 {
-/*import net.minecraft.util.Util;
- *///?} else {
-import net.minecraft.Util;
-//?}
+import net.minecraft.util.Util;
+        //?} else {
+/*import net.minecraft.Util;
+ *///?}
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.tags.ItemTags;
@@ -44,7 +48,11 @@ public class ScaleMe implements ClientModInitializer {
                 (handler, client) -> HypixelLocationState.reset()
         );
 
-        KeyMapping blockKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        //? if >=26.1 {
+        KeyMapping blockKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
+                //?} else {
+                /*KeyMapping blockKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+                 *///?}
                 "key.scaleme.sword_block",
                 InputConstants.Type.MOUSE,
                 GLFW.GLFW_MOUSE_BUTTON_RIGHT,

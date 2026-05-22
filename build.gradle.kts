@@ -1,19 +1,36 @@
 plugins {
+    // This plugin applies the correct loom variant based on the Minecraft version
+    id("dev.kikugie.loom-back-compat")
     `maven-publish`
-    id("fabric-loom")
     id("me.modmuss50.mod-publish-plugin")
 }
 
-version = "${property("mod.version")}+${stonecutter.current.version}"
+// DO NOT set group = ...!
+version = "${property("mod.version")}+${sc.current.version}"
 base.archivesName = property("mod.id") as String
+
+val requiredJava: JavaVersion = when {
+    sc.current.parsed >= "26.1" -> JavaVersion.VERSION_25
+    sc.current.parsed >= "1.20.5" -> JavaVersion.VERSION_21
+    else -> JavaVersion.VERSION_17
+}
+
+// This can be used for publishing on Modrinth and Curseforge
+val compatibleVersions: List<String> =
+    sc.properties.rawOrNull("mod", "mc_releases")?.asList().orEmpty().map { it.toString() }
 
 repositories {
     mavenCentral()
+    /*
+     * Restricts dependency search of the given [groups] to the [maven URL][url],
+     * improving the setup speed.
+     */
     fun strictMaven(url: String, alias: String, vararg groups: String) = exclusiveContent {
         forRepository { maven(url) { name = alias } }
         filter { groups.forEach(::includeGroup) }
     }
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
+    strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     exclusiveContent {
         forRepository {
@@ -21,7 +38,6 @@ repositories {
                 url = uri("https://maven.azureaaron.net/releases")
             }
         }
-
         filter {
             includeGroup("net.azureaaron")
         }
@@ -29,8 +45,9 @@ repositories {
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${stonecutter.current.version}")
-    mappings(loom.officialMojangMappings())
+    minecraft("com.mojang:minecraft:${sc.current.version}")
+    // Applies Mojang Mappings
+    loomx.applyMojangMappings()
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${property("deps.fabric_api")}")
 
@@ -58,10 +75,13 @@ loom {
 
 java {
     withSourcesJar()
-    val java = if (stonecutter.eval(stonecutter.current.version, ">=1.20.5"))
-        JavaVersion.VERSION_21 else JavaVersion.VERSION_17
-    targetCompatibility = java
-    sourceCompatibility = java
+    targetCompatibility = requiredJava
+    sourceCompatibility = requiredJava
+
+    toolchain {
+        vendor = JvmVendorSpec.ADOPTIUM
+        languageVersion = JavaLanguageVersion.of(requiredJava.majorVersion)
+    }
 }
 
 tasks {
@@ -69,7 +89,7 @@ tasks {
         inputs.property("id", project.property("mod.id"))
         inputs.property("name", project.property("mod.name"))
         inputs.property("version", project.property("mod.version"))
-        inputs.property("minecraft", project.property("mod.mc_dep"))
+        inputs.property("minecraft", project.property("mod.mc_compat"))
         inputs.property("fabricloader", project.property("deps.fabric_loader"))
         inputs.property("midnightlib", project.property("deps.midnightlib_version"))
         inputs.property("fabric_api", project.property("deps.fabric_api"))
@@ -79,7 +99,7 @@ tasks {
             "id" to project.property("mod.id"),
             "name" to project.property("mod.name"),
             "version" to project.property("mod.version"),
-            "minecraft" to project.property("mod.mc_dep"),
+            "minecraft" to project.property("mod.mc_compat"),
             "fabricloader" to project.property("deps.fabric_loader"),
             "midnightlib" to project.property("deps.midnightlib_version"),
             "fabric_api" to project.property("deps.fabric_api"),
@@ -95,31 +115,32 @@ tasks {
         }
     }
 
-    // Builds the version into a shared folder in `build/libs/${mod version}/`
+    // Builds the version into a shared folder in `build/libs/${mod version}/
     register<Copy>("buildAndCollect") {
         group = "build"
-        from(remapJar.map { it.archiveFile }, remapSourcesJar.map { it.archiveFile })
+        // loomx.mod(Sources)Jar returns the jar task for the applied loom variant
+        from(loomx.modJar.map { it.archiveFile }, loomx.modSourcesJar.map { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
         dependsOn("build")
     }
 }
 
 publishMods {
-    file = tasks.remapJar.map { it.archiveFile.get() }
-    additionalFiles.from(tasks.remapSourcesJar.map { it.archiveFile.get() })
-    displayName = "${property("mod.name")} ${property("mod.version")} for ${stonecutter.current.version}"
+    file = loomx.modJar.flatMap { it.archiveFile }
+    additionalFiles.from(loomx.modSourcesJar.flatMap { it.archiveFile })
+    displayName = "${property("mod.name")} ${property("mod.version")} for ${sc.current.version}"
     version = property("mod.version") as String
     changelog = rootProject.file("CHANGELOG.md").readText()
     type = STABLE
     modLoaders.add("fabric")
 
     dryRun = providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
-        || providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null
+            || providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null
 
     modrinth {
         projectId = property("publish.modrinth") as String
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(stonecutter.current.version)
+        compatibleVersions.forEach { minecraftVersions.add(it) }
         requires {
             slug = "P7dR8mSH" // Fabric API
         }
@@ -131,7 +152,7 @@ publishMods {
     curseforge {
         projectId = property("publish.curseforge") as String
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        minecraftVersions.add(stonecutter.current.version)
+        compatibleVersions.forEach { minecraftVersions.add(it) }
         requires {
             slug = "fabric-api"
         }

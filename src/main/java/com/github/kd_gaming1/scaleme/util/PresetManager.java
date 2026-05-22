@@ -156,7 +156,7 @@ public final class PresetManager {
         }
 
         JsonObject data = root.getAsJsonObject("d");
-        if (data == null || data.size() == 0) {
+        if (data == null || data.isEmpty()) {
             return "§cPreset contains no data.";
         }
 
@@ -224,12 +224,12 @@ public final class PresetManager {
             Object current = getFieldValue(name);
             if (current == null) continue;
             if (!valuesEqual(current, def)) {
-                if (current instanceof Boolean) {
-                    out.addProperty(name, (Boolean) current);
-                } else if (current instanceof Float) {
-                    out.addProperty(name, (Float) current);
-                } else if (current instanceof Number) {
-                    out.addProperty(name, ((Number) current).floatValue());
+                switch (current) {
+                    case Boolean b -> out.addProperty(name, b);
+                    case Float v -> out.addProperty(name, v);
+                    case Number number -> out.addProperty(name, number.floatValue());
+                    default -> {
+                    }
                 }
             }
         }

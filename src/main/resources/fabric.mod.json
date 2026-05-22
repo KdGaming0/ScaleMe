@@ -20,6 +20,7 @@
   "depends": {
     "fabricloader": ">=${fabricloader}",
     "minecraft": "${minecraft}",
+    "fabric-api": ">=${fabric_api}",
     "midnightlib": ">=${midnightlib}"
   }
 }

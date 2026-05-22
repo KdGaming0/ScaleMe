@@ -53,10 +53,10 @@ public class ItemInHandRendererMixin {
             at = @At(
                     value = "INVOKE",
                     //? if >=1.21.11 {
-                    /*target = "Lnet/minecraft/client/player/LocalPlayer;getItemSwapScale(F)F"
-                    *///?} else {
-                    target = "Lnet/minecraft/client/player/LocalPlayer;getAttackStrengthScale(F)F"
-                    //?}
+                    target = "Lnet/minecraft/client/player/LocalPlayer;getItemSwapScale(F)F"
+                    //?} else {
+                    /*target = "Lnet/minecraft/client/player/LocalPlayer;getAttackStrengthScale(F)F"
+                    *///?}
             )
     )
     private float scaleme$suppressSwingBobbing(LocalPlayer player, float partialTick, Operation<Float> original) {
@@ -121,12 +121,12 @@ public class ItemInHandRendererMixin {
      * <p>Vanilla defaults: X = -0.4, Y = 0.2, Z = -0.2
      */
     //? if >=1.21.11 {
-    /*@Inject(method = "swingArm", at = @At("HEAD"), cancellable = true)
-    private void scaleme$overrideSwingDrift(float attackProgress, PoseStack poseStack, int handSide, HumanoidArm arm, CallbackInfo ci) {
-    *///?} else {
     @Inject(method = "swingArm", at = @At("HEAD"), cancellable = true)
+    private void scaleme$overrideSwingDrift(float attackProgress, PoseStack poseStack, int handSide, HumanoidArm arm, CallbackInfo ci) {
+    //?} else {
+    /*@Inject(method = "swingArm", at = @At("HEAD"), cancellable = true)
     private void scaleme$overrideSwingDrift(float attackProgress, float inverseArmHeight, PoseStack poseStack, int handSide, HumanoidArm arm, CallbackInfo ci) {
-        //?}
+        *///?}
 
         if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.SWING_OVERRIDE)) return;
         ci.cancel();
@@ -140,8 +140,8 @@ public class ItemInHandRendererMixin {
         poseStack.translate(ScaleMeConfig.swingArmXMultiplyBySide ? handSide * driftX : driftX, driftY, driftZ);
 
         //? if =1.21.10 {
-        applyItemArmTransform(poseStack, arm, inverseArmHeight);
-        //?}
+        /*applyItemArmTransform(poseStack, arm, inverseArmHeight);
+        *///?}
         applyItemArmAttackTransform(poseStack, arm, attackProgress);
     }
 
