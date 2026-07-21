@@ -66,7 +66,11 @@ public class Commands {
 
         client.schedule(() -> {
             try {
-                client.setScreen(MidnightConfig.getScreen(client.screen, ScaleMe.MOD_ID));
+                //? if >=26.2 {
+                client.gui.setScreen(MidnightConfig.getScreen(client.gui.screen(), ScaleMe.MOD_ID));
+                //?} else {
+                /*client.setScreen(MidnightConfig.getScreen(client.screen, ScaleMe.MOD_ID));
+                *///?}
             } catch (IllegalStateException | NullPointerException e) {
                 ScaleMe.LOGGER.error("Failed to open config menu: {}", e.getMessage());
             }

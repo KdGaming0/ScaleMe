@@ -8,7 +8,7 @@ stonecutter tasks {
     order("publishCurseforge")
 }
 
-stonecutter active "26.1"
+stonecutter active "26.2"
 
 // See https://stonecutter.kikugie.dev/wiki/config/params
 stonecutter parameters {
@@ -23,6 +23,9 @@ stonecutter parameters {
         }
         string(current.parsed >= "26.1") {
             replace("classTweaker v1 named", "classTweaker v1 official")
+        }
+        string(current.parsed < "26.2") {
+            replace("submitArmWithItem", "renderArmWithItem")
         }
     }
 }
