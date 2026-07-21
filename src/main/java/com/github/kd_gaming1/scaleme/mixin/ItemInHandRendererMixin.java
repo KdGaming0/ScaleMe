@@ -68,7 +68,7 @@ public class ItemInHandRendererMixin {
 
     // ── Hand Context ────────────────────────────────────────────────────────
 
-    @Inject(method = "renderArmWithItem", at = @At("HEAD"))
+    @Inject(method = "submitArmWithItem", at = @At("HEAD"))
     private void scaleme$captureHand(
             AbstractClientPlayer player,
             float tickDelta, float pitch,
@@ -90,7 +90,7 @@ public class ItemInHandRendererMixin {
         }
     }
 
-    @Inject(method = "renderArmWithItem", at = @At("RETURN"))
+    @Inject(method = "submitArmWithItem", at = @At("RETURN"))
     private void scaleme$releaseHand(
             AbstractClientPlayer player,
             float tickDelta, float pitch,
@@ -190,7 +190,7 @@ public class ItemInHandRendererMixin {
     }
 
     /** Applies a blocking pose when holding a sword and right-clicking. */
-    @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "submitArmWithItem", at = @At("HEAD"), cancellable = true)
     private void scaleme$applySwordBlockPose(
             AbstractClientPlayer player, float tickDelta, float pitch,
             InteractionHand hand, float swingProgress, ItemStack heldItem,

@@ -4,6 +4,9 @@ import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.world.entity.EntityType;
+//? if >=26.2 {
+import net.minecraft.world.entity.EntityTypes;
+//?}
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +19,11 @@ public class LivingEntityRendererMixin<T extends LivingEntity, S extends LivingE
     @Inject(method = "extractRenderState*", at = @At("TAIL"))
     private void scaleme$villagerScale(T entity, S state, float partialTicks, CallbackInfo ci) {
         if (ScaleMeConfig.villagerNpcScale == 1f) return;
-        if (entity.getType() != EntityType.VILLAGER) return;
+        //? if >=26.2 {
+        if (entity.getType() != EntityTypes.VILLAGER) return;
+        //?} else {
+        /*if (entity.getType() != EntityType.VILLAGER) return;
+        *///?}
 
         state.scale = entity.getScale() * ScaleMeConfig.villagerNpcScale;
     }

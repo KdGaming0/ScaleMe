@@ -15,6 +15,9 @@ import net.minecraft.client.renderer.state.level.CameraRenderState;
 /*import net.minecraft.client.renderer.state.CameraRenderState;
  *///?}
 import net.minecraft.world.entity.EntityType;
+//? if >=26.2 {
+import net.minecraft.world.entity.EntityTypes;
+//?}
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,7 +44,11 @@ public class EntityRenderDispatcherMixin {
         if (!FeatureFlags.isEnabled(FeatureFlags.HIDE_PLAYERS)) return;
         if (FeatureFlags.isEnabled(FeatureFlags.HIDE_PLAYERS_SB_ONLY) && !HypixelLocationState.isOnSkyblock()) return;
         if (!(renderState instanceof AvatarRenderState avatarState)) return;
-        if (avatarState.entityType != EntityType.PLAYER) return;
+        //? if >=26.2 {
+        if (avatarState.entityType != EntityTypes.PLAYER) return;
+        //?} else {
+        /*if (avatarState.entityType != EntityType.PLAYER) return;
+        *///?}
 
         var mc = net.minecraft.client.Minecraft.getInstance();
         if (mc.player != null && avatarState.id == mc.player.getId()) return;
