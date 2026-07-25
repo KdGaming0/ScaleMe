@@ -2,10 +2,10 @@
 mod.id = "scaleme"
 mod.name = "Scale Me"
 mod.group = "com.github.kd_gaming1"
-mod.version = "3.2.1"
+mod.version = "3.3.0"
 
-deps.fabric_loader = "0.19.2"
-loomx.loom_version = "1.16-SNAPSHOT"
+deps.fabric_loader = "0.19.3"
+loomx.loom_version = "1.17-SNAPSHOT"
 
 ["1.21.10"]
 mod.mc_compat = ">=1.21.9 <=1.21.10"
@@ -33,3 +33,12 @@ deps.fabric_api = "0.144.1+26.1"
 deps.midnightlib_version = "1.9.3+26.1-fabric"
 deps.hm_api_version = "1.0.3+26.1"
 deps.modmenu_version = "18.0.0-alpha.8"
+
+["26.2"]
+mod.mc_compat = "~26.2"
+mod.mc_releases = ["26.2"]
+
+deps.fabric_api = "0.155.2+26.2"
+deps.midnightlib_version = "1.9.3+26.2-fabric"
+deps.hm_api_version = "1.0.4+26.2"
+deps.modmenu_version = "20.0.1"

@@ -9,11 +9,7 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
-//? if >=26.1 {
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-//?} else {
-/*import net.minecraft.client.renderer.state.CameraRenderState;
- *///?}
 import net.minecraft.world.entity.EntityType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

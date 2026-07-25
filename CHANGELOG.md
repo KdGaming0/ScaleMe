@@ -1,3 +1,3 @@
-# Sacle Me 3.2.1
+# Sacle Me 3.3.0
 
-- fix: black screen when opening the game on 1.21.10/11
+- feat: added support for Minecraft 26.2

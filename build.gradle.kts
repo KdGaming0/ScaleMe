@@ -125,39 +125,45 @@ tasks {
     }
 }
 
-publishMods {
-    file = loomx.modJar.flatMap { it.archiveFile }
-    additionalFiles.from(loomx.modSourcesJar.flatMap { it.archiveFile })
-    displayName = "${property("mod.name")} ${property("mod.version")} for ${sc.current.version}"
-    version = property("mod.version") as String
-    changelog = rootProject.file("CHANGELOG.md").readText()
-    type = STABLE
-    modLoaders.add("fabric")
+if (sc.current.version in compatibleVersions) {
+    val changelogFile = rootProject.file("CHANGELOG.md")
+    val publishChangelog = if (changelogFile.exists()) changelogFile.readText() else "No changelog provided."
 
-    dryRun = providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
-            || providers.environmentVariable("CURSEFORGE_TOKEN").getOrNull() == null
+    publishMods {
+        file.set(loomx.modJar.flatMap { it.archiveFile })
+        additionalFiles.from(loomx.modSourcesJar.flatMap { it.archiveFile })
 
-    modrinth {
-        projectId = property("publish.modrinth") as String
-        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        compatibleVersions.forEach { minecraftVersions.add(it) }
-        requires {
-            slug = "P7dR8mSH" // Fabric API
-        }
-        optional {
-            slug = "mOgUt4GM" // ModMenu
-        }
-    }
+        displayName.set("${property("mod.name")} v${property("mod.version")} for mc${sc.current.version}")
+        version.set("v${property("mod.version")}-mc${sc.current.version}")
+        changelog.set(publishChangelog)
+        type.set(BETA)
+        modLoaders.add("fabric")
 
-    curseforge {
-        projectId = property("publish.curseforge") as String
-        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        compatibleVersions.forEach { minecraftVersions.add(it) }
-        requires {
-            slug = "fabric-api"
+        dryRun.set(providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null)
+
+        val modrinthId = providers.gradleProperty("publish.modrinth").orNull
+        if (!modrinthId.isNullOrEmpty()) {
+            modrinth {
+                projectId.set(modrinthId)
+                accessToken.set(providers.environmentVariable("MODRINTH_TOKEN"))
+                minecraftVersions.addAll(compatibleVersions)
+                requires { slug = "P7dR8mSH" } // Fabric API
+                optional { slug = "mOgUt4GM" } // ModMenu
+                embeds   { slug = "codAaoxh" } // MidnightLib
+            }
         }
-        optional {
-            slug = "modmenu"
+
+        val curseforgeId = providers.gradleProperty("publish.curseforge").orNull
+        if (!curseforgeId.isNullOrEmpty()) {
+            curseforge {
+                projectId.set(curseforgeId)
+                accessToken.set(providers.environmentVariable("CURSEFORGE_TOKEN"))
+                minecraftVersions.addAll(compatibleVersions)
+                client.set(true)
+                requires { slug = "fabric-api" } // Fabric API
+                optional { slug = "modmenu" } // ModMenu
+                embeds   { slug = "midnightlib" } // MidnightLib
+            }
         }
     }
 }

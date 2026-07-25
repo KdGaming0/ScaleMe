@@ -7,23 +7,13 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
-//? if >=26.1 {
 import net.fabricmc.fabric.api.client.command.v2.ClientCommands;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-//?} else {
-/*import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-*///?}
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
-//? if >=26.1 {
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.literal;
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.argument;
-//?} else {
-/*import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal;
-import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument;
-*///?}
 
 public class Commands {
     public static void register() {
