@@ -60,7 +60,7 @@ public class ItemInHandRendererMixin {
             )
     )
     private float scaleme$suppressSwingBobbing(LocalPlayer player, float partialTick, Operation<Float> original) {
-        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.DISABLE_SWING_BOB)) {
+        if (!FeatureFlags.isEnabled(FeatureFlags.DISABLE_SWING_BOB)) {
             return original.call(player, partialTick);
         }
         return 1.0f;
@@ -83,7 +83,7 @@ public class ItemInHandRendererMixin {
 
         HandContext.renderDepth++;
 
-        if (FeatureFlags.isEnabled(FeatureFlags.HAND_TRANSFORM)) {
+        if (FeatureFlags.isEnabled(FeatureFlags.ITEM_TRANSFORM)) {
             HandContext.update(hand);
         } else {
             HandContext.currentHand = hand;
@@ -128,7 +128,7 @@ public class ItemInHandRendererMixin {
     private void scaleme$overrideSwingDrift(float attackProgress, float inverseArmHeight, PoseStack poseStack, int handSide, HumanoidArm arm, CallbackInfo ci) {
         *///?}
 
-        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.SWING_OVERRIDE)) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SWING_OVERRIDE)) return;
         ci.cancel();
 
         float sqrtAttack = Mth.sqrt(attackProgress);
@@ -151,7 +151,7 @@ public class ItemInHandRendererMixin {
      *  Vanilla defaults: preRotation Y = 45°, arc Y = -20°, Z = -20°, X chop = -80° */
     @Inject(method = "applyItemArmAttackTransform", at = @At("HEAD"), cancellable = true)
     private void scaleme$overrideSwingArc(PoseStack poseStack, HumanoidArm arm, float attackProgress, CallbackInfo ci) {
-        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.SWING_OVERRIDE)) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SWING_OVERRIDE)) return;
         ci.cancel();
 
         int armSideSign = (arm == HumanoidArm.RIGHT) ? 1 : -1;
@@ -173,7 +173,7 @@ public class ItemInHandRendererMixin {
      *  Vanilla: translate(invert * 0.56, -0.52 + inverseArmHeight * -0.6, -0.72) */
     @Inject(method = "applyItemArmTransform", at = @At("HEAD"), cancellable = true)
     private void scaleme$overrideArmBasePosition(PoseStack poseStack, HumanoidArm arm, float inverseArmHeight, CallbackInfo ci) {
-        if (!FeatureFlags.isEnabled(FeatureFlags.HAND_TRANSFORM | FeatureFlags.ARM_POSITION)) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.ARM_POSITION)) return;
         ci.cancel();
 
         int invert = (arm == HumanoidArm.RIGHT) ? 1 : -1;

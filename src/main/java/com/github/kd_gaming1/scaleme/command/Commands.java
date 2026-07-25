@@ -29,7 +29,6 @@ public class Commands {
                                     builder.suggest("anim");
                                     builder.suggest("scale");
                                     builder.suggest("view");
-                                    builder.suggest("item");
                                     return builder.buildFuture();
                                 })
                                 .executes(ctx -> {
@@ -94,10 +93,10 @@ public class Commands {
     private static String resolveCategory(String input) {
         return switch (input.toLowerCase()) {
             case "hand" -> ScaleMeConfig.HAND;
-            case "anim", "animation" -> ScaleMeConfig.ANIM;
-            case "scale", "scaling" -> ScaleMeConfig.SCALE;
+            case "anim", "animation", "swing" -> ScaleMeConfig.ANIM;
+            // "item"/"ground" kept as aliases — dropped items moved into the Sizes category
+            case "scale", "scaling", "size", "sizes", "item", "ground" -> ScaleMeConfig.SCALE;
             case "view", "camera" -> ScaleMeConfig.VIEW;
-            case "item", "ground" -> ScaleMeConfig.ITEM;
             default -> null;
         };
     }

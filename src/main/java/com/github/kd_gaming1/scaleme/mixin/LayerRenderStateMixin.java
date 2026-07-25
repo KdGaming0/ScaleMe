@@ -28,7 +28,7 @@ public class LayerRenderStateMixin {
     private void onSubmitHead(PoseStack poseStack, SubmitNodeCollector collector,
                               int lightCoords, int overlayCoords, int outlineColor, CallbackInfo ci) {
 
-        if (!FeatureFlags.isEnabled(FeatureFlags.HAND_TRANSFORM | FeatureFlags.ITEM_TRANSFORM)
+        if (!FeatureFlags.isEnabled(FeatureFlags.ITEM_TRANSFORM)
                 || HandContext.renderDepth == 0) return;
         if (!HandContext.activeTransform) return;
 

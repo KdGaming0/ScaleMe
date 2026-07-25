@@ -30,7 +30,6 @@ public class ItemEntityRendererMixin {
             CallbackInfo ci
     ) {
         if (!FeatureFlags.isEnabled(FeatureFlags.GROUND_ITEM_SCALE)) return;
-        if (ScaleMeConfig.groundItemScale == 1.0f) return;
 
         poseStack.scale(ScaleMeConfig.groundItemScale, ScaleMeConfig.groundItemScale, ScaleMeConfig.groundItemScale);
     }

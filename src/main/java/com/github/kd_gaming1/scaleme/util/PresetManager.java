@@ -29,7 +29,9 @@ import java.util.Map;
  */
 public final class PresetManager {
 
-    private static final int SCHEMA_VERSION = 1;
+    // v2 dropped the master toggles (enableHandItemTransform, enableAnimOverrides,
+    // enableGroundItemScale); their sub-toggles and sliders now stand on their own.
+    private static final int SCHEMA_VERSION = 2;
     private static final Gson GSON = new Gson();
 
     /** Category → ordered map of field-name → default-value. */
@@ -37,7 +39,6 @@ public final class PresetManager {
 
     static {
         Map<String, Object> hand = new LinkedHashMap<>();
-        hand.put("enableHandItemTransform", false);
         hand.put("enableArmPositionOverride", false);
         hand.put("armBaseX", 0.56f);
         hand.put("armBaseY", -0.52f);
@@ -67,29 +68,29 @@ public final class PresetManager {
 
         Map<String, Object> anim = new LinkedHashMap<>();
         anim.put("enableSwordBlock", false);
-        anim.put("enableAnimOverrides", false);
-        anim.put("disableSwingBobbing", false);
-        anim.put("ignoreSwingSpeedEffects", false);
-        anim.put("swingAnimationSpeed", 1f);
         anim.put("disableSwingAnimation", false);
+        anim.put("swingAnimationSpeed", 1f);
+        anim.put("ignoreSwingSpeedEffects", false);
+        anim.put("disableSwingBobbing", false);
         anim.put("enableSwingOverride", false);
+        anim.put("swingArcXAmount", -80f);
+        anim.put("swingArcYAmount", -20f);
+        anim.put("swingArcZAmount", -20f);
+        anim.put("swingPreRotationY", 45f);
+        anim.put("swingCounterRotation", true);
         anim.put("swingArmXScale", -0.4f);
         anim.put("swingArmYScale", 0.2f);
         anim.put("swingArmZScale", -0.2f);
         anim.put("swingArmXMultiplyBySide", true);
-        anim.put("swingPreRotationY", 45f);
-        anim.put("swingArcYAmount", -20f);
-        anim.put("swingArcZAmount", -20f);
-        anim.put("swingArcXAmount", -80f);
-        anim.put("swingCounterRotation", true);
         DEFAULTS.put(ScaleMeConfig.ANIM, anim);
 
         Map<String, Object> scale = new LinkedHashMap<>();
-        scale.put("scaleNameTags", false);
         scale.put("playerScale", 1f);
         scale.put("otherPlayersScale", 1f);
         scale.put("villagerNpcScale", 1f);
         scale.put("hypixelNpcScale", 1f);
+        scale.put("scaleNameTags", false);
+        scale.put("groundItemScale", 1f);
         DEFAULTS.put(ScaleMeConfig.SCALE, scale);
 
         Map<String, Object> view = new LinkedHashMap<>();
@@ -100,11 +101,6 @@ public final class PresetManager {
         view.put("hidePlayers", false);
         view.put("hidePlayersOnlyOnSkyblock", false);
         DEFAULTS.put(ScaleMeConfig.VIEW, view);
-
-        Map<String, Object> item = new LinkedHashMap<>();
-        item.put("enableGroundItemScale", false);
-        item.put("groundItemScale", 1f);
-        DEFAULTS.put(ScaleMeConfig.ITEM, item);
     }
 
     private PresetManager() {}
@@ -240,10 +236,9 @@ public final class PresetManager {
         if (category == null) return "§7All settings";
         return switch (category) {
             case ScaleMeConfig.HAND -> "§7Held Item";
-            case ScaleMeConfig.ANIM -> "§7Item Animation";
-            case ScaleMeConfig.SCALE -> "§7Entity Scale";
+            case ScaleMeConfig.ANIM -> "§7Swing Animation";
+            case ScaleMeConfig.SCALE -> "§7Sizes";
             case ScaleMeConfig.VIEW -> "§7Camera & Crosshair";
-            case ScaleMeConfig.ITEM -> "§7Dropped Items";
             default -> "§7Custom";
         };
     }

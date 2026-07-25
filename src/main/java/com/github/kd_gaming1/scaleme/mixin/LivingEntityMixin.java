@@ -26,12 +26,10 @@ public class LivingEntityMixin {
      */
     @Inject(method = "getCurrentSwingDuration", at = @At("RETURN"), cancellable = true)
     private void modifySwingDuration(CallbackInfoReturnable<Integer> cir) {
-        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES)) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.SWING_DURATION)) return;
 
         boolean ignore = FeatureFlags.isEnabled(FeatureFlags.IGNORE_SWING_SPEED);
         float speed = ScaleMeConfig.swingAnimationSpeed;
-
-        if (!ignore && speed == 1f) return;
 
         LivingEntity self = (LivingEntity) (Object) this;
         if (!self.level().isClientSide()) return;
@@ -48,7 +46,7 @@ public class LivingEntityMixin {
     /** Suppresses the attack animation for the local player when configured. */
     @Inject(method = "getAttackAnim", at = @At("RETURN"), cancellable = true)
     private void suppressAttackAnim(float partialTick, CallbackInfoReturnable<Float> cir) {
-        if (!FeatureFlags.isEnabled(FeatureFlags.ANIM_OVERRIDES | FeatureFlags.DISABLE_SWING_ANIM)) return;
+        if (!FeatureFlags.isEnabled(FeatureFlags.DISABLE_SWING_ANIM)) return;
 
         LivingEntity self = (LivingEntity) (Object) this;
         if (!self.level().isClientSide()) return;
