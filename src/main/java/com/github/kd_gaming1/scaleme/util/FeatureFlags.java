@@ -33,6 +33,8 @@ public final class FeatureFlags {
     public static final int HIDE_PLAYERS             = 1 << 15;
     public static final int HIDE_PLAYERS_SB_ONLY     = 1 << 16;
     public static final int GROUND_ITEM_SCALE        = 1 << 17;
+    public static final int SUPPRESS_REPEAT_SWING    = 1 << 18;
+    public static final int HOLD_REPEAT_SWING_BOTTOM = 1 << 19;
 
     private static int flags = 0;
 
@@ -50,6 +52,8 @@ public final class FeatureFlags {
         if (ScaleMeConfig.ignoreSwingSpeedEffects)        f |= IGNORE_SWING_SPEED;
         if (ScaleMeConfig.enableSwingOverride)            f |= SWING_OVERRIDE;
         if (ScaleMeConfig.disableSwingAnimation)          f |= DISABLE_SWING_ANIM;
+        if (ScaleMeConfig.suppressRepeatedSwingAnimation) f |= SUPPRESS_REPEAT_SWING;
+        if (ScaleMeConfig.holdRepeatedSwingsAtBottom)     f |= HOLD_REPEAT_SWING_BOTTOM;
 
         // Swing duration only needs touching when the base length or its modifiers change.
         if (ScaleMeConfig.ignoreSwingSpeedEffects

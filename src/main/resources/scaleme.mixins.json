@@ -15,6 +15,7 @@
     "ItemInHandRendererMixin",
     "LayerRenderStateMixin",
     "LivingEntityMixin",
+    "LocalPlayerMixin",
     "LivingEntityRendererMixin",
     "GuiMixin"
   ]

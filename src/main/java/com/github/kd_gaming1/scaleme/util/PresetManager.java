@@ -69,6 +69,8 @@ public final class PresetManager {
         Map<String, Object> anim = new LinkedHashMap<>();
         anim.put("enableSwordBlock", false);
         anim.put("disableSwingAnimation", false);
+        anim.put("suppressRepeatedSwingAnimation", false);
+        anim.put("holdRepeatedSwingsAtBottom", false);
         anim.put("swingAnimationSpeed", 1f);
         anim.put("ignoreSwingSpeedEffects", false);
         anim.put("disableSwingBobbing", false);

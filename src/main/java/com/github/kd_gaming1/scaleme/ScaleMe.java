@@ -5,6 +5,7 @@ import com.github.kd_gaming1.scaleme.config.ScaleMeConfig;
 import com.github.kd_gaming1.scaleme.util.BlockingState;
 import com.github.kd_gaming1.scaleme.util.FeatureFlags;
 import com.github.kd_gaming1.scaleme.util.HypixelLocationState;
+import com.github.kd_gaming1.scaleme.util.SwingHoldState;
 import eu.midnightdust.lib.config.MidnightConfig;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.azureaaron.hmapi.network.HypixelNetworking;
@@ -36,9 +37,10 @@ public class ScaleMe implements ClientModInitializer {
 
         HypixelLocationState.register();
 
-        ClientPlayConnectionEvents.DISCONNECT.register(
-                (handler, client) -> HypixelLocationState.reset()
-        );
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+            HypixelLocationState.reset();
+            SwingHoldState.reset();
+        });
 
         KeyMapping blockKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.scaleme.sword_block",
@@ -50,7 +52,14 @@ public class ScaleMe implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             FeatureFlags.update();
 
-            if (client.player == null) return;
+            if (client.player == null) {
+                SwingHoldState.reset();
+                return;
+            }
+
+            SwingHoldState.update(FeatureFlags.isEnabled(FeatureFlags.SUPPRESS_REPEAT_SWING)
+                    && client.options.keyAttack.isDown());
+
             BlockingState.isBlocking = FeatureFlags.isEnabled(FeatureFlags.SWORD_BLOCK)
                     && blockKey.isDown()
                     && client.player.getMainHandItem().is(ItemTags.SWORDS);

@@ -99,6 +99,12 @@
   "scaleme.midnightconfig.disableSwingAnimation": "Turn Off Swinging Entirely",
   "scaleme.midnightconfig.disableSwingAnimation.tooltip": "Your arm stays completely still when you click.\n\nThis replaces every other option in this category, so the rest are hidden while it is on.",
 
+  "scaleme.midnightconfig.suppressRepeatedSwingAnimation": "Hide Repeated Swings While Holding Attack",
+  "scaleme.midnightconfig.suppressRepeatedSwingAnimation.tooltip": "Shows the first swing when you hold Attack, then stops later swings until you release the button.\n\nThis changes the visual animation only — attacking and mining continue normally.",
+
+  "scaleme.midnightconfig.holdRepeatedSwingsAtBottom": "Hold Repeated Swings at Bottom",
+  "scaleme.midnightconfig.holdRepeatedSwingsAtBottom.tooltip": "Keeps your arm in its deepest downward chop after the first swing finishes.\n\nTurn this off to let the arm return to its normal resting position instead.",
+
   "scaleme.midnightconfig.swingAnimationSpeed": "Swing Speed",
   "scaleme.midnightconfig.swingAnimationSpeed.tooltip": "How quickly the swing plays. 1.0 is normal speed, higher is faster.\n\nThis changes the animation only — it does not affect how fast you can actually attack or mine.",
 

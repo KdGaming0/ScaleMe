@@ -174,6 +174,15 @@ public class ScaleMeConfig extends MidnightConfig {
     @Entry(category = ANIM)
     public static boolean disableSwingAnimation = false;
 
+    @Entry(category = ANIM)
+    @Condition(requiredOption = "disableSwingAnimation", requiredValue = "false")
+    public static boolean suppressRepeatedSwingAnimation = false;
+
+    @Entry(category = ANIM)
+    @Condition(requiredOption = "disableSwingAnimation", requiredValue = "false")
+    @Condition(requiredOption = "suppressRepeatedSwingAnimation", requiredValue = "true")
+    public static boolean holdRepeatedSwingsAtBottom = false;
+
     @Entry(category = ANIM, isSlider = true, min = 0.1f, max = 2f)
     @Condition(requiredOption = "disableSwingAnimation", requiredValue = "false")
     public static float swingAnimationSpeed = 1f;
