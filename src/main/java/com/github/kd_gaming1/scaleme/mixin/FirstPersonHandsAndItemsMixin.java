@@ -5,12 +5,14 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.player.LocalPlayer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 
 /**
  * 26.3 moved the held-item height ticking out of the renderer into this class. Targeted by name
  * so the mixin is simply never applied on versions where the class does not exist.
  */
+@Pseudo
 @Mixin(targets = "net.minecraft.client.player.FirstPersonHandsAndItems")
 public class FirstPersonHandsAndItemsMixin {
 
