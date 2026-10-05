@@ -11,6 +11,7 @@
     "AvatarRendererMixin",
     "CameraTypeMixin",
     "EntityRenderDispatcherMixin",
+    "FirstPersonHandsAndItemsMixin",
     "ItemEntityRendererMixin",
     "ItemInHandRendererMixin",
     "LayerRenderStateMixin",

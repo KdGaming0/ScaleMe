@@ -1,3 +1,3 @@
-# Sacle Me 3.3.1
+# Sacle Me 3.3.2
 
-- feat: optionally stop repeated swing animations while holding Attack, with top or bottom resting poses
+- feat: support Minecraft 26.3

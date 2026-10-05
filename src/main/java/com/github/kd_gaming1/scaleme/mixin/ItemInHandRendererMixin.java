@@ -16,6 +16,11 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+//? if >=26.3 {
+/*import net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState;
+import net.minecraft.client.renderer.state.level.PlayerRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+*///?}
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.InteractionHand;
@@ -48,6 +53,7 @@ public class ItemInHandRendererMixin {
      * The target method was renamed between 1.21.10 and 1.21.11,
      * so the {@code @At} target is the only Stonecutter-branched line.
      */
+    //? if <26.3 {
     @WrapOperation(
             method = "tick()V",
             at = @At(
@@ -65,11 +71,25 @@ public class ItemInHandRendererMixin {
         }
         return 1.0f;
     }
+    //?}
 
     // ── Hand Context ────────────────────────────────────────────────────────
 
     @Inject(method = "renderArmWithItem", at = @At("HEAD"))
     private void scaleme$captureHand(
+            //? if >=26.3 {
+            /*PlayerRenderState playerState,
+            FirstPersonHandsAndItemsRenderState handsState,
+            float tickDelta, float pitch,
+            InteractionHand hand,
+            float swingProgress,
+            ItemStack heldItem,
+            float equipProgress,
+            PoseStack poseStack,
+            SubmitNodeCollector collector,
+            int packedLight,
+            CallbackInfo ci) {
+            *///?} else {
             AbstractClientPlayer player,
             float tickDelta, float pitch,
             InteractionHand hand,
@@ -80,6 +100,7 @@ public class ItemInHandRendererMixin {
             SubmitNodeCollector collector,
             int packedLight,
             CallbackInfo ci) {
+            //?}
 
         HandContext.renderDepth++;
 
@@ -92,6 +113,19 @@ public class ItemInHandRendererMixin {
 
     @Inject(method = "renderArmWithItem", at = @At("RETURN"))
     private void scaleme$releaseHand(
+            //? if >=26.3 {
+            /*PlayerRenderState playerState,
+            FirstPersonHandsAndItemsRenderState handsState,
+            float tickDelta, float pitch,
+            InteractionHand hand,
+            float swingProgress,
+            ItemStack heldItem,
+            float equipProgress,
+            PoseStack poseStack,
+            SubmitNodeCollector collector,
+            int packedLight,
+            CallbackInfo ci) {
+            *///?} else {
             AbstractClientPlayer player,
             float tickDelta, float pitch,
             InteractionHand hand,
@@ -102,6 +136,7 @@ public class ItemInHandRendererMixin {
             SubmitNodeCollector collector,
             int packedLight,
             CallbackInfo ci) {
+            //?}
 
         HandContext.renderDepth--;
         if (HandContext.renderDepth <= 0) {
@@ -192,11 +227,21 @@ public class ItemInHandRendererMixin {
     /** Applies a blocking pose when holding a sword and right-clicking. */
     @Inject(method = "renderArmWithItem", at = @At("HEAD"), cancellable = true)
     private void scaleme$applySwordBlockPose(
+            //? if >=26.3 {
+            /*PlayerRenderState playerState,
+            FirstPersonHandsAndItemsRenderState handsState,
+            float tickDelta, float pitch,
+            InteractionHand hand, float swingProgress, ItemStack heldItem,
+            float equipProgress, PoseStack poseStack,
+            SubmitNodeCollector collector, int packedLight,
+            CallbackInfo ci) {
+            *///?} else {
             AbstractClientPlayer player, float tickDelta, float pitch,
             InteractionHand hand, float swingProgress, ItemStack heldItem,
             float equipProgress, PoseStack poseStack,
             SubmitNodeCollector collector, int packedLight,
             CallbackInfo ci) {
+            //?}
 
         if (!BlockingState.isBlocking
                 || hand != InteractionHand.MAIN_HAND
@@ -205,7 +250,11 @@ public class ItemInHandRendererMixin {
         ci.cancel();
 
         poseStack.pushPose();
+        //? if >=26.3 {
+        /*HumanoidArm arm = playerState.avatarRenderState.mainArm;
+        *///?} else {
         HumanoidArm arm = player.getMainArm();
+        //?}
         int side = arm == HumanoidArm.RIGHT ? 1 : -1;
 
         applyItemArmTransform(poseStack, arm, equipProgress);
@@ -214,6 +263,9 @@ public class ItemInHandRendererMixin {
         poseStack.mulPose(Axis.YP.rotationDegrees(side * SwordBlockPose.ROTATE_Y));
         poseStack.mulPose(Axis.ZP.rotationDegrees(side * SwordBlockPose.ROTATE_Z));
 
+        //? if >=26.3 {
+        /*handsState.mainHandRenderState.submit(poseStack, collector, packedLight, OverlayTexture.NO_OVERLAY, 0);
+        *///?} else {
         ((ItemInHandRenderer) (Object) this).renderItem(
                 player,
                 heldItem,
@@ -224,6 +276,7 @@ public class ItemInHandRendererMixin {
                 collector,
                 packedLight
         );
+        //?}
         poseStack.popPose();
 
         // --- release HandContext --- //

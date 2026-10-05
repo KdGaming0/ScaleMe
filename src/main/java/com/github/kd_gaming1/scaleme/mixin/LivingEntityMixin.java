@@ -7,6 +7,9 @@ import com.github.kd_gaming1.scaleme.util.SwingHoldState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
+//? if >=26.3 {
+/*import net.minecraft.world.item.component.SwingAnimation;
+*///?}
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -31,8 +34,13 @@ public class LivingEntityMixin {
      * Modifies the swing duration based on config speed multiplier,
      * optionally ignoring potion/enchantment effects.
      */
+    //? if >=26.3 {
+    /*@Inject(method = "getModifiedSwingDuration", at = @At("RETURN"), cancellable = true)
+    private void modifySwingDuration(SwingAnimation swingAnimation, CallbackInfoReturnable<Integer> cir) {
+    *///?} else {
     @Inject(method = "getCurrentSwingDuration", at = @At("RETURN"), cancellable = true)
     private void modifySwingDuration(CallbackInfoReturnable<Integer> cir) {
+    //?}
         if (!FeatureFlags.isEnabled(FeatureFlags.SWING_DURATION)) return;
 
         boolean ignore = FeatureFlags.isEnabled(FeatureFlags.IGNORE_SWING_SPEED);
@@ -44,7 +52,11 @@ public class LivingEntityMixin {
         var mc = Minecraft.getInstance();
         if (mc.player == null || self != mc.player) return;
 
+        //? if >=26.3 {
+        /*int duration = ignore ? swingAnimation.duration() : cir.getReturnValue();
+        *///?} else {
         int duration = ignore ? DEFAULT_SWING_DURATION : cir.getReturnValue();
+        //?}
         if (speed != 1f) duration = Math.max(1, Math.round(duration / speed));
 
         cir.setReturnValue(duration);
@@ -54,6 +66,25 @@ public class LivingEntityMixin {
      * Leaves the first held-attack swing intact while preventing later calls from restarting it.
      * The outer {@code LocalPlayer.swing} call still sends its packet, so this is visual only.
      */
+    //? if >=26.3 {
+    /*@Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/component/SwingAnimation;Z)Z",
+            at = @At("HEAD"), cancellable = true)
+    private void suppressRepeatedSwing(InteractionHand hand, SwingAnimation swingAnimation, boolean fromServer,
+                                       CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (!self.level().isClientSide()) return;
+
+        var mc = Minecraft.getInstance();
+        if (self != mc.player) return;
+
+        // LocalPlayer no longer overrides swing, so held-attack tracking happens here.
+        boolean holdingAttack = FeatureFlags.isEnabled(FeatureFlags.SUPPRESS_REPEAT_SWING)
+                && mc.options.keyAttack.isDown();
+        SwingHoldState.onSwing(holdingAttack);
+
+        if (SwingHoldState.isSuppressing()) cir.setReturnValue(false);
+    }
+    *///?} else {
     @Inject(method = "swing(Lnet/minecraft/world/InteractionHand;Z)V", at = @At("HEAD"), cancellable = true)
     private void suppressRepeatedSwing(InteractionHand hand, boolean fromServer, CallbackInfo ci) {
         if (!SwingHoldState.isSuppressing()) return;
@@ -63,9 +94,14 @@ public class LivingEntityMixin {
 
         if (self == Minecraft.getInstance().player) ci.cancel();
     }
+    //?}
 
     /** Suppresses or holds the attack animation for the local player when configured. */
+    //? if >=26.3 {
+    /*@Inject(method = "getSwingAnimation", at = @At("RETURN"), cancellable = true)
+    *///?} else {
     @Inject(method = "getAttackAnim", at = @At("RETURN"), cancellable = true)
+    //?}
     private void suppressAttackAnim(float partialTick, CallbackInfoReturnable<Float> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
         if (!self.level().isClientSide()) return;

@@ -58,6 +58,22 @@ stonecutter parameters {
             replace("import net.minecraft.client.gui.Gui;", "import net.minecraft.client.gui.Hud;")
             replace("@Mixin(Gui.class)", "@Mixin(Hud.class)")
         }
+        string(current.parsed >= "26.3") {
+            // 26.3 renamed ItemInHandRenderer -> FirstPersonHandsAndItemsRenderer
+            replace("net.minecraft.client.renderer.ItemInHandRenderer", "net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer")
+            replace("ItemInHandRenderer.class", "FirstPersonHandsAndItemsRenderer.class")
+            replace("(ItemInHandRenderer)", "(FirstPersonHandsAndItemsRenderer)")
+            // 26.3 dropped GLFW from the compile classpath; mouse buttons live on InputConstants
+            replace("import org.lwjgl.glfw.GLFW;", "// GLFW not on the 26.3 classpath")
+            replace("GLFW.GLFW_MOUSE_BUTTON_RIGHT", "InputConstants.MOUSE_BUTTON_RIGHT")
+        }
+        regex(current.parsed >= "26.3") {
+            // 26.3 PoseStack.mulPose no longer takes a Quaternionf
+            replace(
+                "\\.mulPose\\(Axis\\.([XYZ]P)\\.rotationDegrees\\((.*)\\)\\);" to ".rotateDegrees(Axis.$1, $2);",
+                "\\.rotateDegrees\\(Axis\\.([XYZ]P), (.*)\\);" to ".mulPose(Axis.$1.rotationDegrees($2));"
+            )
+        }
         regex(current.parsed >= "26.2") {
             replace(
                 "(?<!\\.)\\bclient\\.screen\\b" to "client.gui.screen()",
@@ -71,7 +87,7 @@ stonecutter parameters {
     }
 }
 
-val releaseVersions = listOf("1.21.10", "1.21.11", "26.1", "26.2")
+val releaseVersions = listOf("1.21.10", "1.21.11", "26.1", "26.2", "26.3")
 
 stonecutter tasks {
     order("publishMods")

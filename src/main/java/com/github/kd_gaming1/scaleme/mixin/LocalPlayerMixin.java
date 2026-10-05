@@ -14,10 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LocalPlayer.class)
 public class LocalPlayerMixin {
 
+    //? if <26.3 {
     @Inject(method = "swing", at = @At("HEAD"))
     private void scaleme$trackHeldAttackSwing(InteractionHand hand, CallbackInfo ci) {
         boolean holdingAttack = FeatureFlags.isEnabled(FeatureFlags.SUPPRESS_REPEAT_SWING)
                 && Minecraft.getInstance().options.keyAttack.isDown();
         SwingHoldState.onSwing(holdingAttack);
     }
+    //?}
 }
